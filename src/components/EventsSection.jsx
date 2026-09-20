@@ -14,10 +14,16 @@ export default function EventsSection() {
   };
 
   return (
-    <section id="eventos" className="py-20 sm:py-28 bg-saira-forest-dark text-white relative overflow-hidden">
-      {/* Subtle Background Glows */}
-      <div className="absolute -top-24 -right-24 w-96 h-96 bg-emerald-600/10 rounded-full blur-3xl pointer-events-none"></div>
-      <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+    <section id="eventos" className="py-20 sm:py-28 text-white relative overflow-hidden bg-stone-950">
+      {/* Background Image of the Oca Carukango */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src="/images/eventos/oca1.jpg"
+          alt="Oca Carukango no Sítio Saíra 7"
+          className="w-full h-full object-cover object-center filter brightness-[0.32] contrast-[1.05]"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-stone-950/90 via-black/80 to-stone-950/95"></div>
+      </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
