@@ -25,3 +25,7 @@ pnpm-debug.log*
 .vscode/
 *.swp
 *.swo
+
+# Antigravity / Agents (centralized globally in parent directory)
+.agents/
+
