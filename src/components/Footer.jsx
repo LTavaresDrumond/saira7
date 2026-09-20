@@ -1,5 +1,5 @@
 import React from 'react';
-import { Trees, MessageCircle, Heart } from 'lucide-react';
+import { MessageCircle, Heart } from 'lucide-react';
 import { sairaData } from '../data/sairaData';
 
 export default function Footer() {
@@ -12,15 +12,22 @@ export default function Footer() {
           
           {/* Brand Info */}
           <div className="lg:col-span-5">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-full bg-saira-forest flex items-center justify-center text-amber-200">
-                <Trees className="w-5 h-5" />
+            <div className="flex items-center gap-3.5 mb-4">
+              <div className="w-14 h-14 rounded-full overflow-hidden bg-white p-0.5 shadow-lg border-2 border-amber-400/80 flex-shrink-0">
+                <img
+                  src="/images/logo.jpg"
+                  alt="Logo Sítio Saíra Sete Cores"
+                  className="w-full h-full object-cover rounded-full"
+                />
               </div>
               <div>
-                <span className="font-serif text-2xl font-bold tracking-tight block">
+                <span className="font-serif text-2xl font-bold tracking-tight block text-white">
                   {sairaData.name}
                 </span>
-                <span className="text-[11px] text-amber-400 uppercase tracking-widest font-semibold">
+                <span className="text-[11px] text-amber-400 uppercase tracking-widest font-semibold block">
+                  Arte, Ecologia, Educação & Saúde Integral
+                </span>
+                <span className="text-[10px] text-stone-400 block mt-0.5">
                   Cabeceira do Sana • Macaé (RJ)
                 </span>
               </div>

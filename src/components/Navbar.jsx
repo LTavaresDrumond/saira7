@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, MessageCircle, Trees } from 'lucide-react';
+import { Menu, X, MessageCircle } from 'lucide-react';
 import { sairaData } from '../data/sairaData';
 
 export default function Navbar() {
@@ -38,9 +38,13 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         {/* Brand Logo */}
-        <a href="#" className="flex items-center gap-2.5 group">
-          <div className="w-10 h-10 rounded-full bg-saira-forest-light/20 flex items-center justify-center border border-saira-forest/30 group-hover:bg-saira-forest/30 transition-colors">
-            <Trees className={`w-5 h-5 ${isScrolled ? 'text-saira-forest' : 'text-emerald-300'}`} />
+        <a href="#" className="flex items-center gap-3 group">
+          <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full overflow-hidden bg-white p-0.5 shadow-md border-2 border-amber-300/60 group-hover:border-amber-400 transition-all flex-shrink-0">
+            <img
+              src="/images/logo.jpg"
+              alt="Logo Sítio Saíra Sete Cores"
+              className="w-full h-full object-cover rounded-full"
+            />
           </div>
           <div>
             <span className={`block font-serif text-xl sm:text-2xl font-bold tracking-tight leading-none ${isScrolled ? 'text-saira-forest-dark' : 'text-white'}`}>
