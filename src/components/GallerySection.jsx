@@ -7,7 +7,7 @@ export default function GallerySection() {
   const [selectedCategory, setSelectedCategory] = useState('Todas');
   const [lightboxIndex, setLightboxIndex] = useState(null);
 
-  const categories = ['Todas', 'Paisagem', 'Rio', 'Acomodações', 'Lazer'];
+  const categories = ['Todas', ...Array.from(new Set(gallery.map((img) => img.category)))];
 
   const filteredImages = selectedCategory === 'Todas'
     ? gallery

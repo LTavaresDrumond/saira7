@@ -1,9 +1,10 @@
-import React from 'react';
-import { Users, UtensilsCrossed, BookOpen, Sparkles, Flame, CheckCircle2 } from 'lucide-react';
+import React, { useState } from 'react';
+import { Users, UtensilsCrossed, BookOpen, Sparkles, Flame, CheckCircle2, Eye, X } from 'lucide-react';
 import { sairaData } from '../data/sairaData';
 
 export default function EventsSection() {
   const { events } = sairaData;
+  const [selectedEventPhoto, setSelectedEventPhoto] = useState(null);
 
   const iconMap = {
     Users: Users,
@@ -32,6 +33,40 @@ export default function EventsSection() {
           <p className="text-stone-300 text-base sm:text-lg mt-4 font-light leading-relaxed">
             Uma estrutura coberta e arejada para acolher até <strong className="text-amber-200 font-semibold">100 convidados</strong> com infraestrutura culinária comercial completa e imersão total na Mata Atlântica.
           </p>
+        </div>
+
+        {/* Real Photos of the Oca Grid */}
+        <div className="mb-16">
+          <div className="flex items-center justify-between mb-6">
+            <h3 className="font-serif text-xl sm:text-2xl font-bold text-amber-200 flex items-center gap-2">
+              <span>Registros Reais da Oca & Eventos</span>
+            </h3>
+            <span className="text-xs text-stone-400">Clique na foto para ampliar</span>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
+            {events.photos.map((item, idx) => (
+              <div
+                key={idx}
+                onClick={() => setSelectedEventPhoto(item)}
+                className="group relative h-40 sm:h-52 rounded-2xl overflow-hidden cursor-pointer border border-white/10 shadow-card bg-stone-900"
+              >
+                <img
+                  src={item.src}
+                  alt={item.caption}
+                  className="w-full h-full object-cover img-zoom"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-3">
+                  <span className="text-[11px] font-semibold text-white leading-tight">
+                    {item.caption}
+                  </span>
+                  <span className="text-[9px] text-amber-300 mt-0.5 flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <Eye className="w-3 h-3" /> Ver foto
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Feature Grid */}
@@ -109,6 +144,28 @@ export default function EventsSection() {
         </div>
 
       </div>
+
+      {/* Lightbox Modal for Event Photos */}
+      {selectedEventPhoto && (
+        <div className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex items-center justify-center p-4 animate-fadeIn">
+          <button
+            onClick={() => setSelectedEventPhoto(null)}
+            className="absolute top-6 right-6 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
+          >
+            <X className="w-6 h-6" />
+          </button>
+          <div className="max-w-4xl max-h-[85vh] flex flex-col items-center">
+            <img
+              src={selectedEventPhoto.src}
+              alt={selectedEventPhoto.caption}
+              className="max-h-[75vh] w-auto max-w-full rounded-2xl object-contain shadow-2xl"
+            />
+            <h4 className="font-serif text-xl font-bold text-white mt-4">
+              {selectedEventPhoto.caption}
+            </h4>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

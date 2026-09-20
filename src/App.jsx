@@ -3,6 +3,7 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import AboutSection from './components/AboutSection';
 import AccommodationsSection from './components/AccommodationsSection';
+import ConvivenciaSection from './components/ConvivenciaSection';
 import EventsSection from './components/EventsSection';
 import NatureSection from './components/NatureSection';
 import GallerySection from './components/GallerySection';
@@ -18,6 +19,7 @@ export default function App() {
         <Hero />
         <AboutSection />
         <AccommodationsSection />
+        <ConvivenciaSection />
         <EventsSection />
         <NatureSection />
         <GallerySection />

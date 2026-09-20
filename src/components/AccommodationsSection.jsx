@@ -1,12 +1,23 @@
 import React, { useState } from 'react';
-import { Home, Hotel, Check, Users, Bed, Flame, Waves, ShieldCheck } from 'lucide-react';
+import { Home, Hotel, Check, Bed, ShieldCheck, Images } from 'lucide-react';
 import { sairaData } from '../data/sairaData';
 
 export default function AccommodationsSection() {
   const [activeTab, setActiveTab] = useState('rustic');
+  const [selectedPhotoIndex, setSelectedPhotoIndex] = useState(0);
 
   const { rusticHouse, annexSuites } = sairaData.accommodations;
   const current = activeTab === 'rustic' ? rusticHouse : annexSuites;
+
+  const currentPhotos = [
+    current.image,
+    current.secondaryImage,
+  ].filter(Boolean);
+
+  const handleTabChange = (tab) => {
+    setActiveTab(tab);
+    setSelectedPhotoIndex(0);
+  };
 
   return (
     <section id="acomodacoes" className="py-20 sm:py-28 bg-saira-sand-dark/40 relative">
@@ -19,16 +30,16 @@ export default function AccommodationsSection() {
             Hospedagem por Temporada
           </div>
           <h2 className="font-serif text-3xl sm:text-5xl font-bold text-saira-forest-dark tracking-tight leading-tight">
-            Acomodações que abraçam até 23 hóspedes
+            Acomodações: Casa Antiga & Casa Nova
           </h2>
           <p className="text-stone-600 text-base sm:text-lg mt-4 font-light">
-            Distribuídas harmoniosamente em duas edificações independentes, garantindo conforto para grupos que desejam compartilhar bons momentos sem abrir mão de privacidade.
+            Conforto para até <strong className="font-semibold text-stone-900">23 pessoas em camas</strong> em duas edificações complementares, com privacidade e integração total à natureza.
           </p>
 
           {/* Interactive Tab Selector */}
           <div className="inline-flex p-1.5 rounded-full bg-stone-200/80 mt-8 border border-stone-300">
             <button
-              onClick={() => setActiveTab('rustic')}
+              onClick={() => handleTabChange('rustic')}
               className={`flex items-center gap-2 px-5 sm:px-7 py-3 rounded-full text-xs sm:text-sm font-semibold transition-all ${
                 activeTab === 'rustic'
                   ? 'bg-saira-forest text-white shadow-md'
@@ -36,10 +47,10 @@ export default function AccommodationsSection() {
               }`}
             >
               <Home className="w-4 h-4" />
-              Casa Principal Rústica
+              Casa Antiga (Sede Rústica)
             </button>
             <button
-              onClick={() => setActiveTab('annex')}
+              onClick={() => handleTabChange('annex')}
               className={`flex items-center gap-2 px-5 sm:px-7 py-3 rounded-full text-xs sm:text-sm font-semibold transition-all ${
                 activeTab === 'annex'
                   ? 'bg-saira-forest text-white shadow-md'
@@ -47,7 +58,7 @@ export default function AccommodationsSection() {
               }`}
             >
               <Hotel className="w-4 h-4" />
-              Edifício Anexo de Suítes
+              Casa Nova (Edifício de Suítes)
             </button>
           </div>
         </div>
@@ -56,23 +67,49 @@ export default function AccommodationsSection() {
         <div className="bg-white rounded-3xl overflow-hidden shadow-card border border-stone-200 transition-all">
           <div className="grid grid-cols-1 lg:grid-cols-12">
             
-            {/* Image Side */}
-            <div className="lg:col-span-6 relative min-h-[320px] sm:min-h-[420px]">
-              <img
-                src={current.image}
-                alt={current.title}
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+            {/* Image Showcase Side with Thumbnails */}
+            <div className="lg:col-span-6 relative min-h-[350px] sm:min-h-[440px] flex flex-col justify-between bg-stone-900">
+              <div className="absolute inset-0 z-0">
+                <img
+                  src={currentPhotos[selectedPhotoIndex] || current.image}
+                  alt={current.title}
+                  className="w-full h-full object-cover transition-all duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+              </div>
               
-              {/* Floating Pill on image */}
-              <div className="absolute bottom-6 left-6 right-6 text-white">
-                <span className="inline-block px-3.5 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-saira-earth text-white mb-2">
+              {/* Top Tag & Photos Counter */}
+              <div className="relative z-10 p-6 flex items-center justify-between">
+                <span className="inline-block px-3.5 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-saira-earth text-white shadow-sm">
                   {current.capacity}
                 </span>
-                <h3 className="font-serif text-2xl sm:text-3xl font-bold leading-tight">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-black/50 backdrop-blur-md text-white border border-white/20">
+                  <Images className="w-3.5 h-3.5" /> Foto {selectedPhotoIndex + 1} de {currentPhotos.length}
+                </span>
+              </div>
+
+              {/* Bottom Title & Thumbnails */}
+              <div className="relative z-10 p-6 sm:p-8">
+                <h3 className="font-serif text-2xl sm:text-3xl font-bold text-white mb-4 leading-tight">
                   {current.title}
                 </h3>
+                
+                {/* Thumbnails to switch photo */}
+                <div className="flex gap-2.5">
+                  {currentPhotos.map((photo, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setSelectedPhotoIndex(idx)}
+                      className={`w-14 h-14 sm:w-16 sm:h-16 rounded-xl overflow-hidden border-2 transition-all ${
+                        selectedPhotoIndex === idx
+                          ? 'border-amber-400 scale-105 shadow-md'
+                          : 'border-white/40 opacity-70 hover:opacity-100'
+                      }`}
+                    >
+                      <img src={photo} alt="" className="w-full h-full object-cover" />
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
 
@@ -115,7 +152,7 @@ export default function AccommodationsSection() {
               <div className="mt-8 pt-6 border-t border-stone-100 flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div className="text-xs text-stone-500 flex items-center gap-2">
                   <ShieldCheck className="w-4 h-4 text-emerald-600" />
-                  Privacidade total para seu grupo fechado
+                  Privacidade e exclusividade para o seu grupo
                 </div>
                 <a
                   href="#cotacao"
@@ -131,7 +168,7 @@ export default function AccommodationsSection() {
 
         {/* Extra Capacity Notice */}
         <div className="mt-8 text-center text-xs sm:text-sm text-stone-600 bg-amber-50/70 border border-amber-200/60 rounded-2xl p-4 max-w-2xl mx-auto">
-          🏕️ <strong>Precisa de mais vagas?</strong> Além das camas confortáveis para 23 pessoas, dispomos de sofás aconchegantes e amplo espaço gramado para montagem de barracas de camping.
+          🏕️ <strong>Precisa de mais vagas?</strong> Além das camas para 23 pessoas distribuídas na Casa Antiga e Casa Nova, dispomos de sofás aconchegantes e amplo espaço gramado para montagem de barracas de camping.
         </div>
 
       </div>
