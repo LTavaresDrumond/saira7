@@ -1,0 +1,127 @@
+import React from 'react';
+import { Trees, MessageCircle, Heart } from 'lucide-react';
+import { sairaData } from '../data/sairaData';
+
+export default function Footer() {
+  const currentYear = new Date().getFullYear();
+
+  return (
+    <footer className="bg-stone-900 text-white pt-16 pb-12 border-t border-stone-800">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-stone-800">
+          
+          {/* Brand Info */}
+          <div className="lg:col-span-5">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-10 h-10 rounded-full bg-saira-forest flex items-center justify-center text-amber-200">
+                <Trees className="w-5 h-5" />
+              </div>
+              <div>
+                <span className="font-serif text-2xl font-bold tracking-tight block">
+                  {sairaData.name}
+                </span>
+                <span className="text-[11px] text-amber-400 uppercase tracking-widest font-semibold">
+                  Cabeceira do Sana • Macaé (RJ)
+                </span>
+              </div>
+            </div>
+
+            <p className="text-stone-400 text-sm font-light leading-relaxed max-w-sm mb-6">
+              Hospedagem por temporada e espaço de eventos imerso na Mata Atlântica. O Rio Macaé, a Oca Carukango e o aconchego da serra em um só lugar.
+            </p>
+
+            <div className="text-xs text-stone-500">
+              📍 Cabeceira do Sana, Macaé - RJ, Brasil
+            </div>
+          </div>
+
+          {/* Quick Nav Links */}
+          <div className="lg:col-span-3">
+            <h4 className="font-serif text-lg font-bold mb-4 text-amber-200">
+              Navegação
+            </h4>
+            <ul className="space-y-2.5 text-sm text-stone-400 font-light">
+              <li><a href="#sobre" className="hover:text-white transition-colors">O Sítio & História</a></li>
+              <li><a href="#acomodacoes" className="hover:text-white transition-colors">Acomodações (23 pessoas)</a></li>
+              <li><a href="#eventos" className="hover:text-white transition-colors">Oca Carukango (Eventos)</a></li>
+              <li><a href="#natureza" className="hover:text-white transition-colors">Rio Macaé & Horta</a></li>
+              <li><a href="#galeria" className="hover:text-white transition-colors">Galeria Fotográfica</a></li>
+              <li><a href="#cotacao" className="hover:text-white transition-colors">Solicitar Orçamento</a></li>
+            </ul>
+          </div>
+
+          {/* Social Connections */}
+          <div className="lg:col-span-4">
+            <h4 className="font-serif text-lg font-bold mb-4 text-amber-200">
+              Conecte-se Conosco
+            </h4>
+            <p className="text-xs text-stone-400 mb-5 font-light">
+              Acompanhe o dia a dia na serra e entre em contato direto para reservas:
+            </p>
+
+            <div className="flex flex-col gap-3">
+              {/* WhatsApp Button */}
+              <a
+                href={`https://wa.me/${sairaData.contact.whatsappNumber}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 p-3 rounded-xl bg-emerald-950/80 border border-emerald-700/50 hover:bg-emerald-900 text-emerald-200 text-xs font-semibold transition-all"
+              >
+                <div className="w-8 h-8 rounded-lg bg-emerald-600 flex items-center justify-center text-white">
+                  <MessageCircle className="w-4 h-4" />
+                </div>
+                <div>
+                  <span className="block text-white">WhatsApp Direto</span>
+                  <span className="text-[11px] text-emerald-300 font-normal">Fale com o anfitrião</span>
+                </div>
+              </a>
+
+              {/* Instagram Button */}
+              <a
+                href={sairaData.contact.instagramUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 p-3 rounded-xl bg-stone-800/80 border border-stone-700 hover:bg-stone-800 text-stone-300 text-xs font-semibold transition-all"
+              >
+                <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 flex items-center justify-center text-white">
+                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+                  </svg>
+                </div>
+                <div>
+                  <span className="block text-white">Instagram</span>
+                  <span className="text-[11px] text-stone-400 font-normal">{sairaData.contact.instagramHandle}</span>
+                </div>
+              </a>
+
+              {/* Airbnb Reserved Slot */}
+              <div className="flex items-center justify-between p-3 rounded-xl bg-stone-800/40 border border-stone-800 text-stone-400 text-xs">
+                <span className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-rose-500/80"></span>
+                  Anúncio no Airbnb
+                </span>
+                <span className="text-[10px] uppercase tracking-wider font-semibold text-stone-500 bg-stone-800 px-2 py-0.5 rounded">
+                  Em breve
+                </span>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        {/* Bottom Credits */}
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-stone-500 font-light">
+          <div>
+            © {currentYear} {sairaData.name}. Todos os direitos reservados.
+          </div>
+          <div className="flex items-center gap-1.5 text-stone-400">
+            Preservando a Mata Atlântica com amor na serra do Sana <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500" />
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
