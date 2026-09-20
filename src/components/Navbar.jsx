@@ -21,6 +21,7 @@ export default function Navbar() {
     { name: 'Natureza & Rio', href: '#natureza' },
     { name: 'Galeria', href: '#galeria' },
     { name: 'Como Chegar', href: '#localizacao' },
+    { name: 'Solicitar Orçamento', href: '#cotacao', highlight: true },
   ];
 
   const handleWhatsAppDirect = () => {
@@ -57,13 +58,19 @@ export default function Navbar() {
         </a>
 
         {/* Desktop Links */}
-        <div className="hidden lg:flex items-center gap-7">
+        <div className="hidden lg:flex items-center gap-5 xl:gap-7">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
-              className={`text-sm font-medium transition-colors hover:text-saira-earth ${
-                isScrolled ? 'text-stone-700' : 'text-white/90 hover:text-white'
+              className={`text-sm transition-colors ${
+                link.highlight
+                  ? isScrolled
+                    ? 'font-semibold text-saira-forest hover:text-saira-forest-light underline decoration-saira-earth/40 underline-offset-4'
+                    : 'font-semibold text-amber-300 hover:text-amber-200 underline decoration-amber-300/40 underline-offset-4'
+                  : `font-medium hover:text-saira-earth ${
+                      isScrolled ? 'text-stone-700' : 'text-white/90 hover:text-white'
+                    }`
               }`}
             >
               {link.name}
@@ -73,14 +80,6 @@ export default function Navbar() {
 
         {/* Action Button & Mobile Trigger */}
         <div className="flex items-center gap-3">
-          <a
-            href="#cotacao"
-            className="hidden sm:inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-xs font-semibold tracking-wide uppercase shadow-sm transition-all transform hover:-translate-y-0.5 bg-saira-forest hover:bg-saira-forest-light text-white"
-          >
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            Solicitar Orçamento
-          </a>
-
           <button
             onClick={handleWhatsAppDirect}
             className="p-2.5 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white transition-all transform hover:scale-105 shadow-md flex items-center justify-center"
@@ -104,26 +103,21 @@ export default function Navbar() {
       {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
         <div className="lg:hidden bg-saira-sand-light border-b border-stone-200 shadow-xl px-4 pt-3 pb-6 animate-fadeIn">
-          <div className="flex flex-col space-y-3">
+          <div className="flex flex-col space-y-2">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-stone-700 hover:text-saira-forest font-medium py-2 px-3 rounded-md hover:bg-stone-100 transition-colors"
+                className={`py-2 px-3 rounded-md transition-colors ${
+                  link.highlight
+                    ? 'text-saira-forest font-semibold bg-stone-200/50 hover:bg-stone-200'
+                    : 'text-stone-700 hover:text-saira-forest font-medium hover:bg-stone-100'
+                }`}
               >
                 {link.name}
               </a>
             ))}
-            <div className="pt-2 border-t border-stone-200">
-              <a
-                href="#cotacao"
-                onClick={() => setMobileMenuOpen(false)}
-                className="w-full text-center block py-3 rounded-full font-semibold text-white bg-saira-forest hover:bg-saira-forest-light transition-all"
-              >
-                Solicitar Orçamento
-              </a>
-            </div>
           </div>
         </div>
       )}
