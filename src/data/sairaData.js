@@ -1,6 +1,7 @@
 export const sairaData = {
   name: "Sítio Saíra Sete Cores",
   shortName: "Saíra 7",
+  url: "https://saira7.vercel.app",
   tagline: "Seu refúgio exclusivo de Mata Atlântica na Cabeceira do Sana",
   location: {
     neighborhood: "Cabeceira do Sana",
