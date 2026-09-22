@@ -12,10 +12,10 @@ export const sairaData = {
     googleMapsUrl: "https://maps.google.com/?q=Cabeceira+do+Sana+Macae+RJ",
   },
   contact: {
-    whatsappNumber: "5521999999999", // Número configurável
-    whatsappDisplay: "(21) 99999-9999",
-    instagramHandle: "@sitiosaira7cores",
-    instagramUrl: "https://instagram.com",
+    whatsappNumber: "5561992823308",
+    whatsappDisplay: "(61) 99282-3308",
+    instagramHandle: "@sitio_saira_sete_cores",
+    instagramUrl: "https://www.instagram.com/sitio_saira_sete_cores",
     airbnbUrl: "", // Deixado preparado para quando for publicado
   },
   highlights: [
