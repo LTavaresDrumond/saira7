@@ -26,7 +26,7 @@ export default function Navbar() {
 
   const handleWhatsAppDirect = () => {
     const text = encodeURIComponent("Olá! Vim pelo site do Sítio Saíra 7 e gostaria de saber mais informações sobre disponibilidade.");
-    window.open(`https://wa.me/${sairaData.contact.whatsappNumber}?text=${text}`, '_blank');
+    window.open(`https://api.whatsapp.com/send?phone=${sairaData.contact.whatsappNumber}&text=${text}`, '_blank');
   };
 
   return (

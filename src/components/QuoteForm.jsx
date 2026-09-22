@@ -45,7 +45,7 @@ export default function QuoteForm() {
 📝 *Observações/Dúvidas:* ${formData.notes || 'Nenhuma'}`;
 
     const encoded = encodeURIComponent(text);
-    const url = `https://wa.me/${sairaData.contact.whatsappNumber}?text=${encoded}`;
+    const url = `https://api.whatsapp.com/send?phone=${sairaData.contact.whatsappNumber}&text=${encoded}`;
     window.open(url, '_blank');
   };
 
@@ -271,7 +271,7 @@ export default function QuoteForm() {
                 Tire dúvidas sobre disponibilidade de datas festivas, visitas técnicas para eventos ou valores para grupos.
               </p>
               <a
-                href={`https://wa.me/${sairaData.contact.whatsappNumber}?text=${encodeURIComponent("Olá! Gostaria de tirar algumas dúvidas sobre o Sítio Saíra 7.")}`}
+                href={`https://api.whatsapp.com/send?phone=${sairaData.contact.whatsappNumber}&text=${encodeURIComponent("Olá! Gostaria de tirar algumas dúvidas sobre o Sítio Saíra 7.")}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-xs font-semibold text-amber-300 hover:text-white underline underline-offset-4"

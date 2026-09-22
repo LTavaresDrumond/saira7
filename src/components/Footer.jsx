@@ -69,7 +69,7 @@ export default function Footer() {
             <div className="flex flex-col gap-3">
               {/* WhatsApp Button */}
               <a
-                href={`https://wa.me/${sairaData.contact.whatsappNumber}`}
+                href={`https://api.whatsapp.com/send?phone=${sairaData.contact.whatsappNumber}&text=${encodeURIComponent("Olá! Vim pelo site do Sítio Saíra 7 e gostaria de informações sobre reservas.")}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 p-3 rounded-xl bg-emerald-950/80 border border-emerald-700/50 hover:bg-emerald-900 text-emerald-200 text-xs font-semibold transition-all"
@@ -78,8 +78,8 @@ export default function Footer() {
                   <MessageCircle className="w-4 h-4" />
                 </div>
                 <div>
-                  <span className="block text-white">WhatsApp Direto</span>
-                  <span className="text-[11px] text-emerald-300 font-normal">Fale com o anfitrião</span>
+                  <span className="block text-white font-semibold">WhatsApp Oficial</span>
+                  <span className="text-[11px] text-emerald-300 font-normal">{sairaData.contact.whatsappDisplay}</span>
                 </div>
               </a>
 
