@@ -3,9 +3,6 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import AboutSection from './components/AboutSection';
 import AccommodationsSection from './components/AccommodationsSection';
-import ConvivenciaSection from './components/ConvivenciaSection';
-import EventsSection from './components/EventsSection';
-import NatureSection from './components/NatureSection';
 import GallerySection from './components/GallerySection';
 import LocationSection from './components/LocationSection';
 import QuoteForm from './components/QuoteForm';
@@ -17,14 +14,11 @@ export default function App() {
       <Navbar />
       <main className="flex-grow">
         <Hero />
-        <AboutSection />
         <AccommodationsSection />
-        <ConvivenciaSection />
-        <EventsSection />
-        <NatureSection />
         <GallerySection />
         <LocationSection />
         <QuoteForm />
+        <AboutSection />
       </main>
       <Footer />
     </div>

@@ -48,12 +48,11 @@ export default function Footer() {
               Navegação
             </h4>
             <ul className="space-y-2.5 text-sm text-stone-400 font-light">
-              <li><a href="#sobre" className="hover:text-white transition-colors">O Sítio & História</a></li>
-              <li><a href="#acomodacoes" className="hover:text-white transition-colors">Acomodações (23 pessoas)</a></li>
-              <li><a href="#eventos" className="hover:text-white transition-colors">Oca Carukango (Eventos)</a></li>
-              <li><a href="#natureza" className="hover:text-white transition-colors">Rio Macaé & Horta</a></li>
+              <li><a href="#acomodacoes" className="hover:text-white transition-colors">Nossos Espaços</a></li>
               <li><a href="#galeria" className="hover:text-white transition-colors">Galeria Fotográfica</a></li>
+              <li><a href="#localizacao" className="hover:text-white transition-colors">Como Chegar</a></li>
               <li><a href="#cotacao" className="hover:text-white transition-colors">Solicitar Orçamento</a></li>
+              <li><a href="#sobre" className="hover:text-white transition-colors">Sobre Nós</a></li>
             </ul>
           </div>
 

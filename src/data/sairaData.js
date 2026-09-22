@@ -8,8 +8,15 @@ export const sairaData = {
     city: "Macaé",
     state: "RJ",
     fullAddress: "Cabeceira do Sana, Macaé - RJ",
-    description: "Localizado na parte mais tranquila e preservada do Sana, com ar puro de montanha e águas cristalinas do Rio Macaé na porta.",
-    googleMapsUrl: "https://maps.google.com/?q=Cabeceira+do+Sana+Macae+RJ",
+    description: "A Cabeceira do Sana é a região mais preservada, tranquila e silenciosa do Sana.",
+    googleMapsUrl: "https://www.google.com/maps/place/S%C3%8DTIO+SA%C3%8DRA+SETE+CORES/@-22.2734374,-42.157444,17z/data=!3m1!4b1!4m6!3m5!1s0x97c3f147c4c715:0xb84ac8597b070d87!8m2!3d-22.2734374!4d-42.157444!16s%2Fg%2F11xz23xf1s",
+    googleMapsEmbedQuery: "SÍTIO+SAÍRA+SETE+CORES",
+    access: "Estrada asfaltada até a porta do sítio vindo pelo Arraial do Sana",
+    distanceFromFrade: "7 km do Frade",
+    nearbyAttractions: [
+      "Próximo às cachoeiras do centro do Sana",
+      "A 2 km da Cachoeira das Andorinhas",
+    ],
   },
   contact: {
     whatsappNumber: "5561992823308",

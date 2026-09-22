@@ -15,12 +15,10 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: 'O Sítio', href: '#sobre' },
-    { name: 'Acomodações', href: '#acomodacoes' },
-    { name: 'Oca Carukango', href: '#eventos' },
-    { name: 'Natureza & Rio', href: '#natureza' },
+    { name: 'Nossos Espaços', href: '#acomodacoes' },
     { name: 'Galeria', href: '#galeria' },
     { name: 'Como Chegar', href: '#localizacao' },
+    { name: 'Sobre Nós', href: '#sobre' },
     { name: 'Solicitar Orçamento', href: '#cotacao', highlight: true },
   ];
 

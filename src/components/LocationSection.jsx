@@ -1,14 +1,14 @@
 import React from 'react';
-import { MapPin, Navigation, Mountain, Car, CheckCircle2 } from 'lucide-react';
+import { MapPin, Navigation, Mountain, Car, CheckCircle2, Droplets } from 'lucide-react';
 import { sairaData } from '../data/sairaData';
 
 export default function LocationSection() {
   const { location } = sairaData;
 
-  const wazeUrl = "https://waze.com/ul?q=Cabeceira+do+Sana+Macae";
+  const wazeUrl = "https://waze.com/ul?q=Sítio+Saíra+Sete+Cores+Cabeceira+do+Sana+Macaé";
 
   return (
-    <section id="localizacao" className="py-20 sm:py-28 bg-saira-sand relative">
+    <section id="localizacao" className="py-10 sm:py-14 bg-saira-sand relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
@@ -21,7 +21,7 @@ export default function LocationSection() {
             Na Cabeceira do Sana, Macaé (RJ)
           </h2>
           <p className="text-stone-600 text-base sm:text-lg mt-4 font-light">
-            O refúgio perfeito a poucas horas do Rio de Janeiro e da Região dos Lagos, cercado por vales e montanhas imponentes.
+            {location.description}
           </p>
         </div>
 
@@ -39,24 +39,26 @@ export default function LocationSection() {
                   O Encanto da Cabeceira
                 </h3>
                 <span className="text-xs text-saira-earth font-bold uppercase tracking-wider">
-                  Serra Macaense
+                  Serra Macaense • {location.distanceFromFrade}
                 </span>
               </div>
             </div>
 
             <p className="text-stone-600 text-sm sm:text-base leading-relaxed mb-6 font-light">
-              A <strong>Cabeceira do Sana</strong> é a região mais preservada, tranquila e exclusiva do vale. Diferente do centro comercial do arraial, aqui você desfruta de silêncio absoluto, estrelas reluzentes e o rio de águas límpidas direto na entrada do sítio.
+              A <strong>Cabeceira do Sana</strong> é a região mais preservada, tranquila e silenciosa do vale. Diferente do centro comercial do arraial, aqui você desfruta de silêncio absoluto, estrelas reluzentes e o rio de águas límpidas direto na entrada do sítio.
             </p>
 
             <div className="space-y-3.5 mb-8">
               <div className="flex items-start gap-3 text-sm text-stone-700">
                 <CheckCircle2 className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" />
-                <span><strong>Acesso acessível:</strong> estrada bem conservada acessível para qualquer veículo de passeio comum.</span>
+                <span><strong>Acesso acessível:</strong> {location.access} — {location.distanceFromFrade}.</span>
               </div>
-              <div className="flex items-start gap-3 text-sm text-stone-700">
-                <CheckCircle2 className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" />
-                <span><strong>Proximidade:</strong> a poucos minutos das famosas cachoeiras e do centro gastronômico do Sana.</span>
-              </div>
+              {location.nearbyAttractions.map((attraction, idx) => (
+                <div key={idx} className="flex items-start gap-3 text-sm text-stone-700">
+                  <Droplets className="w-5 h-5 text-sky-600 flex-shrink-0 mt-0.5" />
+                  <span><strong>{attraction}</strong></span>
+                </div>
+              ))}
               <div className="flex items-start gap-3 text-sm text-stone-700">
                 <CheckCircle2 className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" />
                 <span><strong>Estacionamento amplo:</strong> área interna segura para acomodar veículos do seu grupo ou evento.</span>
@@ -86,11 +88,11 @@ export default function LocationSection() {
             </div>
           </div>
 
-          {/* Map Visual Showcase */}
+          {/* Map Visual Showcase — using official place embed */}
           <div className="lg:col-span-6 relative rounded-3xl overflow-hidden shadow-elevated border-4 border-white h-[420px] bg-stone-200">
             <iframe
-              title="Mapa Cabeceira do Sana"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14738.905662124707!2d-42.20379968779958!3d-22.363989392231268!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x978b77a7b8e1f5%3A0x6b876a3b2b406560!2sSana%2C%20Maca%C3%A9%20-%20RJ!5e0!3m2!1spt-BR!2sbr!4v1700000000000!5m2!1spt-BR!2sbr"
+              title="Mapa Sítio Saíra Sete Cores"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3674.1!2d-42.157444!3d-22.2734374!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x97c3f147c4c715%3A0xb84ac8597b070d87!2sS%C3%8DTIO%20SA%C3%8DRA%20SETE%20CORES!5e0!3m2!1spt-BR!2sbr"
               className="w-full h-full border-0 filter saturate-[0.85] contrast-[1.05]"
               allowFullScreen=""
               loading="lazy"

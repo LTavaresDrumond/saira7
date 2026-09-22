@@ -1,11 +1,50 @@
 import React from 'react';
-import { Sparkles, HeartHandshake, Compass } from 'lucide-react';
+import { Sparkles, HeartHandshake, Compass, GraduationCap, Palette, Leaf, Users } from 'lucide-react';
 
 export default function AboutSection() {
+  const offerings = [
+    {
+      icon: Users,
+      title: 'Hospedagem para Grupos',
+      desc: 'Até 23 pessoas em camas, com espaço adicional para camping.',
+      color: 'saira-forest',
+    },
+    {
+      icon: GraduationCap,
+      title: 'Escola de Agroecologia',
+      desc: 'Educação ambiental integrada à natureza com vivências práticas.',
+      color: 'saira-earth',
+    },
+    {
+      icon: Sparkles,
+      title: 'Eventos, Retiros e Casamentos',
+      desc: 'Na Oca Carukango, para até 100 pessoas com infraestrutura completa.',
+      color: 'amber-600',
+    },
+    {
+      icon: Leaf,
+      title: 'Educação com a Natureza',
+      desc: 'Cursos de permacultura, botânica e vivências ecológicas.',
+      color: 'emerald-600',
+    },
+    {
+      icon: Palette,
+      title: 'Arte como Metodologia',
+      desc: 'Oficinas criativas e artísticas integradas ao ambiente natural.',
+      color: 'sky-600',
+    },
+    {
+      icon: Compass,
+      title: 'Ecoturismo & Trilhas',
+      desc: 'Fácil acesso às trilhas, cachoeiras e atrativos da região do Sana.',
+      color: 'saira-water',
+    },
+  ];
+
   return (
-    <section id="sobre" className="py-20 sm:py-28 bg-saira-sand relative overflow-hidden">
+    <section id="sobre" className="py-10 sm:py-14 bg-saira-sand relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           
           {/* Visual Showcase (Images) */}
           <div className="lg:col-span-6 relative">
@@ -39,42 +78,29 @@ export default function AboutSection() {
           <div className="lg:col-span-6">
             <div className="inline-flex items-center gap-2 text-saira-earth font-semibold tracking-wider uppercase text-xs sm:text-sm mb-3">
               <Sparkles className="w-4 h-4 text-saira-earth" />
-              Bem-vindo ao Saíra 7
+              Sobre Nós
             </div>
 
             <h2 className="font-serif text-3xl sm:text-5xl font-bold text-saira-forest-dark tracking-tight leading-tight mb-6">
               Onde o tempo desacelera e a natureza reconecta
             </h2>
 
-            <p className="text-stone-700 text-base sm:text-lg leading-relaxed mb-6 font-light">
-              Batizado em homenagem ao <strong>Saíra-Sete-Cores</strong>, ave símbolo de exuberância e liberdade que habita a Mata Atlântica da região, o sítio foi concebido para ser um templo de paz, celebração e vitalidade.
-            </p>
-
-            <p className="text-stone-600 text-sm sm:text-base leading-relaxed mb-8">
-              Localizado na <strong>Cabeceira do Sana</strong> — o ponto mais alto e preservado do distrito —, oferecemos o casamento perfeito entre o rústico autêntico e a estrutura acolhedora. Aqui, o som do Rio Macaé emoldura momentos inesquecíveis, seja para um fim de semana em família ou para um evento transformador.
-            </p>
-
-            {/* Value Pillars */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-stone-300/60">
-              <div className="flex items-start gap-3.5">
-                <div className="w-10 h-10 rounded-xl bg-saira-forest/10 flex-shrink-0 flex items-center justify-center text-saira-forest">
-                  <Compass className="w-5 h-5" />
-                </div>
-                <div>
-                  <h4 className="font-serif font-bold text-stone-900 text-base">Localização Privilegiada</h4>
-                  <p className="text-xs text-stone-600 mt-0.5">Cabeceira do Sana: água límpida e privacidade total longe da agitação.</p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-3.5">
-                <div className="w-10 h-10 rounded-xl bg-saira-earth/10 flex-shrink-0 flex items-center justify-center text-saira-earth">
-                  <HeartHandshake className="w-5 h-5" />
-                </div>
-                <div>
-                  <h4 className="font-serif font-bold text-stone-900 text-base">Hospitalidade Afetiva</h4>
-                  <p className="text-xs text-stone-600 mt-0.5">Espaços pensados para acolher com carinho até 23 pessoas em pernoite.</p>
-                </div>
-              </div>
+            {/* Offerings Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-6 border-t border-stone-300/60">
+              {offerings.map((item, idx) => {
+                const Icon = item.icon;
+                return (
+                  <div key={idx} className="flex items-start gap-3 p-3 rounded-xl hover:bg-white/60 transition-colors">
+                    <div className={`w-9 h-9 rounded-lg bg-${item.color}/10 flex-shrink-0 flex items-center justify-center text-${item.color}`}>
+                      <Icon className="w-4.5 h-4.5" />
+                    </div>
+                    <div>
+                      <h4 className="font-serif font-bold text-stone-900 text-sm">{item.title}</h4>
+                      <p className="text-[11px] text-stone-500 mt-0.5 leading-snug">{item.desc}</p>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
 
           </div>

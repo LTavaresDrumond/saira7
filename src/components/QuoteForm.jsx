@@ -54,7 +54,7 @@ export default function QuoteForm() {
   };
 
   return (
-    <section id="cotacao" className="py-20 sm:py-28 bg-gradient-to-b from-saira-sand to-stone-200/60 relative">
+    <section id="cotacao" className="py-10 sm:py-14 bg-gradient-to-b from-saira-sand to-stone-200/60 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}

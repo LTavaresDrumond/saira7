@@ -1,17 +1,23 @@
 import React, { useState } from 'react';
-import { Camera, X, ChevronLeft, ChevronRight, Maximize2 } from 'lucide-react';
+import { Camera, X, ChevronLeft, ChevronRight, Maximize2, ChevronDown } from 'lucide-react';
 import { sairaData } from '../data/sairaData';
+
+const INITIAL_COUNT = 6; // 3 columns x 2 rows
 
 export default function GallerySection() {
   const { gallery } = sairaData;
   const [selectedCategory, setSelectedCategory] = useState('Todas');
   const [lightboxIndex, setLightboxIndex] = useState(null);
+  const [expanded, setExpanded] = useState(false);
 
   const categories = ['Todas', ...Array.from(new Set(gallery.map((img) => img.category)))];
 
   const filteredImages = selectedCategory === 'Todas'
     ? gallery
     : gallery.filter((img) => img.category === selectedCategory);
+
+  const visibleImages = expanded ? filteredImages : filteredImages.slice(0, INITIAL_COUNT);
+  const hasMore = filteredImages.length > INITIAL_COUNT;
 
   const openLightbox = (idx) => {
     setLightboxIndex(idx);
@@ -35,29 +41,32 @@ export default function GallerySection() {
     }
   };
 
+  // Reset expansion when changing category
+  const handleCategoryChange = (cat) => {
+    setSelectedCategory(cat);
+    setExpanded(false);
+  };
+
   return (
-    <section id="galeria" className="py-20 sm:py-28 bg-saira-sand-dark/30 relative">
+    <section id="galeria" className="py-10 sm:py-14 bg-saira-sand-dark/30 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12">
+        <div className="text-center max-w-3xl mx-auto mb-8">
           <div className="inline-flex items-center gap-2 text-saira-earth font-semibold tracking-wider uppercase text-xs sm:text-sm mb-3">
             <Camera className="w-4 h-4" />
             Galeria Fotográfica
           </div>
           <h2 className="font-serif text-3xl sm:text-5xl font-bold text-saira-forest-dark tracking-tight leading-tight">
-            Imagens Reais do Sítio Saíra 7
+            Galeria Fotográfica
           </h2>
-          <p className="text-stone-600 text-base sm:text-lg mt-4 font-light">
-            Cada canto foi moldado para oferecer conexão pura com a exuberância da serra.
-          </p>
 
           {/* Category Filter Pills */}
-          <div className="flex flex-wrap items-center justify-center gap-2 mt-8">
+          <div className="flex flex-wrap items-center justify-center gap-2 mt-6">
             {categories.map((cat) => (
               <button
                 key={cat}
-                onClick={() => setSelectedCategory(cat)}
+                onClick={() => handleCategoryChange(cat)}
                 className={`px-5 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all ${
                   selectedCategory === cat
                     ? 'bg-saira-forest text-white shadow-sm'
@@ -70,13 +79,13 @@ export default function GallerySection() {
           </div>
         </div>
 
-        {/* Gallery Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
-          {filteredImages.map((img, idx) => (
+        {/* Gallery Grid — 3 cols x 2 rows initially */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+          {visibleImages.map((img, idx) => (
             <div
-              key={idx}
+              key={`${selectedCategory}-${idx}`}
               onClick={() => openLightbox(idx)}
-              className="group relative h-72 sm:h-80 rounded-2xl overflow-hidden shadow-card cursor-pointer border border-stone-200 bg-stone-100"
+              className="group relative h-64 sm:h-72 rounded-2xl overflow-hidden shadow-card cursor-pointer border border-stone-200 bg-stone-100"
             >
               <img
                 src={img.src}
@@ -84,18 +93,42 @@ export default function GallerySection() {
                 loading="lazy"
                 className="w-full h-full object-cover img-zoom"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6 text-white">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-5 text-white">
                 <span className="text-[11px] uppercase tracking-wider text-amber-300 font-bold mb-1">
                   {img.category}
                 </span>
-                <h4 className="font-serif text-xl font-bold">{img.title}</h4>
-                <div className="mt-3 inline-flex items-center gap-1.5 text-xs text-stone-200 font-medium">
+                <h4 className="font-serif text-lg font-bold">{img.title}</h4>
+                <div className="mt-2 inline-flex items-center gap-1.5 text-xs text-stone-200 font-medium">
                   <Maximize2 className="w-3.5 h-3.5" /> Ampliar foto
                 </div>
               </div>
             </div>
           ))}
         </div>
+
+        {/* Expand Button */}
+        {hasMore && !expanded && (
+          <div className="text-center mt-6">
+            <button
+              onClick={() => setExpanded(true)}
+              className="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-white hover:bg-stone-50 text-stone-700 text-sm font-semibold border border-stone-300 transition-all hover:shadow-sm"
+            >
+              <ChevronDown className="w-4 h-4" />
+              Ver mais fotos ({filteredImages.length - INITIAL_COUNT} restantes)
+            </button>
+          </div>
+        )}
+
+        {hasMore && expanded && (
+          <div className="text-center mt-6">
+            <button
+              onClick={() => setExpanded(false)}
+              className="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-white hover:bg-stone-50 text-stone-700 text-sm font-semibold border border-stone-300 transition-all hover:shadow-sm"
+            >
+              Ver menos
+            </button>
+          </div>
+        )}
 
       </div>
 
