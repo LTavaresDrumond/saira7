@@ -37,8 +37,10 @@ export default function Footer() {
               Hospedagem por temporada e espaço de eventos imerso na Mata Atlântica. O Rio Macaé, a Oca Carukango e o aconchego da serra em um só lugar.
             </p>
 
-            <div className="text-xs text-stone-500">
-              📍 Cabeceira do Sana, Macaé - RJ, Brasil
+            <div className="text-xs text-stone-400 space-y-1.5 mt-4">
+              <div>📍 Cabeceira do Sana, Macaé - RJ, Brasil</div>
+              <div>📱 WhatsApp: <a href={sairaData.getWhatsAppApiUrl()} target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:underline font-medium">{sairaData.contact.whatsappDisplay}</a></div>
+              <div>📸 Instagram: <a href={sairaData.contact.instagramUrl} target="_blank" rel="noopener noreferrer" className="text-amber-400 hover:underline font-medium">{sairaData.contact.instagramHandle}</a></div>
             </div>
           </div>
 
@@ -69,17 +71,17 @@ export default function Footer() {
             <div className="flex flex-col gap-3">
               {/* WhatsApp Button */}
               <a
-                href={`https://wa.me/${sairaData.contact.whatsappNumber}`}
+                href={sairaData.getWhatsAppApiUrl("Olá! Vim pelo site do Sítio Saíra 7 e gostaria de informações sobre disponibilidade e reservas.")}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 p-3 rounded-xl bg-emerald-950/80 border border-emerald-700/50 hover:bg-emerald-900 text-emerald-200 text-xs font-semibold transition-all"
+                className="flex items-center gap-3 p-3 rounded-xl bg-emerald-950/90 border border-emerald-600/60 hover:bg-emerald-900 text-emerald-200 text-xs font-semibold transition-all shadow-md group"
               >
-                <div className="w-8 h-8 rounded-lg bg-emerald-600 flex items-center justify-center text-white">
-                  <MessageCircle className="w-4 h-4" />
+                <div className="w-9 h-9 rounded-lg bg-emerald-600 group-hover:bg-emerald-500 flex items-center justify-center text-white transition-colors">
+                  <MessageCircle className="w-5 h-5" />
                 </div>
                 <div>
-                  <span className="block text-white">WhatsApp Direto</span>
-                  <span className="text-[11px] text-emerald-300 font-normal">Fale com o anfitrião</span>
+                  <span className="block text-white font-semibold">WhatsApp Oficial</span>
+                  <span className="text-[12px] text-emerald-300 font-medium tracking-wide">{sairaData.contact.whatsappDisplay}</span>
                 </div>
               </a>
 
@@ -88,18 +90,18 @@ export default function Footer() {
                 href={sairaData.contact.instagramUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 p-3 rounded-xl bg-stone-800/80 border border-stone-700 hover:bg-stone-800 text-stone-300 text-xs font-semibold transition-all"
+                className="flex items-center gap-3 p-3 rounded-xl bg-stone-800/90 border border-stone-600/60 hover:bg-stone-800 text-stone-300 text-xs font-semibold transition-all shadow-md group"
               >
-                <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 flex items-center justify-center text-white">
-                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <div className="w-9 h-9 rounded-lg bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 group-hover:opacity-95 flex items-center justify-center text-white transition-opacity">
+                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
                     <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
                     <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
                   </svg>
                 </div>
                 <div>
-                  <span className="block text-white">Instagram</span>
-                  <span className="text-[11px] text-stone-400 font-normal">{sairaData.contact.instagramHandle}</span>
+                  <span className="block text-white font-semibold">Instagram Oficial</span>
+                  <span className="text-[12px] text-amber-300 font-medium tracking-wide">{sairaData.contact.instagramHandle}</span>
                 </div>
               </a>
 
