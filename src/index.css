@@ -52,3 +52,100 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #A06B43;
 }
+
+/* ═══════════════════════════════════════════
+   V2 — Card/Modal Interface Styles
+   ═══════════════════════════════════════════ */
+
+/* Card face — glassmorphism + dark gradient */
+.v2-card-glass {
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.2));
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 1rem;
+}
+
+/* Modal — darker glassmorphism */
+.v2-modal-glass {
+  background: rgba(15, 15, 15, 0.88);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Modal scrollbar */
+.v2-modal-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+.v2-modal-scroll::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.03);
+}
+.v2-modal-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 3px;
+}
+.v2-modal-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Hero blur when modal is active */
+.v2-hero-blurred {
+  filter: blur(8px) brightness(0.4);
+  transform: scale(1.02);
+}
+
+/* Card flip animation */
+.v2-card-flipping {
+  animation: v2-flip-out 400ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes v2-flip-out {
+  0% {
+    transform: perspective(1000px) rotateY(0deg) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: perspective(1000px) rotateY(90deg) scale(0.95);
+    opacity: 0.6;
+  }
+  100% {
+    transform: perspective(1000px) rotateY(180deg) scale(0.9);
+    opacity: 0;
+  }
+}
+
+/* Modal entrance animation */
+.animate-v2-modal-in {
+  animation: v2-modal-enter 450ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes v2-modal-enter {
+  0% {
+    opacity: 0;
+    transform: scale(0.85) rotateY(-10deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotateY(0deg);
+  }
+}
+
+/* Backdrop fade in */
+.animate-v2-backdrop-in {
+  animation: v2-backdrop-enter 400ms ease-out forwards;
+}
+
+@keyframes v2-backdrop-enter {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/* Hide scrollbar utility (for tab selectors) */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
