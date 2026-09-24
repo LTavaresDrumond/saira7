@@ -102,18 +102,7 @@ export default function HeroCanvas() {
         </div>
       </div>
 
-      {/* Capacity badges */}
-      <div className={`relative z-10 flex flex-wrap items-center justify-center gap-3 mt-8 sm:mt-10 transition-all duration-500 ${activeCard ? 'opacity-0' : 'opacity-100'}`}>
-        <span className="px-4 py-2 rounded-full text-[11px] sm:text-xs font-semibold bg-white/10 backdrop-blur-sm border border-white/15 text-white">
-          🏡 Até 23 hóspedes em camas
-        </span>
-        <span className="px-4 py-2 rounded-full text-[11px] sm:text-xs font-semibold bg-white/10 backdrop-blur-sm border border-white/15 text-white">
-          🎪 Até 100 pessoas em eventos
-        </span>
-        <span className="px-4 py-2 rounded-full text-[11px] sm:text-xs font-semibold bg-white/10 backdrop-blur-sm border border-white/15 text-white">
-          🌊 Rio Macaé na entrada
-        </span>
-      </div>
+
 
       {/* Card Modal */}
       {activeCardData && (
