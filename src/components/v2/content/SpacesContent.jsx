@@ -1,23 +1,25 @@
 import React, { useState } from 'react';
 import {
   Home, Hotel, Sparkles, Coffee, Waves,
-  Check, ShieldCheck, Images,
+  Check, Images, ArrowLeft,
   Users, UtensilsCrossed, BookOpen,
-  Flame, CheckCircle2, Eye, X,
+  Flame, CheckCircle2, X,
   Trees, Sprout, Tent,
 } from 'lucide-react';
 import { sairaData } from '../../../data/sairaData';
+import { useV2Navigation } from '../V2NavigationContext';
 
-const TAB_KEYS = ['rustic', 'annex', 'oca', 'convivencia', 'natureza'];
-const TAB_META = {
-  rustic:      { label: 'Casa Antiga',    icon: Home },
-  annex:       { label: 'Casa Nova',      icon: Hotel },
-  oca:         { label: 'Oca Carukango',  icon: Sparkles },
-  convivencia: { label: 'Convivência',    icon: Coffee },
-  natureza:    { label: 'Natureza & Rio', icon: Waves },
-};
+// ─── Sub-space definitions (inner cards) ─────────────────────────────
+const SUBSPACES = [
+  { id: 'rustic',      icon: Home,     label: 'Casa Antiga',    subtitle: 'Casa principal rústica com 3 quartos', image: '/images/fachada.jpg' },
+  { id: 'annex',       icon: Hotel,    label: 'Casa Nova',      subtitle: '3 suítes completas no edifício anexo', image: '/images/edicola.jpg' },
+  { id: 'oca',         icon: Sparkles, label: 'Oca Carukango',  subtitle: 'Espaço hexagonal para até 100 pessoas', image: '/images/oca-dentro.jpg' },
+  { id: 'convivencia', icon: Coffee,   label: 'Convivência',    subtitle: 'Área gourmet, churrasqueira e lounge', image: '/images/churrasqueira.jpg' },
+  { id: 'natureza',    icon: Waves,    label: 'Natureza & Rio', subtitle: 'Rio Macaé, horta orgânica e mata', image: '/images/rio.jpg' },
+];
 
-function AccommodationCard({ data }) {
+// ─── Detailed Content Components ─────────────────────────────────────
+function AccommodationDetail({ data }) {
   const [photoIdx, setPhotoIdx] = useState(0);
   const photos = [data.image, data.secondaryImage].filter(Boolean);
 
@@ -65,7 +67,7 @@ function AccommodationCard({ data }) {
   );
 }
 
-function OcaContent() {
+function OcaDetail() {
   const { events } = sairaData;
   const [selectedPhoto, setSelectedPhoto] = useState(null);
   const iconMap = { Users, UtensilsCrossed, BookOpen, Sparkles };
@@ -114,7 +116,7 @@ function OcaContent() {
   );
 }
 
-function ConvivenciaContent() {
+function ConvivenciaDetail() {
   const { convivencia } = sairaData;
   const icons = [Flame, Trees, Sprout];
   return (
@@ -139,7 +141,7 @@ function ConvivenciaContent() {
   );
 }
 
-function NaturezaContent() {
+function NaturezaDetail() {
   const { nature } = sairaData;
   const icons = [Waves, Trees, Sprout, Tent];
   return (
@@ -164,42 +166,93 @@ function NaturezaContent() {
   );
 }
 
-export default function SpacesContent() {
-  const [activeTab, setActiveTab] = useState('rustic');
+// ─── Detail Renderer ─────────────────────────────────────────────────
+function SubspaceDetail({ subId }) {
   const { rusticHouse, annexSuites } = sairaData.accommodations;
+  switch (subId) {
+    case 'rustic':      return <AccommodationDetail data={rusticHouse} />;
+    case 'annex':       return <AccommodationDetail data={annexSuites} />;
+    case 'oca':         return <OcaDetail />;
+    case 'convivencia': return <ConvivenciaDetail />;
+    case 'natureza':    return <NaturezaDetail />;
+    default: return null;
+  }
+}
 
+// ─── Main Component ──────────────────────────────────────────────────
+export default function SpacesContent() {
+  const [activeSubspace, setActiveSubspace] = useState(null);
+  const nav = useV2Navigation();
+
+  const handleSubspaceClick = (subId) => {
+    setActiveSubspace(subId);
+    nav?.pushBreadcrumb(subId);
+  };
+
+  const handleBack = () => {
+    setActiveSubspace(null);
+    nav?.popBreadcrumb();
+  };
+
+  // If a subspace is active, show its detail with a back button
+  if (activeSubspace) {
+    const sub = SUBSPACES.find(s => s.id === activeSubspace);
+    const SubIcon = sub?.icon || Home;
+    return (
+      <div>
+        <button
+          onClick={handleBack}
+          className="inline-flex items-center gap-2 mb-5 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-stone-300 text-xs font-semibold hover:text-white hover:border-white/20 transition-all"
+        >
+          <ArrowLeft className="w-3.5 h-3.5" />
+          Voltar aos espaços
+        </button>
+        <SubspaceDetail subId={activeSubspace} />
+      </div>
+    );
+  }
+
+  // Show inner cards grid
   return (
     <div>
-      {/* Tab selector */}
-      <div className="flex gap-2 overflow-x-auto pb-4 mb-6 scrollbar-hide">
-        {TAB_KEYS.map((key) => {
-          const meta = TAB_META[key];
-          const Icon = meta.icon;
-          const isActive = activeTab === key;
+      <p className="text-stone-400 text-sm mb-6 font-light">
+        Selecione um espaço para ver os detalhes:
+      </p>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {SUBSPACES.map((space) => {
+          const SubIcon = space.icon;
           return (
             <button
-              key={key}
-              onClick={() => setActiveTab(key)}
-              className={`flex items-center gap-2 px-4 py-2.5 rounded-full text-xs font-semibold whitespace-nowrap flex-shrink-0 transition-all ${
-                isActive
-                  ? 'bg-amber-400/20 text-amber-300 border border-amber-400/40'
-                  : 'bg-white/5 text-stone-400 hover:text-white border border-white/10 hover:border-white/20'
-              }`}
+              key={space.id}
+              onClick={() => handleSubspaceClick(space.id)}
+              className="group relative rounded-2xl overflow-hidden border border-white/10 hover:border-amber-400/40 transition-all text-left"
             >
-              <Icon className="w-3.5 h-3.5" />
-              {meta.label}
+              {/* Thumbnail */}
+              <div className="relative h-40 sm:h-48 overflow-hidden">
+                <img
+                  src={space.image}
+                  alt={space.label}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+                <div className="absolute bottom-4 left-4 right-4 z-10">
+                  <div className="flex items-center gap-2 mb-1">
+                    <SubIcon className="w-4 h-4 text-amber-300" />
+                    <h3 className="font-serif text-base sm:text-lg font-bold text-white">{space.label}</h3>
+                  </div>
+                  <p className="text-stone-300 text-[11px] sm:text-xs font-light">{space.subtitle}</p>
+                </div>
+              </div>
+
+              {/* Hover CTA */}
+              <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity">
+                <span className="px-4 py-2 rounded-full bg-amber-400/20 backdrop-blur-sm border border-amber-400/30 text-amber-200 text-xs font-semibold">
+                  Ver detalhes →
+                </span>
+              </div>
             </button>
           );
         })}
-      </div>
-
-      {/* Tab content */}
-      <div>
-        {activeTab === 'rustic' && <AccommodationCard data={rusticHouse} />}
-        {activeTab === 'annex' && <AccommodationCard data={annexSuites} />}
-        {activeTab === 'oca' && <OcaContent />}
-        {activeTab === 'convivencia' && <ConvivenciaContent />}
-        {activeTab === 'natureza' && <NaturezaContent />}
       </div>
     </div>
   );

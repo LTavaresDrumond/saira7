@@ -34,7 +34,7 @@ export default function FlipCard({ icon: Icon, title, subtitle, isActive, isRece
         ${isActive ? 'border-amber-400/60' : ''}
       `}>
         {/* Icon */}
-        <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-amber-400/15 flex items-center justify-center text-amber-300 mb-4 transition-transform duration-300 group-hover:scale-110">
+        <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-amber-400/15 flex items-center justify-center text-amber-300 mb-4 transition-transform duration-300 group-hover:scale-110 v2-icon-pulse group-hover:[animation-play-state:paused]">
           <Icon className="w-7 h-7 sm:w-8 sm:h-8" />
         </div>
 

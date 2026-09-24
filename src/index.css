@@ -149,3 +149,63 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* ─── Close Animations (Reverse) ──────────────────── */
+
+/* Modal exit — shrink + flip reverse */
+.animate-v2-modal-out {
+  animation: v2-modal-exit 350ms cubic-bezier(0.4, 0, 1, 1) forwards;
+}
+
+@keyframes v2-modal-exit {
+  0% {
+    opacity: 1;
+    transform: scale(1) rotateY(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.8) rotateY(12deg);
+  }
+}
+
+/* Backdrop fade out */
+.animate-v2-backdrop-out {
+  animation: v2-backdrop-exit 350ms ease-in forwards;
+}
+
+@keyframes v2-backdrop-exit {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* ─── Micro-interactions ──────────────────────────── */
+
+/* Icon pulse on hover */
+.v2-icon-pulse {
+  animation: v2-pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes v2-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+}
+
+/* ─── Accessibility ───────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .v2-card-flipping,
+  .animate-v2-modal-in,
+  .animate-v2-modal-out,
+  .animate-v2-backdrop-in,
+  .animate-v2-backdrop-out,
+  .v2-icon-pulse {
+    animation: none !important;
+  }
+
+  .v2-hero-blurred {
+    transition: none !important;
+    filter: brightness(0.4);
+    transform: none;
+  }
+}
+
