@@ -11,10 +11,10 @@ import { useNavigation } from '../NavigationContext';
 
 // ─── Sub-space definitions (inner cards) ─────────────────────────────
 const SUBSPACES = [
-  { id: 'rustic',      icon: Home,     label: 'Casa Antiga',    subtitle: 'Casa principal rústica com 3 quartos', image: '/images/fachada.jpg' },
-  { id: 'annex',       icon: Hotel,    label: 'Casa Nova',      subtitle: '3 suítes completas no edifício anexo', image: '/images/edicola.jpg' },
-  { id: 'oca',         icon: Sparkles, label: 'Oca Carukango',  subtitle: 'Espaço hexagonal para até 100 pessoas', image: '/images/oca-dentro.jpg' },
-  { id: 'convivencia', icon: Coffee,   label: 'Convivência',    subtitle: 'Área gourmet, churrasqueira e lounge', image: '/images/churrasqueira.jpg' },
+  { id: 'rustic',      icon: Home,     label: 'Casa Antiga',    subtitle: 'Casa principal rústica com 3 quartos', image: '/images/casaantiga/casa1.jpg' },
+  { id: 'annex',       icon: Hotel,    label: 'Casa Nova',      subtitle: '3 suítes completas no edifício anexo', image: '/images/casanova/quartosol-1.jpg' },
+  { id: 'oca',         icon: Sparkles, label: 'Oca Carukango',  subtitle: 'Espaço hexagonal para até 100 pessoas', image: '/images/eventos/oca1.jpg' },
+  { id: 'convivencia', icon: Coffee,   label: 'Convivência',    subtitle: 'Área gourmet, churrasqueira e lounge', image: '/images/convivencia/churrasqueira.jpg' },
   { id: 'natureza',    icon: Waves,    label: 'Natureza & Rio', subtitle: 'Rio Macaé, horta orgânica e mata', image: '/images/rio.jpg' },
 ];
 
