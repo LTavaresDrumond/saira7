@@ -76,7 +76,7 @@ export default function Footer() {
               <h4 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Fale Conosco</h4>
               <div className="space-y-4">
                 <a 
-                  href={sairaData.contact.whatsapp.link}
+                  href={sairaData.contact.whatsappLink}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 text-stone-400 hover:text-emerald-400 transition-colors group"
