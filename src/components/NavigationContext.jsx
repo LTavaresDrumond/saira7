@@ -12,10 +12,11 @@ export function useNavigation() {
 
 // Map of anchor hrefs → card IDs
 const ANCHOR_TO_CARD = {
-  '#acomodacoes': 'espacos',
+  '#espacos': 'espacos',
   '#galeria': 'galeria',
+  '#natureza': 'natureza',
   '#localizacao': 'localizacao',
-  '#sobre': 'sobre',
+  '#quintal': 'quintal',
   '#cotacao': 'cotacao',
 };
 

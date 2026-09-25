@@ -19,11 +19,12 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: 'Nossos Espaços', href: '#acomodacoes' },
+    { name: 'Nossos Espaços', href: '#espacos' },
     { name: 'Galeria', href: '#galeria' },
+    { name: 'Natureza & Rio', href: '#natureza' },
+    { name: 'Quintal do Sana', href: '#quintal' },
     { name: 'Como Chegar', href: '#localizacao' },
-    { name: 'Sobre Nós', href: '#sobre' },
-    { name: 'Solicitar Orçamento', href: '#cotacao', highlight: true },
+    { name: 'Orçamento', href: '#cotacao', highlight: true },
   ];
 
   const handleNavClick = (e, href) => {
