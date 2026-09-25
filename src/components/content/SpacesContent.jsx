@@ -22,41 +22,29 @@ function AccommodationDetail({ data }) {
   const photos = [data.image, data.secondaryImage].filter(Boolean);
 
   return (
-    <div className="rounded-2xl overflow-hidden border border-white/10">
-      <div className="grid grid-cols-1 lg:grid-cols-2">
-        <div className="relative min-h-[280px] sm:min-h-[360px] bg-stone-900">
-          <img src={photos[photoIdx] || data.image} alt={data.title} className="absolute inset-0 w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-          <div className="relative z-10 p-5 flex items-center justify-between">
-            <span className="px-3 py-1 rounded-full text-xs font-semibold bg-amber-500/80 text-white">{data.capacity}</span>
-            <span className="px-3 py-1 rounded-full text-xs bg-black/50 backdrop-blur text-white border border-white/20">
-              <Images className="w-3 h-3 inline mr-1" />Foto {photoIdx + 1}/{photos.length}
-            </span>
-          </div>
-          <div className="absolute bottom-5 left-5 right-5 z-10">
-            <h3 className="font-serif text-xl sm:text-2xl font-bold text-white mb-3">{data.title}</h3>
-            <div className="flex gap-2">
-              {photos.map((p, i) => (
-                <button key={i} onClick={() => setPhotoIdx(i)} className={`w-12 h-12 rounded-lg overflow-hidden border-2 ${photoIdx === i ? 'border-amber-400 scale-105' : 'border-white/30 opacity-70 hover:opacity-100'}`}>
-                  <img src={p} alt="" className="w-full h-full object-cover" />
-                </button>
-              ))}
-            </div>
-          </div>
+    <div className="rounded-2xl overflow-hidden border border-white/10 animate-fadeIn">
+      <div className="relative min-h-[360px] sm:min-h-[480px] bg-stone-900">
+        <img src={photos[photoIdx] || data.image} alt={data.title} className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+        <div className="relative z-10 p-5 flex items-center justify-between">
+          <span className="px-3 py-1 rounded-full text-xs font-semibold bg-amber-500/80 text-white backdrop-blur-md">
+            {data.title}
+          </span>
+          <span className="px-3 py-1 rounded-full text-xs bg-black/50 backdrop-blur text-white border border-white/20 flex items-center gap-1.5">
+            <Images className="w-3.5 h-3.5" /> {photoIdx + 1} / {photos.length}
+          </span>
         </div>
-        <div className="p-6 sm:p-8">
-          <h4 className="font-serif text-lg font-bold text-white mb-3">{data.subtitle}</h4>
-          <ul className="space-y-2.5">
-            {data.details.map((d, i) => (
-              <li key={i} className="flex items-start gap-2.5 text-stone-300 text-sm">
-                <Check className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5 stroke-[3]" />
-                <span>{d}</span>
-              </li>
-            ))}
-          </ul>
-          <div className="flex flex-wrap gap-2 mt-5 pt-5 border-t border-white/10">
-            {data.features.map((f, i) => (
-              <span key={i} className="px-2.5 py-1 rounded-lg bg-white/5 text-stone-300 text-[11px] border border-white/10">{f}</span>
+        <div className="absolute bottom-5 left-5 right-5 z-10 flex flex-col gap-4">
+          <h3 className="font-serif text-2xl sm:text-3xl font-bold text-white drop-shadow-md">{data.subtitle}</h3>
+          <div className="flex gap-3">
+            {photos.map((p, i) => (
+              <button 
+                key={i} 
+                onClick={() => setPhotoIdx(i)} 
+                className={`w-16 h-16 rounded-xl overflow-hidden border-2 transition-all ${photoIdx === i ? 'border-amber-400 scale-105 shadow-lg' : 'border-white/30 opacity-70 hover:opacity-100 hover:scale-100'}`}
+              >
+                <img src={p} alt="" className="w-full h-full object-cover" />
+              </button>
             ))}
           </div>
         </div>
