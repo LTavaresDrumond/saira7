@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { Home, Camera, MapPin, Sparkles, CalendarCheck, PartyPopper } from 'lucide-react';
+import { Home, Camera, MapPin, Compass, CalendarCheck, Waves } from 'lucide-react';
 import FlipCard from './FlipCard';
 import CardModal from './CardModal';
 import { useNavigation } from './NavigationContext';
@@ -8,17 +8,18 @@ import { useNavigation } from './NavigationContext';
 import SpacesContent from './content/SpacesContent';
 import GalleryContent from './content/GalleryContent';
 import LocationContent from './content/LocationContent';
-import AboutContent from './content/AboutContent';
 import QuoteContent from './content/QuoteContent';
+import NatureContent from './content/NatureContent';
+import QuintalContent from './content/QuintalContent';
 
 // ─── Card Definitions ───────────────────────────────────────────────
 const CARDS = [
-  { id: 'espacos',     icon: Home,          title: 'Nossos Espaços',        subtitle: 'Acomodações, Oca e Natureza' },
+  { id: 'espacos',     icon: Home,          title: 'Nossos Espaços',        subtitle: 'Acomodações e Eventos' },
   { id: 'galeria',     icon: Camera,        title: 'Galeria Fotográfica',   subtitle: 'Imagens reais do sítio' },
+  { id: 'natureza',    icon: Waves,         title: 'Natureza & Rio',        subtitle: 'Rio Macaé a 10m do sítio' },
   { id: 'localizacao', icon: MapPin,        title: 'Como Chegar',           subtitle: 'Cabeceira do Sana, Macaé' },
-  { id: 'sobre',       icon: Sparkles,      title: 'Sobre Nós',            subtitle: 'Arte, Ecologia & Educação' },
-  { id: 'cotacao',     icon: CalendarCheck,  title: 'Solicitar Orçamento',   subtitle: 'Hospedagem e Eventos' },
-  { id: 'portfolio',   icon: PartyPopper,   title: 'Portfólio de Eventos',  subtitle: 'Casamentos, Retiros & Encontros' },
+  { id: 'quintal',     icon: Compass,       title: 'No Quintal do Sana',    subtitle: 'Turismo & Conveniências' },
+  { id: 'cotacao',     icon: CalendarCheck, title: 'Solicitar Orçamento',   subtitle: 'Hospedagem e Eventos' },
 ];
 
 const CARD_IDS = CARDS.map(c => c.id);
@@ -28,22 +29,10 @@ function CardContent({ cardId }) {
   switch (cardId) {
     case 'espacos':     return <SpacesContent />;
     case 'galeria':     return <GalleryContent />;
+    case 'natureza':    return <NatureContent />;
     case 'localizacao': return <LocationContent />;
-    case 'sobre':       return <AboutContent />;
+    case 'quintal':     return <QuintalContent />;
     case 'cotacao':     return <QuoteContent />;
-    case 'portfolio':
-      return (
-        <div className="flex flex-col items-center justify-center py-20 text-center">
-          <div className="w-20 h-20 rounded-full bg-amber-400/10 flex items-center justify-center text-amber-300 mb-6 icon-pulse">
-            <PartyPopper className="w-10 h-10" />
-          </div>
-          <h3 className="font-serif text-2xl font-bold text-white mb-3">Em breve</h3>
-          <p className="text-stone-400 text-sm max-w-sm font-light">
-            Estamos preparando nosso portfólio com registros de casamentos, retiros espirituais,
-            encontros corporativos e celebrações que já aconteceram no Sítio Saíra Sete Cores.
-          </p>
-        </div>
-      );
     default: return null;
   }
 }

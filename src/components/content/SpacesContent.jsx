@@ -9,13 +9,11 @@ import {
 import { sairaData } from '../../data/sairaData';
 import { useNavigation } from '../NavigationContext';
 
-// ─── Sub-space definitions (inner cards) ─────────────────────────────
 const SUBSPACES = [
-  { id: 'rustic',      icon: Home,     label: 'Casa Antiga',    subtitle: 'Casa principal rústica com 3 quartos', image: '/images/casaantiga/casa1.jpg' },
-  { id: 'annex',       icon: Hotel,    label: 'Casa Nova',      subtitle: '3 suítes completas no edifício anexo', image: '/images/casanova/quartosol-1.jpg' },
+  { id: 'rustic',      icon: Home,     label: 'Casa Antiga',    subtitle: '2 suítes, 1 quarto anexo, cozinha e sala', image: '/images/casaantiga/casa1.jpg' },
+  { id: 'annex',       icon: Hotel,    label: 'Casa Nova',      subtitle: '3 suítes confortáveis', image: '/images/casanova/quartosol-1.jpg' },
   { id: 'oca',         icon: Sparkles, label: 'Oca Carukango',  subtitle: 'Espaço hexagonal para até 100 pessoas', image: '/images/eventos/oca1.jpg' },
   { id: 'convivencia', icon: Coffee,   label: 'Convivência',    subtitle: 'Área gourmet, churrasqueira e lounge', image: '/images/convivencia/churrasqueira.jpg' },
-  { id: 'natureza',    icon: Waves,    label: 'Natureza & Rio', subtitle: 'Rio Macaé, horta orgânica e mata', image: '/images/rio.jpg' },
 ];
 
 // ─── Detailed Content Components ─────────────────────────────────────
@@ -141,30 +139,7 @@ function ConvivenciaDetail() {
   );
 }
 
-function NaturezaDetail() {
-  const { nature } = sairaData;
-  const icons = [Waves, Trees, Sprout, Tent];
-  return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-      {nature.items.map((item, idx) => {
-        const Ic = icons[idx] || Trees;
-        return (
-          <div key={idx} className="rounded-2xl overflow-hidden border border-white/10">
-            <div className="relative h-52 overflow-hidden">
-              <img src={item.image} alt={item.title} className="w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-              <div className="absolute bottom-4 left-5 flex items-center gap-2.5 text-white">
-                <Ic className="w-5 h-5 text-amber-200" />
-                <h3 className="font-serif text-lg font-bold">{item.title}</h3>
-              </div>
-            </div>
-            <div className="p-5"><p className="text-stone-400 text-sm">{item.description}</p></div>
-          </div>
-        );
-      })}
-    </div>
-  );
-}
+
 
 // ─── Detail Renderer ─────────────────────────────────────────────────
 function SubspaceDetail({ subId }) {
@@ -174,7 +149,6 @@ function SubspaceDetail({ subId }) {
     case 'annex':       return <AccommodationDetail data={annexSuites} />;
     case 'oca':         return <OcaDetail />;
     case 'convivencia': return <ConvivenciaDetail />;
-    case 'natureza':    return <NaturezaDetail />;
     default: return null;
   }
 }
