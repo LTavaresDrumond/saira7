@@ -53,15 +53,6 @@ export default function HeroCanvas() {
   const { activeCard, openCard, closeCard } = useNavigation();
 
   const activeCardData = CARDS.find((c) => c.id === activeCard);
-  const activeIndex = CARD_IDS.indexOf(activeCard);
-
-  const handlePrev = useCallback(() => {
-    if (activeIndex > 0) openCard(CARD_IDS[activeIndex - 1]);
-  }, [activeIndex, openCard]);
-
-  const handleNext = useCallback(() => {
-    if (activeIndex < CARD_IDS.length - 1) openCard(CARD_IDS[activeIndex + 1]);
-  }, [activeIndex, openCard]);
 
   return (
     <header className="relative min-h-[85vh] flex flex-col justify-center px-4 sm:px-6 lg:px-8 pt-24 pb-10 overflow-hidden">
@@ -111,8 +102,6 @@ export default function HeroCanvas() {
           icon={activeCardData.icon}
           isOpen={!!activeCard}
           onClose={closeCard}
-          onPrev={activeIndex > 0 ? handlePrev : null}
-          onNext={activeIndex < CARD_IDS.length - 1 ? handleNext : null}
           cardIds={CARD_IDS}
           activeCardId={activeCard}
         >

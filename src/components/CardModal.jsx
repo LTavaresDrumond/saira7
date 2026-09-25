@@ -8,7 +8,7 @@ import { useNavigation } from './NavigationContext';
  *  - Setas prev/next para navegar entre cards
  *  - Animação de fechamento reverso (shrink + flip-in)
  */
-export default function CardModal({ title, icon: Icon, isOpen, onClose, onPrev, onNext, cardIds, activeCardId, children }) {
+export default function CardModal({ title, icon: Icon, isOpen, onClose, cardIds, activeCardId, children }) {
   const modalRef = useRef(null);
   const [closing, setClosing] = useState(false);
   const nav = useNavigation();
@@ -18,12 +18,10 @@ export default function CardModal({ title, icon: Icon, isOpen, onClose, onPrev, 
     if (!isOpen) return;
     const handleKey = (e) => {
       if (e.key === 'Escape') handleClose();
-      if (e.key === 'ArrowLeft' && onPrev) onPrev();
-      if (e.key === 'ArrowRight' && onNext) onNext();
     };
     window.addEventListener('keydown', handleKey);
     return () => window.removeEventListener('keydown', handleKey);
-  }, [isOpen, onPrev, onNext]);
+  }, [isOpen]);
 
   // Lock body scroll when modal is open
   useEffect(() => {
@@ -67,17 +65,6 @@ export default function CardModal({ title, icon: Icon, isOpen, onClose, onPrev, 
         className={`absolute inset-0 bg-black/60 backdrop-blur-sm ${closing ? 'animate-backdrop-out' : 'animate-backdrop-in'}`}
         onClick={handleClose}
       />
-
-      {/* Prev Arrow */}
-      {onPrev && (
-        <button
-          onClick={onPrev}
-          className="absolute left-2 sm:left-5 z-20 p-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white transition-all hover:scale-110"
-          aria-label="Card anterior"
-        >
-          <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
-        </button>
-      )}
 
       {/* Modal container */}
       <div
@@ -143,17 +130,6 @@ export default function CardModal({ title, icon: Icon, isOpen, onClose, onPrev, 
           {children}
         </div>
       </div>
-
-      {/* Next Arrow */}
-      {onNext && (
-        <button
-          onClick={onNext}
-          className="absolute right-2 sm:right-5 z-20 p-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white transition-all hover:scale-110"
-          aria-label="Próximo card"
-        >
-          <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
-        </button>
-      )}
     </div>
   );
 }
