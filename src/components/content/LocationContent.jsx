@@ -1,6 +1,6 @@
 import React from 'react';
 import { Navigation, Car, CheckCircle2, Droplets, Mountain } from 'lucide-react';
-import { sairaData } from '../../../data/sairaData';
+import { sairaData } from '../../data/sairaData';
 
 export default function LocationContent() {
   const { location } = sairaData;

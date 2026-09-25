@@ -6,8 +6,8 @@ import {
   Flame, CheckCircle2, X,
   Trees, Sprout, Tent,
 } from 'lucide-react';
-import { sairaData } from '../../../data/sairaData';
-import { useV2Navigation } from '../V2NavigationContext';
+import { sairaData } from '../../data/sairaData';
+import { useNavigation } from '../NavigationContext';
 
 // ─── Sub-space definitions (inner cards) ─────────────────────────────
 const SUBSPACES = [
@@ -182,7 +182,7 @@ function SubspaceDetail({ subId }) {
 // ─── Main Component ──────────────────────────────────────────────────
 export default function SpacesContent() {
   const [activeSubspace, setActiveSubspace] = useState(null);
-  const nav = useV2Navigation();
+  const nav = useNavigation();
 
   const handleSubspaceClick = (subId) => {
     setActiveSubspace(subId);

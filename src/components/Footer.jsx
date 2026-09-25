@@ -1,9 +1,32 @@
 import React from 'react';
 import { MessageCircle, Heart } from 'lucide-react';
 import { sairaData } from '../data/sairaData';
+import { useNavigation } from './NavigationContext';
 
+/**
+ * Footer — Versão do Footer para a rota /v2.
+ * Links de navegação abrem os flippers/modais correspondentes.
+ */
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const { openCard, resolveAnchor } = useNavigation();
+
+  const handleNavClick = (e, href) => {
+    e.preventDefault();
+    const cardId = resolveAnchor(href);
+    if (cardId) {
+      openCard(cardId);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
+  const footerLinks = [
+    { name: 'Nossos Espaços', href: '#acomodacoes' },
+    { name: 'Galeria Fotográfica', href: '#galeria' },
+    { name: 'Como Chegar', href: '#localizacao' },
+    { name: 'Solicitar Orçamento', href: '#cotacao' },
+    { name: 'Sobre Nós', href: '#sobre' },
+  ];
 
   return (
     <footer className="bg-stone-900 text-white pt-16 pb-12 border-t border-stone-800">
@@ -42,17 +65,22 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Quick Nav Links */}
+          {/* Quick Nav Links — opens flippers */}
           <div className="lg:col-span-3">
             <h4 className="font-serif text-lg font-bold mb-4 text-amber-200">
               Navegação
             </h4>
             <ul className="space-y-2.5 text-sm text-stone-400 font-light">
-              <li><a href="#acomodacoes" className="hover:text-white transition-colors">Nossos Espaços</a></li>
-              <li><a href="#galeria" className="hover:text-white transition-colors">Galeria Fotográfica</a></li>
-              <li><a href="#localizacao" className="hover:text-white transition-colors">Como Chegar</a></li>
-              <li><a href="#cotacao" className="hover:text-white transition-colors">Solicitar Orçamento</a></li>
-              <li><a href="#sobre" className="hover:text-white transition-colors">Sobre Nós</a></li>
+              {footerLinks.map((link) => (
+                <li key={link.name}>
+                  <button
+                    onClick={(e) => handleNavClick(e, link.href)}
+                    className="hover:text-white transition-colors text-left"
+                  >
+                    {link.name}
+                  </button>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -113,7 +141,6 @@ export default function Footer() {
                 </span>
               </div>
             </div>
-
           </div>
 
         </div>

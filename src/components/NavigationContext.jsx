@@ -1,13 +1,13 @@
 import React, { createContext, useContext, useState, useCallback } from 'react';
 
 /**
- * V2NavigationContext — Permite que qualquer componente (Navbar, Footer)
+ * NavigationContext — Permite que qualquer componente (Navbar, Footer)
  * dispare a abertura de um card/modal na interface V2.
  */
-const V2NavigationContext = createContext(null);
+const NavigationContext = createContext(null);
 
-export function useV2Navigation() {
-  return useContext(V2NavigationContext);
+export function useNavigation() {
+  return useContext(NavigationContext);
 }
 
 // Map of anchor hrefs → card IDs
@@ -19,7 +19,7 @@ const ANCHOR_TO_CARD = {
   '#cotacao': 'cotacao',
 };
 
-export function V2NavigationProvider({ children }) {
+export function NavigationProvider({ children }) {
   const [activeCard, setActiveCard] = useState(null);
   const [breadcrumbs, setBreadcrumbs] = useState([]);
 
@@ -66,8 +66,8 @@ export function V2NavigationProvider({ children }) {
   };
 
   return (
-    <V2NavigationContext.Provider value={value}>
+    <NavigationContext.Provider value={value}>
       {children}
-    </V2NavigationContext.Provider>
+    </NavigationContext.Provider>
   );
 }

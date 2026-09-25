@@ -58,7 +58,7 @@
    ═══════════════════════════════════════════ */
 
 /* Card face — highly transparent glass */
-.v2-card-glass {
+.card-glass {
   background: linear-gradient(135deg, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.02));
   backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(3px);
@@ -67,14 +67,14 @@
 }
 
 /* Card hover glow — uniform on all 4 sides */
-.v2-card-glow {
+.card-glow {
   border-color: rgba(251, 191, 36, 0.4) !important;
   box-shadow:
     0 0 16px 2px rgba(251, 191, 36, 0.12),
     0 0 4px 0px rgba(251, 191, 36, 0.08),
     0 8px 24px -4px rgba(0, 0, 0, 0.3);
 }
-.group:hover .v2-card-glass {
+.group:hover .card-glass {
   border-color: rgba(251, 191, 36, 0.4);
   box-shadow:
     0 0 16px 2px rgba(251, 191, 36, 0.12),
@@ -83,7 +83,7 @@
 }
 
 /* Modal — darker glassmorphism */
-.v2-modal-glass {
+.modal-glass {
   background: rgba(15, 15, 15, 0.88);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
@@ -91,32 +91,32 @@
 }
 
 /* Modal scrollbar */
-.v2-modal-scroll::-webkit-scrollbar {
+.modal-scroll::-webkit-scrollbar {
   width: 6px;
 }
-.v2-modal-scroll::-webkit-scrollbar-track {
+.modal-scroll::-webkit-scrollbar-track {
   background: rgba(255, 255, 255, 0.03);
 }
-.v2-modal-scroll::-webkit-scrollbar-thumb {
+.modal-scroll::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.15);
   border-radius: 3px;
 }
-.v2-modal-scroll::-webkit-scrollbar-thumb:hover {
+.modal-scroll::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.25);
 }
 
 /* Hero blur when modal is active */
-.v2-hero-blurred {
+.hero-blurred {
   filter: blur(8px) brightness(0.4);
   transform: scale(1.02);
 }
 
 /* Card flip animation */
-.v2-card-flipping {
-  animation: v2-flip-out 400ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+.card-flipping {
+  animation: flip-out 400ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
-@keyframes v2-flip-out {
+@keyframes flip-out {
   0% {
     transform: perspective(1000px) rotateY(0deg) scale(1);
     opacity: 1;
@@ -132,11 +132,11 @@
 }
 
 /* Modal entrance animation */
-.animate-v2-modal-in {
-  animation: v2-modal-enter 450ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+.animate-modal-in {
+  animation: modal-enter 450ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-@keyframes v2-modal-enter {
+@keyframes modal-enter {
   0% {
     opacity: 0;
     transform: scale(0.85) rotateY(-10deg);
@@ -148,11 +148,11 @@
 }
 
 /* Backdrop fade in */
-.animate-v2-backdrop-in {
-  animation: v2-backdrop-enter 400ms ease-out forwards;
+.animate-backdrop-in {
+  animation: backdrop-enter 400ms ease-out forwards;
 }
 
-@keyframes v2-backdrop-enter {
+@keyframes backdrop-enter {
   0% { opacity: 0; }
   100% { opacity: 1; }
 }
@@ -169,11 +169,11 @@
 /* ─── Close Animations (Reverse) ──────────────────── */
 
 /* Modal exit — shrink + flip reverse */
-.animate-v2-modal-out {
-  animation: v2-modal-exit 350ms cubic-bezier(0.4, 0, 1, 1) forwards;
+.animate-modal-out {
+  animation: modal-exit 350ms cubic-bezier(0.4, 0, 1, 1) forwards;
 }
 
-@keyframes v2-modal-exit {
+@keyframes modal-exit {
   0% {
     opacity: 1;
     transform: scale(1) rotateY(0deg);
@@ -185,11 +185,11 @@
 }
 
 /* Backdrop fade out */
-.animate-v2-backdrop-out {
-  animation: v2-backdrop-exit 350ms ease-in forwards;
+.animate-backdrop-out {
+  animation: backdrop-exit 350ms ease-in forwards;
 }
 
-@keyframes v2-backdrop-exit {
+@keyframes backdrop-exit {
   0% { opacity: 1; }
   100% { opacity: 0; }
 }
@@ -197,11 +197,11 @@
 /* ─── Micro-interactions ──────────────────────────── */
 
 /* Icon pulse on hover */
-.v2-icon-pulse {
-  animation: v2-pulse 2.5s ease-in-out infinite;
+.icon-pulse {
+  animation: pulse 2.5s ease-in-out infinite;
 }
 
-@keyframes v2-pulse {
+@keyframes pulse {
   0%, 100% { transform: scale(1); }
   50% { transform: scale(1.06); }
 }
@@ -209,16 +209,16 @@
 /* ─── Accessibility ───────────────────────────────── */
 
 @media (prefers-reduced-motion: reduce) {
-  .v2-card-flipping,
-  .animate-v2-modal-in,
-  .animate-v2-modal-out,
-  .animate-v2-backdrop-in,
-  .animate-v2-backdrop-out,
-  .v2-icon-pulse {
+  .card-flipping,
+  .animate-modal-in,
+  .animate-modal-out,
+  .animate-backdrop-in,
+  .animate-backdrop-out,
+  .icon-pulse {
     animation: none !important;
   }
 
-  .v2-hero-blurred {
+  .hero-blurred {
     transition: none !important;
     filter: brightness(0.4);
     transform: none;

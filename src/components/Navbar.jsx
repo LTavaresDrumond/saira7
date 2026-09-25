@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, MessageCircle } from 'lucide-react';
 import { sairaData } from '../data/sairaData';
+import { useNavigation } from './NavigationContext';
 
+/**
+ * Navbar — Versão da Navbar para a rota /v2.
+ * Em vez de scroll para âncoras, abre os flippers/modais correspondentes.
+ */
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { openCard, resolveAnchor } = useNavigation();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 40);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 40);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -21,6 +25,15 @@ export default function Navbar() {
     { name: 'Sobre Nós', href: '#sobre' },
     { name: 'Solicitar Orçamento', href: '#cotacao', highlight: true },
   ];
+
+  const handleNavClick = (e, href) => {
+    e.preventDefault();
+    const cardId = resolveAnchor(href);
+    if (cardId) {
+      openCard(cardId);
+      setMobileMenuOpen(false);
+    }
+  };
 
   const handleWhatsAppDirect = () => {
     const text = encodeURIComponent("Olá! Vim pelo site do Sítio Saíra 7 e gostaria de saber mais informações sobre disponibilidade.");
@@ -37,7 +50,7 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         {/* Brand Logo */}
-        <a href="#" className="flex items-center gap-3 group">
+        <a href="/v2" className="flex items-center gap-3 group">
           <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full overflow-hidden bg-white p-0.5 shadow-md border-2 border-amber-300/60 group-hover:border-amber-400 transition-all flex-shrink-0">
             <img
               src="/images/logo.jpg"
@@ -58,9 +71,9 @@ export default function Navbar() {
         {/* Desktop Links */}
         <div className="hidden lg:flex items-center gap-5 xl:gap-7">
           {navLinks.map((link) => (
-            <a
+            <button
               key={link.name}
-              href={link.href}
+              onClick={(e) => handleNavClick(e, link.href)}
               className={`text-sm transition-colors ${
                 link.highlight
                   ? isScrolled
@@ -72,7 +85,7 @@ export default function Navbar() {
               }`}
             >
               {link.name}
-            </a>
+            </button>
           ))}
         </div>
 
@@ -103,18 +116,17 @@ export default function Navbar() {
         <div className="lg:hidden bg-saira-sand-light border-b border-stone-200 shadow-xl px-4 pt-3 pb-6 animate-fadeIn">
           <div className="flex flex-col space-y-2">
             {navLinks.map((link) => (
-              <a
+              <button
                 key={link.name}
-                href={link.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className={`py-2 px-3 rounded-md transition-colors ${
+                onClick={(e) => handleNavClick(e, link.href)}
+                className={`py-2 px-3 rounded-md transition-colors text-left ${
                   link.highlight
                     ? 'text-saira-forest font-semibold bg-stone-200/50 hover:bg-stone-200'
                     : 'text-stone-700 hover:text-saira-forest font-medium hover:bg-stone-100'
                 }`}
               >
                 {link.name}
-              </a>
+              </button>
             ))}
           </div>
         </div>

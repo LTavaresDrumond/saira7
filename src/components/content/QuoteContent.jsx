@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Send, Calendar, Users, ChevronDown, ChevronUp } from 'lucide-react';
-import { sairaData } from '../../../data/sairaData';
+import { sairaData } from '../../data/sairaData';
 
 export default function QuoteContent() {
   const [interestType, setInterestType] = useState('estadia');

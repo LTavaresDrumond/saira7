@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import { Home, Camera, MapPin, Sparkles, CalendarCheck, PartyPopper } from 'lucide-react';
 import FlipCard from './FlipCard';
 import CardModal from './CardModal';
-import { useV2Navigation } from './V2NavigationContext';
+import { useNavigation } from './NavigationContext';
 
 // ─── Card Content Imports ───────────────────────────────────────────
 import SpacesContent from './content/SpacesContent';
@@ -34,7 +34,7 @@ function CardContent({ cardId }) {
     case 'portfolio':
       return (
         <div className="flex flex-col items-center justify-center py-20 text-center">
-          <div className="w-20 h-20 rounded-full bg-amber-400/10 flex items-center justify-center text-amber-300 mb-6 v2-icon-pulse">
+          <div className="w-20 h-20 rounded-full bg-amber-400/10 flex items-center justify-center text-amber-300 mb-6 icon-pulse">
             <PartyPopper className="w-10 h-10" />
           </div>
           <h3 className="font-serif text-2xl font-bold text-white mb-3">Em breve</h3>
@@ -50,7 +50,7 @@ function CardContent({ cardId }) {
 
 // ─── Main Component ─────────────────────────────────────────────────
 export default function HeroCanvas() {
-  const { activeCard, openCard, closeCard } = useV2Navigation();
+  const { activeCard, openCard, closeCard } = useNavigation();
 
   const activeCardData = CARDS.find((c) => c.id === activeCard);
   const activeIndex = CARD_IDS.indexOf(activeCard);
@@ -66,7 +66,7 @@ export default function HeroCanvas() {
   return (
     <header className="relative min-h-[85vh] flex flex-col justify-center px-4 sm:px-6 lg:px-8 pt-24 pb-10 overflow-hidden">
       {/* Background Image */}
-      <div className={`absolute inset-0 z-0 transition-all duration-500 ${activeCard ? 'v2-hero-blurred' : ''}`}>
+      <div className={`absolute inset-0 z-0 transition-all duration-500 ${activeCard ? 'hero-blurred' : ''}`}>
         <img
           src="/images/meio-sitio.jpg"
           alt="Vista panorâmica do Sítio Saíra Sete Cores no Sana"

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { X, ChevronLeft, ChevronRight, Maximize2, ChevronDown } from 'lucide-react';
-import { sairaData } from '../../../data/sairaData';
+import { sairaData } from '../../data/sairaData';
 
 const INITIAL_COUNT = 6;
 

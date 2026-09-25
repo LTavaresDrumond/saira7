@@ -19,7 +19,7 @@ export default function FlipCard({ icon: Icon, title, subtitle, isActive, isRece
           : 'scale-100 opacity-100'
         }
         ${isActive
-          ? 'v2-card-flipping pointer-events-none'
+          ? 'card-flipping pointer-events-none'
           : ''
         }
       `}
@@ -28,13 +28,13 @@ export default function FlipCard({ icon: Icon, title, subtitle, isActive, isRece
       <div className={`
         relative flex flex-col justify-center items-center text-center
         px-5 py-8 sm:py-10 lg:py-12
-        v2-card-glass
+        card-glass
         transition-all duration-300
-        group-hover:-translate-y-1 group-hover:v2-card-glow
-        ${isActive ? 'v2-card-glow' : ''}
+        group-hover:-translate-y-1 group-hover:card-glow
+        ${isActive ? 'card-glow' : ''}
       `}>
         {/* Icon */}
-        <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-amber-400/15 flex items-center justify-center text-amber-300 mb-4 transition-transform duration-300 group-hover:scale-110 v2-icon-pulse group-hover:[animation-play-state:paused]">
+        <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-amber-400/15 flex items-center justify-center text-amber-300 mb-4 transition-transform duration-300 group-hover:scale-110 icon-pulse group-hover:[animation-play-state:paused]">
           <Icon className="w-7 h-7 sm:w-8 sm:h-8" />
         </div>
 

@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { X, ChevronLeft, ChevronRight, Home, ChevronRight as BreadcrumbSep } from 'lucide-react';
-import { useV2Navigation } from './V2NavigationContext';
+import { useNavigation } from './NavigationContext';
 
 /**
  * CardModal — Modal expandido com:
@@ -11,7 +11,7 @@ import { useV2Navigation } from './V2NavigationContext';
 export default function CardModal({ title, icon: Icon, isOpen, onClose, onPrev, onNext, cardIds, activeCardId, children }) {
   const modalRef = useRef(null);
   const [closing, setClosing] = useState(false);
-  const nav = useV2Navigation();
+  const nav = useNavigation();
 
   // Close on Escape key
   useEffect(() => {
@@ -64,7 +64,7 @@ export default function CardModal({ title, icon: Icon, isOpen, onClose, onPrev, 
     <div className={`fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 ${closing ? 'pointer-events-none' : ''}`}>
       {/* Clickable backdrop overlay */}
       <div
-        className={`absolute inset-0 bg-black/60 backdrop-blur-sm ${closing ? 'animate-v2-backdrop-out' : 'animate-v2-backdrop-in'}`}
+        className={`absolute inset-0 bg-black/60 backdrop-blur-sm ${closing ? 'animate-backdrop-out' : 'animate-backdrop-in'}`}
         onClick={handleClose}
       />
 
@@ -85,8 +85,8 @@ export default function CardModal({ title, icon: Icon, isOpen, onClose, onPrev, 
         className={`relative z-10 w-[95%] sm:w-[92%] lg:w-[90%] max-w-6xl
                    h-[90vh] sm:h-[85vh]
                    rounded-3xl overflow-hidden
-                   v2-modal-glass
-                   ${closing ? 'animate-v2-modal-out' : 'animate-v2-modal-in'}
+                   modal-glass
+                   ${closing ? 'animate-modal-out' : 'animate-modal-in'}
                    flex flex-col`}
       >
         {/* Breadcrumbs */}
@@ -139,7 +139,7 @@ export default function CardModal({ title, icon: Icon, isOpen, onClose, onPrev, 
         </div>
 
         {/* Scrollable content */}
-        <div className="flex-1 overflow-y-auto px-6 sm:px-8 py-6 v2-modal-scroll">
+        <div className="flex-1 overflow-y-auto px-6 sm:px-8 py-6 modal-scroll">
           {children}
         </div>
       </div>
