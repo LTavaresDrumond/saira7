@@ -35,7 +35,6 @@ function AccommodationDetail({ data }) {
           </span>
         </div>
         <div className="absolute bottom-5 left-5 right-5 z-10 flex flex-col gap-4">
-          <h3 className="font-serif text-2xl sm:text-3xl font-bold text-white drop-shadow-md">{data.subtitle}</h3>
           <div className="flex gap-3">
             {photos.map((p, i) => (
               <button 
