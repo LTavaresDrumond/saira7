@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState, useCallback } from 'react';
 
 /**
  * NavigationContext — Permite que qualquer componente (Navbar, Footer)
- * dispare a abertura de um card/modal na interface V2.
+ * dispare a abertura de um card/modal na interface principal.
  */
 const NavigationContext = createContext(null);
 
@@ -49,7 +49,7 @@ export function NavigationProvider({ children }) {
     setBreadcrumbs((prev) => prev.slice(0, index + 1));
   }, []);
 
-  // Resolves an anchor href to a card ID for the V2 interface
+  // Resolves an anchor href to a card ID for the modal/card interface
   const resolveAnchor = useCallback((href) => {
     return ANCHOR_TO_CARD[href] || null;
   }, []);

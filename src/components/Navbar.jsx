@@ -4,13 +4,13 @@ import { sairaData } from '../data/sairaData';
 import { useNavigation } from './NavigationContext';
 
 /**
- * Navbar — Versão da Navbar para a rota /v2.
+ * Navbar — Barra de navegação principal.
  * Em vez de scroll para âncoras, abre os flippers/modais correspondentes.
  */
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { openCard, resolveAnchor } = useNavigation();
+  const { openCard, closeCard, resolveAnchor } = useNavigation();
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 40);
@@ -36,6 +36,13 @@ export default function Navbar() {
     }
   };
 
+  const handleLogoClick = (e) => {
+    e.preventDefault();
+    closeCard();
+    setMobileMenuOpen(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const handleWhatsAppDirect = () => {
     const text = encodeURIComponent("Olá! Vim pelo site do Sítio Saíra 7 e gostaria de saber mais informações sobre disponibilidade.");
     window.open(`https://api.whatsapp.com/send?phone=${sairaData.contact.whatsappNumber}&text=${text}`, '_blank');
@@ -51,7 +58,7 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         {/* Brand Logo */}
-        <a href="/v2" className="flex items-center gap-3 group">
+        <a href="/" onClick={handleLogoClick} className="flex items-center gap-3 group">
           <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full overflow-hidden bg-white p-0.5 shadow-md border-2 border-amber-300/60 group-hover:border-amber-400 transition-all flex-shrink-0">
             <img
               src="/images/logo.jpg"
