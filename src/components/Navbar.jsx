@@ -101,7 +101,7 @@ export default function Navbar() {
                 Saíra Sete Cores
               </span>
               <span ref={subRef} style={{ color: subColor.css }} className="block whitespace-nowrap text-[10px] sm:text-[11px] uppercase tracking-[0.12em] sm:tracking-[0.18em] font-medium mt-1">
-                Cabeceira do Sana • Macaé
+                Sana • Macaé • RJ
               </span>
             </div>
           </a>
