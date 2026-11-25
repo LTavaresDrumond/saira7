@@ -18,6 +18,20 @@ export const STRIPE_COLORS = [
   '#563C7E', // Roxo ipê
 ];
 
+/**
+ * Cores dos 6 cards da tela inicial (opção "B2", escolhida em 25/11/2026):
+ * as cores da faixa intercalando tons frios e quentes, para cada card
+ * contrastar com o vizinho — no celular (lista vertical) e no computador (3×2).
+ */
+export const CARD_COLORS = {
+  espacos: '#0261B3',     // Azul saíra
+  galeria: '#6EAA40',     // Verde mata
+  natureza: '#E35E0C',    // Laranja fogo
+  localizacao: '#0390A1', // Turquesa
+  quintal: '#FBAC02',     // Amarelo sol
+  cotacao: '#563C7E',     // Roxo ipê
+};
+
 const AREIA = [247, 243, 234];
 const NOITE = [2, 32, 44];
 
@@ -44,7 +58,8 @@ export function stripeIndexAt(x) {
 export function readableColor(hex, onDark) {
   let rgb = hexToRgb(hex);
   const lum = luminance(rgb);
-  if (onDark && lum < 0.2) rgb = mix(rgb, AREIA, 0.35);
+  if (onDark && lum < 0.1) rgb = mix(rgb, AREIA, 0.5);
+  else if (onDark && lum < 0.2) rgb = mix(rgb, AREIA, 0.35);
   if (!onDark && lum > 0.3) rgb = mix(rgb, NOITE, 0.35);
   return { rgb: rgb.join(' '), css: `rgb(${rgb.join(',')})` };
 }

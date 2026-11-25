@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import { X, ChevronLeft, ChevronRight, Home, ChevronRight as BreadcrumbSep } from 'lucide-react';
 import { useNavigation } from './NavigationContext';
 import { useTheme } from './ThemeContext';
-import { useStripeColor } from './stripeColor';
+import { readableColor } from './stripeColor';
 
 /**
  * CardModal — Modal expandido com:
@@ -10,13 +10,13 @@ import { useStripeColor } from './stripeColor';
  *  - Setas prev/next para navegar entre cards
  *  - Animação de fechamento reverso (shrink + flip-in)
  */
-export default function CardModal({ title, icon: Icon, isOpen, onClose, cardIds, activeCardId, children }) {
+export default function CardModal({ title, icon: Icon, isOpen, onClose, cardIds, activeCardId, accent = '#6EAA40', children }) {
   const modalRef = useRef(null);
   const [closing, setClosing] = useState(false);
   const nav = useNavigation();
   const { theme } = useTheme();
-  const iconRef = useRef(null);
-  const iconColor = useStripeColor(iconRef, theme !== 'light');
+  // Mesma cor do card que abriu o modal
+  const iconColor = readableColor(accent, theme !== 'light');
 
   // Close on Escape key
   useEffect(() => {
@@ -55,6 +55,8 @@ export default function CardModal({ title, icon: Icon, isOpen, onClose, cardIds,
   const CARD_LABELS = {
     espacos: 'Nossos Espaços',
     galeria: 'Galeria Fotográfica',
+    natureza: 'Natureza & Rio',
+    quintal: 'No Quintal do Sana',
     localizacao: 'Como Chegar',
     sobre: 'Sobre Nós',
     cotacao: 'Solicitar Orçamento',
@@ -114,7 +116,6 @@ export default function CardModal({ title, icon: Icon, isOpen, onClose, cardIds,
           <div className="flex items-center gap-3">
             {Icon && (
               <div
-                ref={iconRef}
                 style={{ color: iconColor.css, backgroundColor: `rgb(${iconColor.rgb} / 0.15)` }}
                 className="w-10 h-10 rounded-xl flex items-center justify-center"
               >

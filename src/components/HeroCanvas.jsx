@@ -3,6 +3,7 @@ import { Home, Camera, MapPin, Compass, CalendarCheck, Waves } from 'lucide-reac
 import FlipCard from './FlipCard';
 import CardModal from './CardModal';
 import { useNavigation } from './NavigationContext';
+import { CARD_COLORS } from './stripeColor';
 
 // ─── Card Content Imports ───────────────────────────────────────────
 import SpacesContent from './content/SpacesContent';
@@ -71,6 +72,7 @@ export default function HeroCanvas() {
           {CARDS.map((card) => (
             <FlipCard
               key={card.id}
+              color={CARD_COLORS[card.id]}
               icon={card.icon}
               title={card.title}
               subtitle={card.subtitle}
@@ -92,6 +94,7 @@ export default function HeroCanvas() {
           isOpen={!!activeCard}
           onClose={closeCard}
           cardIds={CARD_IDS}
+          accent={CARD_COLORS[activeCard]}
           activeCardId={activeCard}
         >
           <CardContent cardId={activeCard} />

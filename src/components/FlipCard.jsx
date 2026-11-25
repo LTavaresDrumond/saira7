@@ -1,19 +1,17 @@
-import React, { useRef } from 'react';
-import { useStripeColor } from './stripeColor';
+import React from 'react';
+import { readableColor } from './stripeColor';
 
 /**
  * FlipCard — Card individual com face frontal glassmorphism.
  * A animação de flip acontece via CSS class toggle.
  * O estado "receded" é aplicado quando outro card está ativo.
  */
-export default function FlipCard({ icon: Icon, title, subtitle, isActive, isReceded, onClick }) {
-  // Cor da faixa das 7 cores na mesma coluna do card (cards ficam sempre sobre a foto)
-  const ref = useRef(null);
-  const accent = useStripeColor(ref, true);
+export default function FlipCard({ icon: Icon, title, subtitle, isActive, isReceded, onClick, color = '#6EAA40' }) {
+  // Cada card tem uma das 7 cores da faixa (cards ficam sempre sobre a foto → fundo escuro)
+  const accent = readableColor(color, true);
 
   return (
     <button
-      ref={ref}
       onClick={onClick}
       style={{ '--glow-rgb': accent.rgb }}
       disabled={isActive}
