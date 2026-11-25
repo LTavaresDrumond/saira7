@@ -90,14 +90,14 @@ export default function Navbar() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           {/* Brand Logo */}
-          <a href="/" onClick={handleLogoClick} className="flex items-center gap-3 group">
+          <a href="/" onClick={handleLogoClick} className="flex items-center gap-2.5 sm:gap-3 group min-w-0">
             <img
               src={logoSrc}
               alt="Logo Sítio Saíra Sete Cores"
-              className="h-9 sm:h-10 w-auto flex-shrink-0 transition-transform duration-300 group-hover:-translate-y-0.5"
+              className="h-7 min-[380px]:h-9 sm:h-10 w-auto flex-shrink-0 transition-transform duration-300 group-hover:-translate-y-0.5"
             />
             <div>
-              <span className="block font-serif text-xl sm:text-2xl font-semibold tracking-tight leading-none text-white">
+              <span className="block whitespace-nowrap font-serif text-base min-[340px]:text-lg min-[380px]:text-xl sm:text-2xl font-semibold tracking-tight leading-none text-white">
                 Saíra Sete Cores
               </span>
               <span ref={subRef} style={{ color: subColor.css }} className="block whitespace-nowrap text-[10px] sm:text-[11px] uppercase tracking-[0.12em] sm:tracking-[0.18em] font-medium mt-1">
@@ -131,10 +131,10 @@ export default function Navbar() {
           </div>
 
           {/* Actions & Mobile Trigger */}
-          <div className="flex items-center gap-2 sm:gap-3">
+          <div className="flex items-center gap-1.5 sm:gap-3 flex-shrink-0">
             <button
               onClick={toggleTheme}
-              className="p-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
+              className="p-2 sm:p-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
               title={theme === 'light' ? 'Mudar para o tema escuro' : 'Mudar para o tema claro'}
               aria-label={theme === 'light' ? 'Mudar para o tema escuro' : 'Mudar para o tema claro'}
             >
@@ -143,7 +143,7 @@ export default function Navbar() {
 
             <button
               onClick={handleWhatsAppDirect}
-              className="p-2.5 rounded-full bg-emerald-600 hover:bg-emerald-700 text-saira-areia transition-all transform hover:scale-105 shadow-md flex items-center justify-center"
+              className="p-2 sm:p-2.5 rounded-full bg-emerald-600 hover:bg-emerald-700 text-saira-areia transition-all transform hover:scale-105 shadow-md flex items-center justify-center"
               title="Falar no WhatsApp"
               aria-label="Falar no WhatsApp"
             >
