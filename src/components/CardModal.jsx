@@ -1,6 +1,8 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { X, ChevronLeft, ChevronRight, Home, ChevronRight as BreadcrumbSep } from 'lucide-react';
 import { useNavigation } from './NavigationContext';
+import { useTheme } from './ThemeContext';
+import { useStripeColor } from './stripeColor';
 
 /**
  * CardModal — Modal expandido com:
@@ -12,6 +14,9 @@ export default function CardModal({ title, icon: Icon, isOpen, onClose, cardIds,
   const modalRef = useRef(null);
   const [closing, setClosing] = useState(false);
   const nav = useNavigation();
+  const { theme } = useTheme();
+  const iconRef = useRef(null);
+  const iconColor = useStripeColor(iconRef, theme !== 'light');
 
   // Close on Escape key
   useEffect(() => {
@@ -108,7 +113,11 @@ export default function CardModal({ title, icon: Icon, isOpen, onClose, cardIds,
         <div className="flex items-center justify-between px-6 sm:px-8 py-3.5 border-b border-white/10 flex-shrink-0">
           <div className="flex items-center gap-3">
             {Icon && (
-              <div className="w-10 h-10 rounded-xl bg-amber-400/15 flex items-center justify-center text-amber-300">
+              <div
+                ref={iconRef}
+                style={{ color: iconColor.css, backgroundColor: `rgb(${iconColor.rgb} / 0.15)` }}
+                className="w-10 h-10 rounded-xl flex items-center justify-center"
+              >
                 <Icon className="w-5 h-5" />
               </div>
             )}

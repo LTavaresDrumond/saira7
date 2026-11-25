@@ -1,9 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Menu, X, MessageCircle, Sun, Moon } from 'lucide-react';
 import { sairaData } from '../data/sairaData';
 import { useNavigation } from './NavigationContext';
 import { useTheme } from './ThemeContext';
 import SevenStripe from './SevenStripe';
+import { useStripeColor } from './stripeColor';
+
+// Link com a cor da faixa na mesma coluna
+function StripeLink({ onDark, className, children, ...props }) {
+  const ref = useRef(null);
+  const c = useStripeColor(ref, onDark);
+  return (
+    <button ref={ref} style={{ color: c.css, textDecorationColor: `rgb(${c.rgb} / 0.45)` }} className={className} {...props}>
+      {children}
+    </button>
+  );
+}
 
 /**
  * Navbar — Barra de navegação principal.
@@ -62,6 +74,8 @@ export default function Navbar() {
   // Sobre a foto: sempre escuro. Rolando: segue o tema.
   const onLight = isScrolled && theme === 'light';
   const logoSrc = onLight ? '/brand/passaro-traco-noite.svg' : '/brand/passaro-traco-areia.svg';
+  const subRef = useRef(null);
+  const subColor = useStripeColor(subRef, !onLight);
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50">
@@ -86,7 +100,7 @@ export default function Navbar() {
               <span className="block font-serif text-xl sm:text-2xl font-semibold tracking-tight leading-none text-white">
                 Saíra Sete Cores
               </span>
-              <span className="block whitespace-nowrap text-[10px] sm:text-[11px] uppercase tracking-[0.12em] sm:tracking-[0.18em] font-medium mt-1 text-amber-300">
+              <span ref={subRef} style={{ color: subColor.css }} className="block whitespace-nowrap text-[10px] sm:text-[11px] uppercase tracking-[0.12em] sm:tracking-[0.18em] font-medium mt-1">
                 Cabeceira do Sana • Macaé
               </span>
             </div>
@@ -94,19 +108,26 @@ export default function Navbar() {
 
           {/* Desktop Links */}
           <div className="hidden lg:flex items-center gap-5 xl:gap-7">
-            {navLinks.map((link) => (
-              <button
-                key={link.name}
-                onClick={(e) => handleNavClick(e, link.href)}
-                className={`text-sm transition-colors ${
-                  link.highlight
-                    ? 'font-semibold text-amber-300 hover:text-amber-200 underline decoration-amber-300/40 underline-offset-4'
-                    : 'font-medium text-white/85 hover:text-amber-300'
-                }`}
-              >
-                {link.name}
-              </button>
-            ))}
+            {navLinks.map((link) =>
+              link.highlight ? (
+                <StripeLink
+                  key={link.name}
+                  onDark={!onLight}
+                  onClick={(e) => handleNavClick(e, link.href)}
+                  className="text-sm font-semibold underline underline-offset-4 transition-opacity hover:opacity-80"
+                >
+                  {link.name}
+                </StripeLink>
+              ) : (
+                <button
+                  key={link.name}
+                  onClick={(e) => handleNavClick(e, link.href)}
+                  className="text-sm font-medium text-white/85 hover:text-white transition-colors"
+                >
+                  {link.name}
+                </button>
+              )
+            )}
           </div>
 
           {/* Actions & Mobile Trigger */}
