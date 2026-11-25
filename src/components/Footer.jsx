@@ -27,7 +27,7 @@ export default function Footer() {
           
           {/* Brand & Sobre Nós Minimizados */}
           <div className="lg:col-span-6">
-            <div className="flex items-center gap-3.5 mb-4">
+            <div className="flex items-center gap-3.5">
               <img
                 src={theme === 'light' ? '/brand/selo-claro.png' : '/brand/selo-escuro.png'}
                 alt="Selo Sítio Ecológico Saíra Sete Cores"
@@ -41,10 +41,6 @@ export default function Footer() {
                   Agroecologia · Arte · Educação · Saúde Integral
                 </StripeTint>
               </div>
-            </div>
-
-            <div className="text-xs text-stone-500">
-              📍 Cabeceira do Sana, Macaé - RJ, Brasil
             </div>
           </div>
 
