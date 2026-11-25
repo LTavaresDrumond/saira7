@@ -93,7 +93,7 @@ export default function QuintalContent() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 animate-fadeIn">
             {TOURISM_ITEMS.map((item) => (
               <div key={item.id} className="rounded-2xl overflow-hidden border border-white/10 bg-white/5 flex flex-col group">
-                <div className="h-40 overflow-hidden relative">
+                <div className="force-dark h-40 overflow-hidden relative">
                   <img src={item.image} alt={item.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                   <div className="absolute top-3 right-3 px-2 py-1 rounded text-[10px] font-bold bg-black/60 text-amber-300 backdrop-blur-md">
                     {item.distance}

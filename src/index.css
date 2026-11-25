@@ -2,32 +2,164 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ═══════════════════════════════════════════
+   Identidade visual v1 — temas claro e escuro
+   Paleta e fontes: projeto Saira7 (doc 04).
+   Valores em "R G B" para funcionar com a opacidade do Tailwind.
+   ═══════════════════════════════════════════ */
+
+/* Tema escuro (padrão) e áreas sobre foto (.force-dark) */
+:root,
+.force-dark {
+  --c-fg: 247 243 234;          /* Areia */
+  --c-s100: 236 232 222;
+  --c-s200: 222 218 208;
+  --c-s300: 200 198 190;
+  --c-s400: 160 170 170;
+  --c-s500: 118 134 138;
+  --c-s600: 78 98 106;
+  --c-s700: 44 68 78;
+  --c-s800: 18 52 66;
+  --c-s900: 9 40 54;
+  --c-s950: 2 32 44;            /* Noite */
+  --c-accent: 251 172 2;        /* Amarelo sol */
+  --c-accent-soft: 253 200 90;
+  --c-accent-strong: 227 94 12; /* Laranja fogo */
+  --c-verde: 110 170 64;        /* Verde mata */
+  --c-verde-deep: 24 58 34;
+  --glass-alpha: 0.9;
+  color-scheme: dark;
+}
+
+/* Tema claro (no site todo ou dentro de .theme-auto, mesmo sobre áreas escuras) */
+html[data-theme="light"],
+html[data-theme="light"] .theme-auto {
+  --c-fg: 2 32 44;              /* Noite */
+  --c-s100: 20 48 60;
+  --c-s200: 30 58 70;
+  --c-s300: 45 70 80;
+  --c-s400: 70 92 100;
+  --c-s500: 100 116 120;
+  --c-s600: 150 156 152;
+  --c-s700: 200 198 188;
+  --c-s800: 232 227 216;
+  --c-s900: 240 236 226;
+  --c-s950: 247 243 234;        /* Areia */
+  --c-accent: 2 97 179;         /* Azul saíra */
+  --c-accent-soft: 2 116 131;   /* Petróleo rio */
+  --c-accent-strong: 2 97 179;
+  --c-verde: 63 122 34;
+  --c-verde-deep: 222 236 208;
+  --glass-alpha: 0.97;
+  color-scheme: light;
+}
+
+/* .force-dark dentro do tema claro continua escuro (fotos, lightbox) */
+html[data-theme="light"] .force-dark {
+  --c-fg: 247 243 234;
+  --c-s100: 236 232 222;
+  --c-s200: 222 218 208;
+  --c-s300: 200 198 190;
+  --c-s400: 160 170 170;
+  --c-s500: 118 134 138;
+  --c-s600: 78 98 106;
+  --c-s700: 44 68 78;
+  --c-s800: 18 52 66;
+  --c-s900: 9 40 54;
+  --c-s950: 2 32 44;
+  --c-accent: 251 172 2;
+  --c-accent-soft: 253 200 90;
+  --c-accent-strong: 227 94 12;
+  --c-verde: 110 170 64;
+  --c-verde-deep: 24 58 34;
+  --glass-alpha: 0.9;
+  color-scheme: dark;
+}
+/* …mas um .theme-auto dentro de .force-dark volta a seguir o tema (ex.: modal) */
+html[data-theme="light"] .force-dark .theme-auto {
+  --c-fg: 2 32 44;
+  --c-s100: 20 48 60;
+  --c-s200: 30 58 70;
+  --c-s300: 45 70 80;
+  --c-s400: 70 92 100;
+  --c-s500: 100 116 120;
+  --c-s600: 150 156 152;
+  --c-s700: 200 198 188;
+  --c-s800: 232 227 216;
+  --c-s900: 240 236 226;
+  --c-s950: 247 243 234;
+  --c-accent: 2 97 179;
+  --c-accent-soft: 2 116 131;
+  --c-accent-strong: 2 97 179;
+  --c-verde: 63 122 34;
+  --c-verde-deep: 222 236 208;
+  --glass-alpha: 0.97;
+  color-scheme: light;
+}
+/* …e uma foto dentro do modal claro volta a ser escura */
+html[data-theme="light"] .force-dark .theme-auto .force-dark {
+  --c-fg: 247 243 234;
+  --c-s200: 222 218 208;
+  --c-s300: 200 198 190;
+  --c-s400: 160 170 170;
+  --c-s950: 2 32 44;
+  --c-accent: 251 172 2;
+  --c-accent-soft: 253 200 90;
+  --c-accent-strong: 227 94 12;
+  --c-verde: 110 170 64;
+  color-scheme: dark;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
   }
+  body {
+    background: rgb(var(--c-s950));
+    color: rgb(var(--c-fg));
+  }
+  ::selection {
+    background: rgb(var(--c-accent) / 0.35);
+  }
 }
 
-/* Glassmorphism styles */
+/* Fraunces fica pesada em 700: títulos em 600 */
+.font-serif.font-bold {
+  font-weight: 600;
+}
+
+/* Faixa das 7 cores da saíra (assinatura dos posts, topo e rodapé do site) */
+.stripe-7 {
+  background: linear-gradient(90deg,
+    #0261B3 0 14.2857%,
+    #027483 14.2857% 28.5714%,
+    #0390A1 28.5714% 42.8571%,
+    #6EAA40 42.8571% 57.1428%,
+    #FBAC02 57.1428% 71.4285%,
+    #E35E0C 71.4285% 85.7142%,
+    #563C7E 85.7142% 100%);
+}
+
+/* Glassmorphism */
 .glass-nav {
-  background: rgba(247, 245, 240, 0.85);
+  background: rgb(var(--c-s950) / 0.85);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(27, 59, 43, 0.08);
+  border-bottom: 1px solid rgb(var(--c-fg) / 0.08);
 }
 
 .glass-card {
-  background: rgba(255, 255, 255, 0.85);
+  background: rgb(var(--c-s950) / 0.85);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(27, 59, 43, 0.08);
+  border: 1px solid rgb(var(--c-fg) / 0.08);
 }
 
 .glass-card-dark {
-  background: rgba(17, 38, 27, 0.85);
+  background: rgba(2, 32, 44, 0.85);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(247, 243, 234, 0.1);
 }
 
 /* Subtle image zoom on hover */
@@ -43,14 +175,14 @@
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #F7F5F0;
+  background: rgb(var(--c-s950));
 }
 ::-webkit-scrollbar-thumb {
-  background: #C8936B;
+  background: rgb(var(--c-s600));
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #A06B43;
+  background: rgb(var(--c-accent));
 }
 
 /* ═══════════════════════════════════════════
@@ -68,26 +200,26 @@
 
 /* Card hover glow — uniform on all 4 sides */
 .card-glow {
-  border-color: rgba(251, 191, 36, 0.4) !important;
+  border-color: rgba(251, 172, 2, 0.4) !important;
   box-shadow:
-    0 0 16px 2px rgba(251, 191, 36, 0.12),
-    0 0 4px 0px rgba(251, 191, 36, 0.08),
+    0 0 16px 2px rgba(251, 172, 2, 0.12),
+    0 0 4px 0px rgba(251, 172, 2, 0.08),
     0 8px 24px -4px rgba(0, 0, 0, 0.3);
 }
 .group:hover .card-glass {
-  border-color: rgba(251, 191, 36, 0.4);
+  border-color: rgba(251, 172, 2, 0.4);
   box-shadow:
-    0 0 16px 2px rgba(251, 191, 36, 0.12),
-    0 0 4px 0px rgba(251, 191, 36, 0.08),
+    0 0 16px 2px rgba(251, 172, 2, 0.12),
+    0 0 4px 0px rgba(251, 172, 2, 0.08),
     0 8px 24px -4px rgba(0, 0, 0, 0.3);
 }
 
 /* Modal — darker glassmorphism */
 .modal-glass {
-  background: rgba(15, 15, 15, 0.88);
+  background: rgb(var(--c-s950) / var(--glass-alpha, 0.9));
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgb(var(--c-fg) / 0.08);
 }
 
 /* Modal scrollbar */
@@ -95,14 +227,14 @@
   width: 6px;
 }
 .modal-scroll::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.03);
+  background: rgb(var(--c-fg) / 0.03);
 }
 .modal-scroll::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgb(var(--c-fg) / 0.15);
   border-radius: 3px;
 }
 .modal-scroll::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.25);
+  background: rgb(var(--c-fg) / 0.25);
 }
 
 /* Hero blur when modal is active */

@@ -24,7 +24,7 @@ export default function NatureContent() {
           const Ic = icons[idx] || Trees;
           return (
             <div key={idx} className="rounded-2xl overflow-hidden border border-white/10 group">
-              <div className="relative h-64 overflow-hidden">
+              <div className="force-dark relative h-64 overflow-hidden">
                 <img 
                   src={item.image} 
                   alt={item.title} 

@@ -5,9 +5,11 @@ import Navbar from './components/Navbar';
 import HeroCanvas from './components/HeroCanvas';
 import Footer from './components/Footer';
 import { NavigationProvider } from './components/NavigationContext';
+import { ThemeProvider } from './components/ThemeContext';
 
 export default function App() {
   return (
+    <ThemeProvider>
     <NavigationProvider>
       <BrowserRouter>
         <Routes>
@@ -23,5 +25,6 @@ export default function App() {
         </Routes>
       </BrowserRouter>
     </NavigationProvider>
+    </ThemeProvider>
   );
 }

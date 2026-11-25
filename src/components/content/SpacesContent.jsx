@@ -23,7 +23,7 @@ function AccommodationDetail({ data }) {
 
   return (
     <div className="rounded-2xl overflow-hidden border border-white/10 animate-fadeIn">
-      <div className="relative min-h-[360px] sm:min-h-[480px] bg-stone-900">
+      <div className="force-dark relative min-h-[360px] sm:min-h-[480px] bg-stone-900">
         <img src={photos[photoIdx] || data.image} alt={data.title} className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
         <div className="relative z-10 p-5 flex items-center justify-between">
@@ -61,7 +61,7 @@ function OcaDetail() {
     <div className="space-y-8">
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2.5">
         {events.photos.map((item, idx) => (
-          <div key={idx} onClick={() => setSelectedPhoto(item)} className="group relative h-32 sm:h-40 rounded-xl overflow-hidden cursor-pointer border border-white/10">
+          <div key={idx} onClick={() => setSelectedPhoto(item)} className="force-dark group relative h-32 sm:h-40 rounded-xl overflow-hidden cursor-pointer border border-white/10">
             <img src={item.src} alt={item.caption} className="w-full h-full object-cover img-zoom" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-80 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-2.5">
               <span className="text-[10px] text-white font-semibold">{item.caption}</span>
@@ -92,7 +92,7 @@ function OcaDetail() {
         </div>
       </div>
       {selectedPhoto && (
-        <div className="fixed inset-0 z-[60] bg-black/95 flex items-center justify-center p-4 animate-fadeIn" onClick={() => setSelectedPhoto(null)}>
+        <div className="force-dark fixed inset-0 z-[60] bg-black/95 flex items-center justify-center p-4 animate-fadeIn" onClick={() => setSelectedPhoto(null)}>
           <button className="absolute top-6 right-6 p-3 rounded-full bg-white/10 text-white"><X className="w-6 h-6" /></button>
           <img src={selectedPhoto.src} alt={selectedPhoto.caption} className="max-h-[75vh] max-w-full rounded-xl object-contain" />
         </div>
@@ -110,7 +110,7 @@ function ConvivenciaDetail() {
         const Ic = icons[idx] || Coffee;
         return (
           <div key={idx} className="rounded-2xl overflow-hidden border border-white/10">
-            <div className="relative h-48 overflow-hidden">
+            <div className="force-dark relative h-48 overflow-hidden">
               <img src={item.image} alt={item.title} className="w-full h-full object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
               <div className="absolute bottom-3 left-4 flex items-center gap-2 text-white">
@@ -189,7 +189,7 @@ export default function SpacesContent() {
               className="group relative rounded-2xl overflow-hidden border border-white/10 hover:border-amber-400/40 transition-all text-left"
             >
               {/* Thumbnail */}
-              <div className="relative h-40 sm:h-48 overflow-hidden">
+              <div className="force-dark relative h-40 sm:h-48 overflow-hidden">
                 <img
                   src={space.image}
                   alt={space.label}
@@ -206,7 +206,7 @@ export default function SpacesContent() {
               </div>
 
               {/* Hover CTA */}
-              <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity">
+              <div className="force-dark absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity">
                 <span className="px-4 py-2 rounded-full bg-amber-400/20 backdrop-blur-sm border border-amber-400/30 text-amber-200 text-xs font-semibold">
                   Ver detalhes →
                 </span>

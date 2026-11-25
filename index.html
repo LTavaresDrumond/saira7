@@ -2,7 +2,21 @@
 <html lang="pt-BR" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/jpeg" href="/images/logo.jpg" />
+    <link rel="icon" type="image/svg+xml" href="/brand/passaro.svg" />
+    <link rel="icon" type="image/png" sizes="64x64" href="/brand/favicon-64.png" />
+    <link rel="apple-touch-icon" href="/brand/apple-touch-icon.png" />
+    <meta name="theme-color" content="#02202C" />
+    <script>
+      // Tema inicial antes do React carregar (evita piscar): escolha salva ou preferência do sistema
+      (function () {
+        var t = 'dark';
+        try {
+          t = localStorage.getItem('saira-theme') ||
+            (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+        } catch (e) {}
+        document.documentElement.dataset.theme = t;
+      })();
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sítio Saíra Sete Cores | Hospedagem & Eventos no Sana, Macaé - RJ</title>
     <meta name="description" content="Refúgio exclusivo na Cabeceira do Sana com Mata Atlântica preservada, banho de rio, Oca Carukango para até 100 pessoas em eventos e hospedagem para até 23 hóspedes." />
@@ -15,12 +29,12 @@
     <meta property="og:image" content="/images/meio-sitio.jpg" />
     <link rel="canonical" href="https://saira7.vercel.app" />
 
-    <!-- Google Fonts: Playfair Display & Plus Jakarta Sans -->
+    <!-- Google Fonts: Fraunces (títulos) & DM Sans (textos) — identidade visual v1 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..800;1,400..800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300..700&family=Fraunces:opsz,wght@9..144,400..700&display=swap" rel="stylesheet">
   </head>
-  <body class="bg-saira-sand text-stone-800 font-sans antialiased selection:bg-saira-earth-light selection:text-white">
+  <body class="font-sans antialiased">
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

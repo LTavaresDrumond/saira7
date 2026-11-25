@@ -44,7 +44,7 @@ export default function HeroCanvas() {
   const activeCardData = CARDS.find((c) => c.id === activeCard);
 
   return (
-    <header className="relative min-h-[85vh] flex flex-col justify-center px-4 sm:px-6 lg:px-8 pt-24 pb-10 overflow-hidden">
+    <header className="force-dark relative min-h-[85vh] flex flex-col justify-center px-4 sm:px-6 lg:px-8 pt-24 pb-10 overflow-hidden">
       {/* Background Image */}
       <div className={`absolute inset-0 z-0 transition-all duration-500 ${activeCard ? 'hero-blurred' : ''}`}>
         <img

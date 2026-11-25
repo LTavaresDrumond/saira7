@@ -59,7 +59,7 @@ export default function CardModal({ title, icon: Icon, isOpen, onClose, cardIds,
   const breadcrumbs = nav?.breadcrumbs || [activeCardId];
 
   return (
-    <div className={`fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 ${closing ? 'pointer-events-none' : ''}`}>
+    <div className={`theme-auto fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 ${closing ? 'pointer-events-none' : ''}`}>
       {/* Clickable backdrop overlay */}
       <div
         className={`absolute inset-0 bg-black/60 backdrop-blur-sm ${closing ? 'animate-backdrop-out' : 'animate-backdrop-in'}`}

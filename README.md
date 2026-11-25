@@ -52,7 +52,7 @@ Website e landing page oficial para divulgação e locação do **Sítio Saíra 
 ## 🚀 Roadmap de Desenvolvimento
 - [x] Brainstorming inicial e definição de escopo e capacidades
 - [x] Centralização global das skills de IA (`ui-ux-pro-max`, `brainstorming`, etc.)
-- [ ] Definição do Design System (paleta de cores, tipografia Google Fonts, estilo visual)
+- [x] Definição do Design System: identidade visual v1 (7 cores da saíra + Areia/Noite, Fraunces + DM Sans, logo nova, tema claro/escuro). Ver `PROJECT_CONTEXT.md`
 - [ ] Seleção e integração das imagens em alta resolução do Google Drive
 - [ ] Implementação da landing page responsiva (mobile & desktop)
 - [ ] Auditoria de SEO, acessibilidade WCAG e performance

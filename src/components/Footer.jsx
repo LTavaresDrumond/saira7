@@ -2,6 +2,8 @@ import React from 'react';
 import { MessageCircle, Heart, CheckCircle2 } from 'lucide-react';
 import { sairaData } from '../data/sairaData';
 import { useNavigation } from './NavigationContext';
+import { useTheme } from './ThemeContext';
+import SevenStripe from './SevenStripe';
 
 const ABOUT_BADGES = [
   'Hospedagem para grupos (até 23 pessoas)',
@@ -15,28 +17,28 @@ const ABOUT_BADGES = [
 export default function Footer() {
   const currentYear = new Date().getFullYear();
   const { openCard } = useNavigation();
+  const { theme } = useTheme();
 
   return (
     <footer className="relative bg-stone-950 text-white pt-16 pb-12 border-t border-white/10 overflow-hidden">
+      <SevenStripe className="h-1 absolute bottom-0 left-0 right-0" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-stone-800">
           
           {/* Brand & Sobre Nós Minimizados */}
           <div className="lg:col-span-6">
             <div className="flex items-center gap-3.5 mb-6">
-              <div className="w-14 h-14 rounded-full overflow-hidden bg-white p-0.5 shadow-lg border-2 border-amber-400/80 flex-shrink-0">
-                <img
-                  src="/images/logo.jpg"
-                  alt="Logo Sítio Saíra Sete Cores"
-                  className="w-full h-full object-cover rounded-full"
-                />
-              </div>
+              <img
+                src={theme === 'light' ? '/brand/selo-claro.png' : '/brand/selo-escuro.png'}
+                alt="Selo Sítio Ecológico Saíra Sete Cores"
+                className="w-20 h-20 sm:w-24 sm:h-24 flex-shrink-0"
+              />
               <div>
                 <span className="font-serif text-2xl font-bold tracking-tight block text-white">
                   {sairaData.name}
                 </span>
                 <span className="text-[11px] text-amber-400 uppercase tracking-widest font-semibold block">
-                  Arte, Ecologia & Educação
+                  Agroecologia · Arte · Educação · Saúde Integral
                 </span>
               </div>
             </div>
