@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { MessageCircle, Heart, CheckCircle2 } from 'lucide-react';
+import { MessageCircle } from 'lucide-react';
 import { sairaData } from '../data/sairaData';
 import { useNavigation } from './NavigationContext';
 import { useTheme } from './ThemeContext';
@@ -13,14 +13,6 @@ function StripeTint({ as: Tag = 'span', onDark, className, children }) {
   return <Tag ref={ref} style={{ color: c.css }} className={className}>{children}</Tag>;
 }
 
-const ABOUT_BADGES = [
-  'Hospedagem para grupos (até 23 pessoas)',
-  'Escola de Agroecologia',
-  'Eventos, retiros e casamentos',
-  'Educação com a natureza',
-  'Arte como metodologia',
-  'Oca Carukango (Espaço Quilombola)'
-];
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -28,14 +20,14 @@ export default function Footer() {
   const { theme } = useTheme();
 
   return (
-    <footer className="relative bg-stone-950 text-white pt-16 pb-12 border-t border-white/10 overflow-hidden">
+    <footer className="relative bg-stone-950 text-white pt-8 sm:pt-10 pb-8 border-t border-white/10 overflow-hidden">
       <SevenStripe className="h-1 absolute bottom-0 left-0 right-0" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-stone-800">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 pb-8 border-b border-stone-800">
           
           {/* Brand & Sobre Nós Minimizados */}
           <div className="lg:col-span-6">
-            <div className="flex items-center gap-3.5 mb-6">
+            <div className="flex items-center gap-3.5 mb-4">
               <img
                 src={theme === 'light' ? '/brand/selo-claro.png' : '/brand/selo-escuro.png'}
                 alt="Selo Sítio Ecológico Saíra Sete Cores"
@@ -49,16 +41,6 @@ export default function Footer() {
                   Agroecologia · Arte · Educação · Saúde Integral
                 </StripeTint>
               </div>
-            </div>
-
-            {/* Badges do Sobre Nós */}
-            <div className="flex flex-wrap gap-2 mb-6">
-              {ABOUT_BADGES.map((badge, idx) => (
-                <span key={idx} className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-stone-300 text-[11px] hover:border-white/25 transition-colors">
-                  <StripeTint onDark={theme !== 'light'} className="inline-flex"><CheckCircle2 className="w-3 h-3" /></StripeTint>
-                  {badge}
-                </span>
-              ))}
             </div>
 
             <div className="text-xs text-stone-500">
@@ -103,13 +85,10 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-stone-500 text-xs">
             &copy; {currentYear} {sairaData.name}. Todos os direitos reservados.
           </p>
-          <div className="flex items-center gap-1.5 text-stone-500 text-xs">
-            Feito com <Heart className="w-3 h-3 text-red-500/70" /> na Serra Carioca
-          </div>
         </div>
       </div>
     </footer>
