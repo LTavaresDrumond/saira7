@@ -1,6 +1,8 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { X, ChevronLeft, ChevronRight, Home, ChevronRight as BreadcrumbSep } from 'lucide-react';
 import { useNavigation } from './NavigationContext';
+import { useTheme } from './ThemeContext';
+import { readableColor } from './stripeColor';
 
 /**
  * CardModal — Modal expandido com:
@@ -8,10 +10,13 @@ import { useNavigation } from './NavigationContext';
  *  - Setas prev/next para navegar entre cards
  *  - Animação de fechamento reverso (shrink + flip-in)
  */
-export default function CardModal({ title, icon: Icon, isOpen, onClose, cardIds, activeCardId, children }) {
+export default function CardModal({ title, icon: Icon, isOpen, onClose, cardIds, activeCardId, accent = '#6EAA40', children }) {
   const modalRef = useRef(null);
   const [closing, setClosing] = useState(false);
   const nav = useNavigation();
+  const { theme } = useTheme();
+  // Mesma cor do card que abriu o modal
+  const iconColor = readableColor(accent, theme !== 'light');
 
   // Close on Escape key
   useEffect(() => {
@@ -50,6 +55,8 @@ export default function CardModal({ title, icon: Icon, isOpen, onClose, cardIds,
   const CARD_LABELS = {
     espacos: 'Nossos Espaços',
     galeria: 'Galeria Fotográfica',
+    natureza: 'Natureza & Rio',
+    quintal: 'No Quintal do Sana',
     localizacao: 'Como Chegar',
     sobre: 'Sobre Nós',
     cotacao: 'Solicitar Orçamento',
@@ -59,7 +66,7 @@ export default function CardModal({ title, icon: Icon, isOpen, onClose, cardIds,
   const breadcrumbs = nav?.breadcrumbs || [activeCardId];
 
   return (
-    <div className={`fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 ${closing ? 'pointer-events-none' : ''}`}>
+    <div className={`theme-auto fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 ${closing ? 'pointer-events-none' : ''}`}>
       {/* Clickable backdrop overlay */}
       <div
         className={`absolute inset-0 bg-black/60 backdrop-blur-sm ${closing ? 'animate-backdrop-out' : 'animate-backdrop-in'}`}
@@ -108,7 +115,10 @@ export default function CardModal({ title, icon: Icon, isOpen, onClose, cardIds,
         <div className="flex items-center justify-between px-6 sm:px-8 py-3.5 border-b border-white/10 flex-shrink-0">
           <div className="flex items-center gap-3">
             {Icon && (
-              <div className="w-10 h-10 rounded-xl bg-amber-400/15 flex items-center justify-center text-amber-300">
+              <div
+                style={{ color: iconColor.css, backgroundColor: `rgb(${iconColor.rgb} / 0.15)` }}
+                className="w-10 h-10 rounded-xl flex items-center justify-center"
+              >
                 <Icon className="w-5 h-5" />
               </div>
             )}

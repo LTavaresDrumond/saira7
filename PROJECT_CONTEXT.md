@@ -39,7 +39,37 @@ São os componentes renderizados internamente pelos modais:
 ### 3.4 Data Source
 - `src/data/sairaData.js`: Centralização de copywriting, parâmetros de contato (link do WhatsApp), descrições de quartos. Facilita manutenções de conteúdo sem tocar na lógica React.
 
-## 🎨 4. Diretrizes e Regras de Design (Mandatório)
+## 🎨 4. Identidade Visual v1 (nov/2026) — fonte da verdade: projeto "Saira7" no Claude (doc 04)
+
+### Paleta
+- **As 7 cores da saíra (acentos, ~10% da arte):** Azul saíra `#0261B3` · Petróleo rio `#027483` · Turquesa `#0390A1` · Verde mata `#6EAA40` · Amarelo sol `#FBAC02` · Laranja fogo `#E35E0C` · Roxo ipê `#563C7E`.
+- **Base (~90%):** Areia `#F7F3EA` e Noite `#02202C`.
+- No Tailwind: classes fixas `saira-azul`, `saira-areia`, `saira-noite` etc.
+
+### Tipografia
+- Títulos: **Fraunces** (`font-serif`; `font-bold` é renderizado em 600).
+- Textos: **DM Sans** (`font-sans`).
+
+### Logo (arquivos em `public/brand/`)
+- `passaro-traco-areia.svg` / `passaro-traco-noite.svg`: pássaro em traço, usado na navbar (Areia sobre a foto e no tema escuro; Noite no tema claro).
+- `passaro.svg` (colorido, contorno Noite) e `passaro-contorno-areia.svg` (contorno Areia, para fundos escuros). `passaro.svg` também é o favicon.
+- `selo-escuro.png` / `selo-claro.png`: selo circular "Sítio Ecológico Saíra Sete Cores", usado no rodapé conforme o tema.
+
+### Faixa das 7 cores
+- Assinatura da marca (a mesma dos posts do Instagram): componente `SevenStripe` / classe `.stripe-7`, no topo da navbar e no fim do rodapé.
+
+### Tema claro / escuro
+- `ThemeContext.jsx` + atributo `data-theme` no `<html>`. O tema inicial é definido por um script no `index.html` (escolha salva em `localStorage['saira-theme']` ou preferência do sistema). Botão sol/lua na navbar.
+- As cores de interface do Tailwind (`white`, `stone-*`, `amber-*`, `emerald-*`) apontam para variáveis CSS em `src/index.css`:
+  - `white` = cor do texto do tema (Areia no escuro, Noite no claro).
+  - `stone-*` = escala neutra do tema (`stone-950` é o fundo).
+  - `amber-*` = acento do tema (Amarelo sol no escuro, Azul saíra no claro).
+  - `emerald-*` = Verde mata.
+- **`force-dark`:** áreas sobre foto (hero, cards principais, legendas de fotos, lightbox, navbar sem rolar) ficam sempre escuras, em qualquer tema.
+- **`theme-auto`:** volta a seguir o tema dentro de uma área `force-dark` (ex.: o modal, que fica dentro do hero).
+- Regra: **todo texto em cima de foto** precisa estar dentro de um elemento com `force-dark`.
+
+## 🎨 4.1 Diretrizes e Regras de Design (Mandatório)
 Qualquer alteração visual futura deve respeitar estritamente estas leis:
 1. **Glassmorphism Cristalino:** Fundo dos modais de vidro devem usar pouquíssima opacidade (ex: 7% a 15%) com blur leve. Deve parecer um "cristal finíssimo" que permite ver o fundo da natureza perfeitamente.
 2. **Hover Uniforme:** O *glow* nos cards principais ao passar o mouse deve brilhar nos 4 cantos do card igualmente (overflow não pode estar escondido prejudicando o top).

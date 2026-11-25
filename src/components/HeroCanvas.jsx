@@ -3,6 +3,7 @@ import { Home, Camera, MapPin, Compass, CalendarCheck, Waves } from 'lucide-reac
 import FlipCard from './FlipCard';
 import CardModal from './CardModal';
 import { useNavigation } from './NavigationContext';
+import { CARD_COLORS } from './stripeColor';
 
 // ─── Card Content Imports ───────────────────────────────────────────
 import SpacesContent from './content/SpacesContent';
@@ -44,7 +45,7 @@ export default function HeroCanvas() {
   const activeCardData = CARDS.find((c) => c.id === activeCard);
 
   return (
-    <header className="relative min-h-[85vh] flex flex-col justify-center px-4 sm:px-6 lg:px-8 pt-24 pb-10 overflow-hidden">
+    <header className="force-dark relative min-h-[85vh] flex flex-col justify-center px-4 sm:px-6 lg:px-8 pt-24 pb-10 overflow-hidden">
       {/* Background Image */}
       <div className={`absolute inset-0 z-0 transition-all duration-500 ${activeCard ? 'hero-blurred' : ''}`}>
         <img
@@ -71,6 +72,7 @@ export default function HeroCanvas() {
           {CARDS.map((card) => (
             <FlipCard
               key={card.id}
+              color={CARD_COLORS[card.id]}
               icon={card.icon}
               title={card.title}
               subtitle={card.subtitle}
@@ -92,6 +94,7 @@ export default function HeroCanvas() {
           isOpen={!!activeCard}
           onClose={closeCard}
           cardIds={CARD_IDS}
+          accent={CARD_COLORS[activeCard]}
           activeCardId={activeCard}
         >
           <CardContent cardId={activeCard} />

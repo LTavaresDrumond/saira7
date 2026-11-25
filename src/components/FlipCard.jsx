@@ -1,14 +1,19 @@
 import React from 'react';
+import { readableColor } from './stripeColor';
 
 /**
  * FlipCard — Card individual com face frontal glassmorphism.
  * A animação de flip acontece via CSS class toggle.
  * O estado "receded" é aplicado quando outro card está ativo.
  */
-export default function FlipCard({ icon: Icon, title, subtitle, isActive, isReceded, onClick }) {
+export default function FlipCard({ icon: Icon, title, subtitle, isActive, isReceded, onClick, color = '#6EAA40' }) {
+  // Cada card tem uma das 7 cores da faixa (cards ficam sempre sobre a foto → fundo escuro)
+  const accent = readableColor(color, true);
+
   return (
     <button
       onClick={onClick}
+      style={{ '--glow-rgb': accent.rgb }}
       disabled={isActive}
       className={`
         group relative w-full text-left
@@ -34,7 +39,9 @@ export default function FlipCard({ icon: Icon, title, subtitle, isActive, isRece
         ${isActive ? 'card-glow' : ''}
       `}>
         {/* Icon */}
-        <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-amber-400/15 flex items-center justify-center text-amber-300 mb-4 transition-transform duration-300 group-hover:scale-110 icon-pulse group-hover:[animation-play-state:paused]">
+        <div
+          style={{ color: accent.css, backgroundColor: `rgb(${accent.rgb} / 0.16)` }}
+          className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110 icon-pulse group-hover:[animation-play-state:paused]">
           <Icon className="w-7 h-7 sm:w-8 sm:h-8" />
         </div>
 
@@ -49,7 +56,7 @@ export default function FlipCard({ icon: Icon, title, subtitle, isActive, isRece
         </p>
 
         {/* Hover indicator */}
-        <div className="mt-4 text-[10px] uppercase tracking-widest text-amber-300/60 font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <div style={{ color: accent.css }} className="mt-4 text-[10px] uppercase tracking-widest font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
           Clique para explorar
         </div>
       </div>

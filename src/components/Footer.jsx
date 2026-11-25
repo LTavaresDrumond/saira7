@@ -1,7 +1,17 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { MessageCircle, Heart, CheckCircle2 } from 'lucide-react';
 import { sairaData } from '../data/sairaData';
 import { useNavigation } from './NavigationContext';
+import { useTheme } from './ThemeContext';
+import SevenStripe from './SevenStripe';
+import { useStripeColor } from './stripeColor';
+
+// Texto/ícone com a cor da faixa na mesma coluna
+function StripeTint({ as: Tag = 'span', onDark, className, children }) {
+  const ref = useRef(null);
+  const c = useStripeColor(ref, onDark);
+  return <Tag ref={ref} style={{ color: c.css }} className={className}>{children}</Tag>;
+}
 
 const ABOUT_BADGES = [
   'Hospedagem para grupos (até 23 pessoas)',
@@ -15,37 +25,37 @@ const ABOUT_BADGES = [
 export default function Footer() {
   const currentYear = new Date().getFullYear();
   const { openCard } = useNavigation();
+  const { theme } = useTheme();
 
   return (
     <footer className="relative bg-stone-950 text-white pt-16 pb-12 border-t border-white/10 overflow-hidden">
+      <SevenStripe className="h-1 absolute bottom-0 left-0 right-0" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-stone-800">
           
           {/* Brand & Sobre Nós Minimizados */}
           <div className="lg:col-span-6">
             <div className="flex items-center gap-3.5 mb-6">
-              <div className="w-14 h-14 rounded-full overflow-hidden bg-white p-0.5 shadow-lg border-2 border-amber-400/80 flex-shrink-0">
-                <img
-                  src="/images/logo.jpg"
-                  alt="Logo Sítio Saíra Sete Cores"
-                  className="w-full h-full object-cover rounded-full"
-                />
-              </div>
+              <img
+                src={theme === 'light' ? '/brand/selo-claro.png' : '/brand/selo-escuro.png'}
+                alt="Selo Sítio Ecológico Saíra Sete Cores"
+                className="w-20 h-20 sm:w-24 sm:h-24 flex-shrink-0"
+              />
               <div>
                 <span className="font-serif text-2xl font-bold tracking-tight block text-white">
                   {sairaData.name}
                 </span>
-                <span className="text-[11px] text-amber-400 uppercase tracking-widest font-semibold block">
-                  Arte, Ecologia & Educação
-                </span>
+                <StripeTint onDark={theme !== 'light'} className="text-[11px] uppercase tracking-widest font-semibold block">
+                  Agroecologia · Arte · Educação · Saúde Integral
+                </StripeTint>
               </div>
             </div>
 
             {/* Badges do Sobre Nós */}
             <div className="flex flex-wrap gap-2 mb-6">
               {ABOUT_BADGES.map((badge, idx) => (
-                <span key={idx} className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-stone-300 text-[11px] hover:border-amber-400/30 transition-colors">
-                  <CheckCircle2 className="w-3 h-3 text-amber-400" />
+                <span key={idx} className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-stone-300 text-[11px] hover:border-white/25 transition-colors">
+                  <StripeTint onDark={theme !== 'light'} className="inline-flex"><CheckCircle2 className="w-3 h-3" /></StripeTint>
                   {badge}
                 </span>
               ))}

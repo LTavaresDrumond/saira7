@@ -56,7 +56,7 @@ export default function QuoteContent() {
             <input type="number" name="guests" value={formData.guests} onChange={handleInputChange} min="1" max={interestType === 'estadia' ? 30 : 100} className={inputClass} />
           </div>
           <textarea name="notes" value={formData.notes} onChange={handleInputChange} placeholder="Observações adicionais (opcional)" rows={3} className={`${inputClass} resize-none`} />
-          <button type="submit" className="w-full flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-sm transition-all shadow-lg">
+          <button type="submit" className="w-full flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-saira-areia font-semibold text-sm transition-all shadow-lg">
             <Send className="w-4 h-4" /> Enviar via WhatsApp
           </button>
         </form>
