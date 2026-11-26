@@ -1,0 +1,20 @@
+/* Templates de post do Sítio Saíra Sete Cores — identidade visual v1
+   Tamanho: 1080 × 1350 (4:5, feed do Instagram). Fontes: Fraunces + DM Sans. */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400..600&family=Fraunces:opsz,wght@9..144,400..600&display=swap');
+:root{--areia:#F7F3EA;--noite:#02202C;--petroleo:#027483}
+*{margin:0;box-sizing:border-box}
+body{width:1080px;height:1350px;overflow:hidden}
+.post{position:relative;width:1080px;height:1350px;overflow:hidden}
+/* Faixa das 7 cores (assinatura) */
+.stripe{position:absolute;left:0;right:0;bottom:0;height:22px;display:flex}
+.stripe i{flex:1}
+.stripe i:nth-child(1){background:#0261B3}.stripe i:nth-child(2){background:#027483}
+.stripe i:nth-child(3){background:#0390A1}.stripe i:nth-child(4){background:#6EAA40}
+.stripe i:nth-child(5){background:#FBAC02}.stripe i:nth-child(6){background:#E35E0C}
+.stripe i:nth-child(7){background:#563C7E}
+.chapeu{font-family:'DM Sans',sans-serif;font-weight:500;font-size:30px;letter-spacing:6px;text-transform:uppercase}
+.titulo{font-family:'Fraunces',serif;font-weight:400;font-size:104px;line-height:1.05;letter-spacing:-1px;font-variation-settings:'opsz' 144}
+.texto{font-family:'DM Sans',sans-serif;font-weight:400;font-size:38px;line-height:1.5}
+.assin{font-family:'DM Sans',sans-serif;font-weight:500;font-size:28px;letter-spacing:5px;text-transform:uppercase}
+/* Modelo A: degradê Noite de baixo para cima */
+.degrade{position:absolute;inset:0;background:linear-gradient(to top,rgba(2,32,44,.9) 0%,rgba(2,32,44,.6) 28%,rgba(2,32,44,0) 58%)}
