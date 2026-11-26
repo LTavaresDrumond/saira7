@@ -25,7 +25,8 @@ O Sítio Saíra Sete Cores (localizado na Cabeceira do Sana, Macaé - RJ) possui
 - `FlipCard.jsx`: O botão/card em si. Responsável pela estética tridimensional, ícones e o hover (que possui um glow branco uniforme).
 - `CardModal.jsx`: O contêiner de vidro que expande a informação do card. Ele não possui botões flutuantes de "Voltar/Avançar" nas laterais (para evitar cliques acidentais).
 - `NavigationContext.jsx`: Cérebro do estado dos cards e dos links diretos (`#orcamento` etc.).
-- `HubLinks.jsx`: Fileira de atalhos abaixo do título (WhatsApp, Instagram, Airbnb quando houver, Como chegar, Orçamento), para o site funcionar como link da bio do Instagram. Textos e ordem em `sairaData.hub`; cores em `HUB_COLORS` (`stripeColor.js`). O Airbnb aparece sozinho quando `contact.airbnbUrl` for preenchido. "Como chegar" abre o Google Maps direto; "Orçamento" abre o card de orçamento.
+- `HubLinks.jsx`: Canais de captação abaixo do título, para o site funcionar como link da bio do Instagram. O site é um auxiliar de divulgação: **Airbnb e Instagram são os canais principais** (círculo cheio: Airbnb em Laranja fogo, Instagram em Roxo ipê) e o **WhatsApp é o contato direto** (círculo de vidro em Verde mata). Textos, ordem e destaque (`primary`) em `sairaData.hub`; cores em `HUB_COLORS` (`stripeColor.js`). O Airbnb aparece sozinho quando `contact.airbnbUrl` for preenchido.
+  - **Regra: nada se repete.** O hub só tem canais externos; o que já é card (Como Chegar, Orçamento…) não entra nele.
 - `Navbar.jsx` / `Footer.jsx`: Controles de menu globais. Foram refatorados para *abrir os modais* programaticamente através do Context. O Footer hospeda a antiga seção "Sobre Nós", convertida em pequenos *badges*.
 
 ### 3.3 Componentes de Conteúdo (`src/components/content/`)
@@ -100,7 +101,7 @@ Qualquer alteração visual futura deve respeitar estritamente estas leis:
 ## 🔮 5. Backlog Futuro (O Que Fazer a Seguir)
 Quando a inteligência artificial assumir, aqui estão os itens arquitetados e planejados para a próxima iteração do projeto:
 
-- [x] **Hub da bio do Instagram:** atalhos abaixo do título, links diretos por card e prévia do link corrigida (nov/2026).
+- [x] **Hub da bio do Instagram:** canais (Airbnb, Instagram, WhatsApp) abaixo do título, links diretos por card e prévia do link corrigida (nov/2026).
 - [ ] **Fotos mais leves:** `public/images` tem ~42 MB (18 fotos acima de 1 MB). Gerar versões WebP no tamanho de exibição.
 
 - [ ] **Mesclagem "Localização + Quintal":** Em um esforço de otimização da grade, planeja-se integrar a aba "Como Chegar" diretamente no card de "Quintal do Sana", centralizando tudo que é externo ao sítio em um único modal.

@@ -45,7 +45,7 @@ Website e landing page oficial para divulgação e locação do **Sítio Saíra 
 ## 📱 Conversão & Contato
 - Formulário de cotação interativo (estadia ou evento, número de participantes e datas)
 - Integração direta com **WhatsApp**
-- Atalhos no topo (link da bio do Instagram): **WhatsApp**, **Instagram**, **Como chegar**, **Orçamento** e **Airbnb** (aparece quando o link for cadastrado)
+- Canais no topo (link da bio do Instagram): **Airbnb** e **Instagram** em destaque (o Airbnb aparece quando o link for cadastrado) e **WhatsApp** para contato direto
 - Links diretos para cada card, ex.: `saira7.vercel.app/#orcamento`
 
 ---
