@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Home, Hotel, Sparkles, Coffee, Waves,
   Check, Images, ArrowLeft,
@@ -7,7 +7,8 @@ import {
   Trees, Sprout, Tent,
 } from 'lucide-react';
 import { sairaData } from '../../data/sairaData';
-import { useNavigation } from '../NavigationContext';
+import { useNavigation, cardFromHash, normalizeHash } from '../NavigationContext';
+import GalleryContent from './GalleryContent';
 
 const SUBSPACES = [
   { id: 'rustic',      icon: Home,     label: 'Casa Antiga',    subtitle: '2 suítes, 1 quarto anexo, cozinha e sala', image: '/images/casaantiga/casa1.jpg' },
@@ -141,80 +142,132 @@ function SubspaceDetail({ subId }) {
 }
 
 // ─── Main Component ──────────────────────────────────────────────────
-export default function SpacesContent() {
-  const [activeSubspace, setActiveSubspace] = useState(null);
-  const nav = useNavigation();
+// "Espaços & Fotos": a antiga Galeria virou a aba "Fotos" deste card (nov/2026).
+const TABS = [
+  { id: 'espacos', icon: Home, label: 'Espaços' },
+  { id: 'fotos', icon: Images, label: 'Fotos' },
+];
 
-  const handleSubspaceClick = (subId) => {
-    setActiveSubspace(subId);
-    nav?.pushBreadcrumb(subId);
+const startsOnPhotos = () =>
+  typeof window !== 'undefined' && ['fotos', 'galeria'].includes(normalizeHash(window.location.hash));
+
+export default function SpacesContent() {
+  const nav = useNavigation();
+  const [tab, setTab] = useState(() => (startsOnPhotos() ? 'fotos' : 'espacos'));
+
+  // Se o "#" mudar com o card aberto (voltar/avançar, link #fotos), a aba acompanha
+  useEffect(() => {
+    const syncTab = () => {
+      const h = normalizeHash(window.location.hash);
+      if (h === 'fotos' || h === 'galeria') setTab('fotos');
+      else if (h === 'espacos') setTab('espacos');
+    };
+    window.addEventListener('popstate', syncTab);
+    return () => window.removeEventListener('popstate', syncTab);
+  }, []);
+
+  // A tela interna (Casa Antiga, Oca…) segue a trilha do topo do modal:
+  // tocar em "Espaços & Fotos" na trilha volta para a lista.
+  const activeSubspace = tab === 'espacos' ? nav?.breadcrumbs?.[1]?.id ?? null : null;
+
+  const changeTab = (next) => {
+    if (next === tab) return;
+    setTab(next);
+    if ((nav?.breadcrumbs?.length ?? 0) > 1) nav.goToBreadcrumb(0);
+    // O endereço acompanha a aba: saira7.vercel.app/#fotos abre direto nas fotos
+    if (cardFromHash(window.location.hash) === 'espacos') {
+      window.history.replaceState(window.history.state, '', next === 'fotos' ? '#fotos' : '#espacos');
+    }
+  };
+
+  const handleSubspaceClick = (space) => {
+    nav?.pushBreadcrumb({ id: space.id, label: space.label });
   };
 
   const handleBack = () => {
-    setActiveSubspace(null);
     nav?.popBreadcrumb();
   };
 
-  // If a subspace is active, show its detail with a back button
-  if (activeSubspace) {
-    const sub = SUBSPACES.find(s => s.id === activeSubspace);
-    const SubIcon = sub?.icon || Home;
-    return (
-      <div>
-        <button
-          onClick={handleBack}
-          className="inline-flex items-center gap-2 mb-5 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-stone-300 text-xs font-semibold hover:text-white hover:border-white/20 transition-all"
-        >
-          <ArrowLeft className="w-3.5 h-3.5" />
-          Voltar aos espaços
-        </button>
-        <SubspaceDetail subId={activeSubspace} />
-      </div>
-    );
-  }
-
-  // Show inner cards grid
   return (
     <div>
-      <p className="text-stone-400 text-sm mb-6 font-light">
-        Selecione um espaço para ver os detalhes:
-      </p>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {SUBSPACES.map((space) => {
-          const SubIcon = space.icon;
-          return (
+      {/* Abas */}
+      <div className="flex justify-center mb-6">
+        <div className="inline-flex p-1 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm" role="tablist">
+          {TABS.map(({ id, icon: TabIcon, label }) => (
             <button
-              key={space.id}
-              onClick={() => handleSubspaceClick(space.id)}
-              className="group relative rounded-2xl overflow-hidden border border-white/10 hover:border-amber-400/40 transition-all text-left"
+              key={id}
+              role="tab"
+              aria-selected={tab === id}
+              onClick={() => changeTab(id)}
+              className={`flex items-center gap-2 px-6 py-2.5 rounded-lg text-sm font-semibold transition-all ${
+                tab === id
+                  ? 'bg-amber-400/20 text-amber-300 shadow-sm border border-amber-400/30'
+                  : 'text-stone-400 hover:text-white hover:bg-white/5'
+              }`}
             >
-              {/* Thumbnail */}
-              <div className="force-dark relative h-40 sm:h-48 overflow-hidden">
-                <img
-                  src={space.image}
-                  alt={space.label}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
-                <div className="absolute bottom-4 left-4 right-4 z-10">
-                  <div className="flex items-center gap-2 mb-1">
-                    <SubIcon className="w-4 h-4 text-amber-300" />
-                    <h3 className="font-serif text-base sm:text-lg font-bold text-white">{space.label}</h3>
-                  </div>
-                  <p className="text-stone-300 text-[11px] sm:text-xs font-light">{space.subtitle}</p>
-                </div>
-              </div>
-
-              {/* Hover CTA */}
-              <div className="force-dark absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity">
-                <span className="px-4 py-2 rounded-full bg-amber-400/20 backdrop-blur-sm border border-amber-400/30 text-amber-200 text-xs font-semibold">
-                  Ver detalhes →
-                </span>
-              </div>
+              <TabIcon className="w-4 h-4" />
+              {label}
             </button>
-          );
-        })}
+          ))}
+        </div>
       </div>
+
+      {tab === 'fotos' ? (
+        <GalleryContent />
+      ) : activeSubspace ? (
+        <div>
+          <button
+            onClick={handleBack}
+            className="inline-flex items-center gap-2 mb-5 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-stone-300 text-xs font-semibold hover:text-white hover:border-white/20 transition-all"
+          >
+            <ArrowLeft className="w-3.5 h-3.5" />
+            Voltar aos espaços
+          </button>
+          <SubspaceDetail subId={activeSubspace} />
+        </div>
+      ) : (
+        <div>
+          <p className="text-stone-400 text-sm mb-6 font-light">
+            Selecione um espaço para ver os detalhes:
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {SUBSPACES.map((space) => {
+              const SubIcon = space.icon;
+              return (
+                <button
+                  key={space.id}
+                  onClick={() => handleSubspaceClick(space)}
+                  className="group relative rounded-2xl overflow-hidden border border-white/10 hover:border-amber-400/40 transition-all text-left"
+                >
+                  {/* Thumbnail */}
+                  <div className="force-dark relative h-40 sm:h-48 overflow-hidden">
+                    <img
+                      src={space.image}
+                      alt={space.label}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+                    <div className="absolute bottom-4 left-4 right-4 z-10">
+                      <div className="flex items-center gap-2 mb-1">
+                        <SubIcon className="w-4 h-4 text-amber-300" />
+                        <h3 className="font-serif text-base sm:text-lg font-bold text-white">{space.label}</h3>
+                      </div>
+                      <p className="text-stone-300 text-[11px] sm:text-xs font-light">{space.subtitle}</p>
+                    </div>
+                  </div>
+
+                  {/* Hover CTA */}
+                  <div className="force-dark absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <span className="px-4 py-2 rounded-full bg-amber-400/20 backdrop-blur-sm border border-amber-400/30 text-amber-200 text-xs font-semibold">
+                      Ver detalhes →
+                    </span>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

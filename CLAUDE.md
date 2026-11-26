@@ -20,7 +20,8 @@ npm run build   # rodar SEMPRE antes de commitar
 - **Celular primeiro:** a maioria dos visitantes vem do Instagram, no celular. Confira toda mudança visual em 320, 360, 390 e 430 px de largura, além do computador, nos temas claro e escuro.
 - **Texto sobre foto** precisa estar dentro de um elemento com `force-dark`. Modais usam `theme-auto`. Detalhes no `PROJECT_CONTEXT.md`.
 - **Cores:** use as classes do tema (`white`, `stone-*`, `amber-*`, `emerald-*`, que viram variáveis CSS) ou as fixas `saira-*`. Não use hex soltos de outras paletas. As cores dos cards ficam em `CARD_COLORS` (`src/components/stripeColor.js`).
-- **Conteúdo** (textos, contato, fotos) fica em `src/data/sairaData.js`.
+- **Conteúdo** (textos, contato, fotos) fica em `src/data/sairaData.js` — inclusive os nomes dos cards (`cards`) e a ordem dos canais da barra (`channels`).
+- **Nada se repete** na mesma tela (regra 4 do `PROJECT_CONTEXT.md`): o que é card não vira botão extra, os canais ficam só na barra do topo e o nome do sítio por extenso fica só no título do hero.
 - **Segredos nunca no código** (o repositório é público). Senhas e chaves vão em variáveis de ambiente da Vercel.
 - **Fluxo:** mudanças pequenas e pedidas explicitamente podem ir direto para a `main`. Mudanças maiores: ramo + pull request + prévia da Vercel para aprovação no celular.
 - Mensagens de commit em português, no padrão `tipo(escopo): descrição` (feat, fix, style, docs, refactor).
@@ -29,12 +30,12 @@ npm run build   # rodar SEMPRE antes de commitar
 ## Backlog do site (resumo; o completo está no doc "01 Backlog" do projeto Saira7)
 
 **Feito**
-- ✅ Hub da bio do Instagram (PR #2, nov/2026): canais de captação em `HubLinks.jsx` (Airbnb e Instagram em destaque, WhatsApp para contato; abaixo do título no celular, na barra do topo no computador; nada se repete), cards compactos no celular, links diretos `#orcamento` etc. e prévia do link no WhatsApp (`public/og.jpg`).
+- ✅ Hub da bio do Instagram (PR #2, nov/2026): canais de captação, cards compactos no celular, links diretos `#reservar` etc. e prévia do link no WhatsApp (`public/og.jpg`).
+- ✅ Cards com nomes diretos e barra nova (PR #3, nov/2026): Espaços & Fotos (Galeria virou aba), Natureza & Rio, Localização, O que fazer no Sana, Reservar; barra com o pássaro (sem o nome) e os canais (`Channels.jsx`), no celular e no computador; links e rodapé em branco, sem dourado; tema dentro do menu no celular, com a barra sólida enquanto o menu está aberto.
 
 **A fazer (ordem sugerida)**
 1. Fotos mais leves: `public/images` tem ~42 MB (18 fotos acima de 1 MB). Gerar WebP no tamanho de exibição — o site abre mais rápido no 4G.
-2. Reativar "Portfólio de Eventos" e unir "Como Chegar" ao "Quintal do Sana" (planejado no `PROJECT_CONTEXT.md`). Card novo precisa entrar em `CARD_HASHES` (link direto) e `CARD_COLORS`.
+2. Card do Airbnb na 6ª vaga da grade, quando houver o link (preencher `sairaData.contact.airbnbUrl`; o botão da barra aparece sozinho). Card novo precisa entrar em `sairaData.cards`, `CARD_HASHES` (link direto) e `CARD_COLORS`.
 3. Área dos sócios (módulo de reservas) com Google Agenda como banco de dados. Ver doc 01 do projeto Saira7. **Pendências para começar:** nomes dos sócios e conta central do Google.
 4. Opcional: regra de cores da faixa também dentro dos modais.
-
-**Quando houver:** link do Airbnb em `sairaData.contact.airbnbUrl` — o botão aparece sozinho no celular e no computador.
+5. Em aberto: Portfólio de Eventos (a vaga ficou para o Airbnb; as fotos de eventos estão na aba Fotos).

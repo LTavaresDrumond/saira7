@@ -198,23 +198,7 @@ html[data-theme="light"] .force-dark .theme-auto .force-dark {
   border-radius: 1rem;
 }
 
-/* Botões de atalho (hub) — círculo de vidro com a cor do botão; brilho igual nos 4 lados */
-.hub-icon {
-  border: 1px solid rgb(var(--glow-rgb) / 0.28);
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-}
-.group:hover .hub-icon,
-.group:focus-visible .hub-icon {
-  transform: translateY(-2px);
-  border-color: rgb(var(--glow-rgb) / 0.6);
-  box-shadow: 0 0 14px 2px rgb(var(--glow-rgb) / 0.22);
-}
-.group:active .hub-icon {
-  transform: scale(0.94);
-}
-/* Canais na barra do topo (computador): botão cheio; brilho igual nos 4 lados */
+/* Canais na barra do topo (Channels.jsx): botão cheio; brilho igual nos 4 lados */
 .nav-channel {
   box-shadow: 0 4px 12px -4px rgb(0 0 0 / 0.45);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -226,17 +210,6 @@ html[data-theme="light"] .force-dark .theme-auto .force-dark {
 }
 .nav-channel:active {
   transform: scale(0.95);
-}
-
-/* Canal em destaque (Airbnb, Instagram): círculo cheio com aro Areia e sombra */
-.hub-icon-primary {
-  border-color: rgb(247 243 234 / 0.35);
-  box-shadow: 0 6px 18px -6px rgb(0 0 0 / 0.55);
-}
-.group:hover .hub-icon-primary,
-.group:focus-visible .hub-icon-primary {
-  border-color: rgb(247 243 234 / 0.7);
-  box-shadow: 0 0 16px 3px rgb(var(--glow-rgb) / 0.35), 0 6px 18px -6px rgb(0 0 0 / 0.55);
 }
 
 /* Card hover glow — uniform on all 4 sides */

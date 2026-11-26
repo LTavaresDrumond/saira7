@@ -43,10 +43,10 @@ Website e landing page oficial para divulgação e locação do **Sítio Saíra 
 ---
 
 ## 📱 Conversão & Contato
-- Formulário de cotação interativo (estadia ou evento, número de participantes e datas)
+- Card **Reservar**: formulário de hospedagem ou evento (datas e número de pessoas) que envia o pedido pelo WhatsApp
 - Integração direta com **WhatsApp**
-- Canais (link da bio do Instagram): **Airbnb** e **Instagram** em destaque (o Airbnb aparece quando o link for cadastrado) e **WhatsApp** para contato direto. No celular ficam abaixo do título; no computador, na barra do topo
-- Links diretos para cada card, ex.: `saira7.vercel.app/#orcamento`
+- Canais na barra do topo, no celular e no computador (link da bio do Instagram): **Airbnb** e **Instagram** em destaque (o Airbnb aparece quando o link for cadastrado) e **WhatsApp** para contato direto
+- Links diretos para cada card, ex.: `saira7.vercel.app/#reservar` e `saira7.vercel.app/#fotos`
 
 ---
 
@@ -57,9 +57,10 @@ Website e landing page oficial para divulgação e locação do **Sítio Saíra 
 - [x] Seleção e integração das imagens do sítio
 - [x] Implementação da landing page responsiva (mobile & desktop)
 - [x] Hub da bio do Instagram: canais de captação (Airbnb, Instagram, WhatsApp), cards compactos no celular, links diretos por card e prévia do link no WhatsApp
+- [x] Cards com nomes diretos (Espaços & Fotos, Natureza & Rio, Localização, O que fazer no Sana, Reservar) e barra do topo com o pássaro e os canais
 - [ ] Fotos mais leves (WebP no tamanho de exibição)
-- [ ] Portfólio de Eventos + fusão "Como Chegar" com "Quintal do Sana"
 - [ ] Área dos sócios (reservas com Google Agenda)
 - [ ] Cores da faixa dentro dos modais (opcional)
-- [ ] Link do Airbnb (o botão aparece sozinho quando for cadastrado)
+- [ ] Card do Airbnb na 6ª vaga + link do Airbnb (o botão da barra aparece sozinho quando for cadastrado)
+- [ ] Portfólio de Eventos (em aberto)
 - [ ] Auditoria de SEO, acessibilidade WCAG e performance

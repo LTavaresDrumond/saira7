@@ -19,13 +19,13 @@ export const STRIPE_COLORS = [
 ];
 
 /**
- * Cores dos 6 cards da tela inicial (opção "B2", escolhida em 25/11/2026):
- * as cores da faixa intercalando tons frios e quentes, para cada card
- * contrastar com o vizinho — no celular (lista vertical) e no computador (3×2).
+ * Cores dos cards da tela inicial (opção "B2", escolhida em 25/11/2026):
+ * cada card tem uma cor da faixa, intercalando tons frios e quentes.
+ * A Galeria virou aba de "Espaços & Fotos" (nov/2026) e o verde mata ficou
+ * livre — hoje ele é a cor do WhatsApp.
  */
 export const CARD_COLORS = {
   espacos: '#0261B3',     // Azul saíra
-  galeria: '#6EAA40',     // Verde mata
   natureza: '#E35E0C',    // Laranja fogo
   localizacao: '#0390A1', // Turquesa
   quintal: '#FBAC02',     // Amarelo sol
@@ -33,9 +33,9 @@ export const CARD_COLORS = {
 };
 
 /**
- * Cores dos canais (hub) abaixo do título.
+ * Cores dos canais de captação (botões da barra do topo).
  */
-export const HUB_COLORS = {
+export const CHANNEL_COLORS = {
   airbnb: '#E35E0C',    // Laranja fogo (próximo do coral do Airbnb)
   instagram: '#563C7E', // Roxo ipê
   whatsapp: '#6EAA40',  // Verde mata

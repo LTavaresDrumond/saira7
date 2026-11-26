@@ -1,18 +1,9 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { MessageCircle } from 'lucide-react';
 import { sairaData } from '../data/sairaData';
 import { useNavigation } from './NavigationContext';
 import { useTheme } from './ThemeContext';
 import SevenStripe from './SevenStripe';
-import { useStripeColor } from './stripeColor';
-
-// Texto/ícone com a cor da faixa na mesma coluna
-function StripeTint({ as: Tag = 'span', onDark, className, children }) {
-  const ref = useRef(null);
-  const c = useStripeColor(ref, onDark);
-  return <Tag ref={ref} style={{ color: c.css }} className={className}>{children}</Tag>;
-}
-
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -29,7 +20,7 @@ export default function Footer() {
           <div className="lg:col-span-6">
             <div className="flex items-center gap-3.5">
               <img
-                src={theme === 'light' ? '/brand/selo-claro.png' : '/brand/selo-escuro.png'}
+                src={theme === 'light' ? '/brand/selo-claro.webp' : '/brand/selo-escuro.webp'}
                 alt="Selo Sítio Ecológico Saíra Sete Cores"
                 className="w-20 h-20 sm:w-24 sm:h-24 flex-shrink-0"
               />
@@ -37,9 +28,10 @@ export default function Footer() {
                 <span className="font-serif text-2xl font-bold tracking-tight block text-white">
                   {sairaData.name}
                 </span>
-                <StripeTint onDark={theme !== 'light'} className="text-[11px] uppercase tracking-widest font-semibold block">
+                {/* Mesma cor do nome do sítio (nada de dourado solto); texto do selo v4 */}
+                <span className="text-[11px] uppercase tracking-widest font-semibold block text-white">
                   Agroecologia · Cultura · Educação · Saúde
-                </StripeTint>
+                </span>
               </div>
             </div>
           </div>
@@ -51,11 +43,14 @@ export default function Footer() {
             <div>
               <h4 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Explorar</h4>
               <ul className="space-y-3">
-                <li><button onClick={() => openCard('espacos')} className="text-stone-400 hover:text-amber-400 text-sm transition-colors text-left">Acomodações & Eventos</button></li>
-                <li><button onClick={() => openCard('galeria')} className="text-stone-400 hover:text-amber-400 text-sm transition-colors text-left">Galeria Fotográfica</button></li>
-                <li><button onClick={() => openCard('natureza')} className="text-stone-400 hover:text-amber-400 text-sm transition-colors text-left">Natureza e Rio</button></li>
-                <li><button onClick={() => openCard('quintal')} className="text-stone-400 hover:text-amber-400 text-sm transition-colors text-left">No Quintal do Sana</button></li>
-                <li><button onClick={() => openCard('localizacao')} className="text-stone-400 hover:text-amber-400 text-sm transition-colors text-left">Como Chegar</button></li>
+                {/* Mesmos nomes dos cards (sairaData.cards); "Reservar" fica no "Fale Conosco" via WhatsApp */}
+                {sairaData.cards.filter((card) => card.id !== 'cotacao').map((card) => (
+                  <li key={card.id}>
+                    <button onClick={() => openCard(card.id)} className="text-stone-400 hover:text-amber-400 text-sm transition-colors text-left">
+                      {card.title}
+                    </button>
+                  </li>
+                ))}
               </ul>
             </div>
 

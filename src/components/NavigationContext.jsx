@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useCallback, useEffect, useRef } from 'react';
 
 /**
- * NavigationContext — Permite que qualquer componente (Navbar, Footer, hub)
+ * NavigationContext — Permite que qualquer componente (Navbar, Footer, cards)
  * dispare a abertura de um card/modal na interface principal.
  *
  * Também mantém o card aberto no endereço da página (ex.: saira7.vercel.app/#orcamento):
@@ -15,26 +15,30 @@ export function useNavigation() {
 }
 
 // Endereços de cada card. O primeiro de cada lista é o que aparece na barra
-// de endereço; os outros continuam funcionando (links antigos / do menu).
+// de endereço; os outros continuam funcionando (links antigos já compartilhados).
+// "#fotos" / "#galeria" abrem "Espaços & Fotos" direto na aba de fotos.
 export const CARD_HASHES = {
-  espacos: ['espacos'],
-  galeria: ['galeria'],
+  espacos: ['espacos', 'fotos', 'galeria'],
   natureza: ['natureza'],
-  localizacao: ['como-chegar', 'localizacao'],
-  quintal: ['quintal'],
-  cotacao: ['orcamento', 'cotacao'],
+  localizacao: ['localizacao', 'como-chegar'],
+  quintal: ['o-que-fazer', 'quintal'],
+  cotacao: ['reservar', 'orcamento', 'cotacao'],
 };
 
 const HASH_TO_CARD = Object.fromEntries(
   Object.entries(CARD_HASHES).flatMap(([id, hashes]) => hashes.map((h) => [h, id]))
 );
 
-// "#Orçamento", "#orcamento" e "orcamento" → 'cotacao'
-export function cardFromHash(hash = '') {
+// Normaliza um "#": "#Orçamento", "#orcamento" e "orcamento" → "orcamento"
+export function normalizeHash(hash = '') {
   let h = String(hash).replace(/^#/, '');
   try { h = decodeURIComponent(h); } catch { /* endereço malformado: usa como veio */ }
-  h = h.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().trim();
-  return HASH_TO_CARD[h] || null;
+  return h.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
+}
+
+// "#Orçamento", "#reservar", "#cotacao" → 'cotacao'
+export function cardFromHash(hash = '') {
+  return HASH_TO_CARD[normalizeHash(hash)] || null;
 }
 
 const currentHashCard = () => (typeof window === 'undefined' ? null : cardFromHash(window.location.hash));
@@ -93,6 +97,8 @@ export function NavigationProvider({ children }) {
     }
   }, []);
 
+  // Trilha do modal: [idDoCard, { id, label }, …] — o 1º item é o card aberto,
+  // os seguintes são telas internas (ex.: { id: 'rustic', label: 'Casa Antiga' }).
   const pushBreadcrumb = useCallback((crumb) => {
     setBreadcrumbs((prev) => [...prev, crumb]);
   }, []);
@@ -108,9 +114,6 @@ export function NavigationProvider({ children }) {
     setBreadcrumbs((prev) => prev.slice(0, index + 1));
   }, []);
 
-  // Resolve um href de âncora ("#cotacao", "#orcamento"…) para o id do card
-  const resolveAnchor = useCallback((href) => cardFromHash(href), []);
-
   const value = {
     activeCard,
     breadcrumbs,
@@ -119,7 +122,6 @@ export function NavigationProvider({ children }) {
     pushBreadcrumb,
     popBreadcrumb,
     goToBreadcrumb,
-    resolveAnchor,
   };
 
   return (

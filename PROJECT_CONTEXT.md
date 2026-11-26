@@ -4,7 +4,8 @@ Este documento tem como objetivo fornecer todo o contexto arquitetural, regras d
 
 ## 🎯 1. A Ideia e Conceito do Projeto
 O Sítio Saíra Sete Cores (localizado na Cabeceira do Sana, Macaé - RJ) possui uma plataforma web focada em conversão para hospedagem e eventos. 
-- **Experiência de Usuário (Single Screen / Flipper):** Abandonamos o layout tradicional de rolagem longa (landing page clássica). A interface principal (`HeroCanvas.jsx`) é uma tela fixa focada no "visual first", onde o usuário interage através de 6 **cards tridimensionais (FlipCards)**. Ao clicar, o card abre um modal imersivo (`CardModal.jsx`) sobreposto à imagem de fundo.
+- **Experiência de Usuário (Single Screen / Flipper):** Abandonamos o layout tradicional de rolagem longa (landing page clássica). A interface principal (`HeroCanvas.jsx`) é uma tela fixa focada no "visual first", onde o usuário interage através de 5 **cards tridimensionais (FlipCards)** — Espaços & Fotos, Natureza & Rio, Localização, O que fazer no Sana e Reservar; a 6ª vaga fica para o card do Airbnb, quando houver. Ao clicar, o card abre um modal imersivo (`CardModal.jsx`) sobreposto à imagem de fundo.
+- **Nomes diretos (nov/2026, a partir de uma consulta com um usuário final):** "Nossos Espaços" + "Galeria Fotográfica" viraram **Espaços & Fotos**; "Como Chegar" virou **Localização**; "No Quintal do Sana" virou **O que fazer no Sana**; "Solicitar Orçamento" virou **Reservar**.
 - **Filosofia "Menos é Mais":** O design prioriza imagens imersivas e grandiosas. Textos são usados estritamente quando necessários. Eliminar redundâncias e parágrafos massantes em favor de galerias de fotos limpas e diretas.
 
 ## 🛠 2. Tecnologias e Frameworks
@@ -21,43 +22,43 @@ O Sítio Saíra Sete Cores (localizado na Cabeceira do Sana, Macaé - RJ) possui
 
 ### 3.2 Componentes Core (`src/components/`)
 - `App.jsx` e `main.jsx`: Ponto de entrada que envolve a aplicação com o provedor de navegação.
-- `HeroCanvas.jsx`: O motor visual do site. Renderiza a grade de 6 cards flutuantes (2 colunas no celular e no tablet, 3 no computador).
-- `FlipCard.jsx`: O botão/card em si. Responsável pela estética tridimensional, ícones e o hover (brilho uniforme na cor do card). **No celular (< 640 px) fica compacto:** só ícone e título, em 2 colunas, para os 6 cards e os canais caberem na primeira tela; a partir de 640 px volta a mostrar o subtítulo.
-- `CardModal.jsx`: O contêiner de vidro que expande a informação do card. Ele não possui botões flutuantes de "Voltar/Avançar" nas laterais (para evitar cliques acidentais).
-- `NavigationContext.jsx`: Cérebro do estado dos cards e dos links diretos (`#orcamento` etc.).
-- `HubLinks.jsx`: Canais de captação (o site como link da bio do Instagram). O site é um auxiliar de divulgação: **Airbnb e Instagram são os canais principais** (Airbnb em Laranja fogo, Instagram em Roxo ipê) e o **WhatsApp é o contato direto** (Verde mata). Definição única em `getChannels()`; textos, ordem e destaque (`primary`) em `sairaData.hub`; cores em `HUB_COLORS` (`stripeColor.js`). O Airbnb aparece sozinho quando `contact.airbnbUrl` for preenchido.
-  - **Celular e tablet (até 1279 px):** `HubLinks`, círculos abaixo do título (Airbnb e Instagram cheios; WhatsApp em vidro).
-  - **Computador (a partir de 1280 px, `xl`):** `NavChannels`, botões cheios de 44 px na barra do topo, maiores que o botão de tema. O Airbnb vem com o nome escrito (o ícone de cama sozinho não identifica). Os círculos do título somem. O corte é em 1280 e não em 1024 porque, com o Airbnb, os botões não cabem na barra entre 1024 e 1279 px.
-  - Os canais aparecem uma vez por tela: por isso a barra do celular não tem botão de WhatsApp.
-- `Navbar.jsx` / `Footer.jsx`: Controles de menu globais. Foram refatorados para *abrir os modais* programaticamente através do Context. Na barra do computador os links usam nomes curtos (`short`: Espaços, Natureza…) para sobrar espaço para os canais; o menu do celular usa os nomes completos.
+- `HeroCanvas.jsx`: O motor visual do site. Renderiza a grade de cards (2 colunas no celular e no tablet, 3 no computador). Nomes, ordem e subtítulos vêm de `sairaData.cards`; aqui ficam só o ícone e o conteúdo de cada card (`CARD_PARTS`). **Quando sobra um card sozinho na última linha, ele ocupa a linha inteira** (hoje o "Reservar"); com 6 cards isso some sozinho.
+- `FlipCard.jsx`: O botão/card em si. Responsável pela estética tridimensional, ícones e o hover (brilho uniforme na cor do card). **No celular (< 640 px) fica compacto:** só ícone e título, em 2 colunas, para todos os cards caberem na primeira tela; a partir de 640 px volta a mostrar o subtítulo.
+- `CardModal.jsx`: O contêiner de vidro que expande a informação do card. Ele não possui botões flutuantes de "Voltar/Avançar" nas laterais (para evitar cliques acidentais). A trilha no topo ("Início › Espaços & Fotos › Casa Antiga") usa o título do card e o `label` das telas internas.
+- `NavigationContext.jsx`: Cérebro do estado dos cards, da trilha (`breadcrumbs`: `[idDoCard, { id, label }, …]`) e dos links diretos (`#reservar` etc.).
+- `Channels.jsx`: Canais de captação (o site como link da bio do Instagram), **na barra do topo, no celular e no computador**. O site é um auxiliar de divulgação: **Airbnb e Instagram são os canais principais** (Airbnb em Laranja fogo, Instagram em Roxo ipê) e o **WhatsApp é o contato direto** (Verde mata). Botões redondos e cheios com os ícones das marcas (Simple Icons, CC0): 40 px no celular, 44 px no computador, onde o Airbnb ganha o nome escrito para ter mais destaque. Ordem e nomes em `sairaData.channels`; cores em `CHANNEL_COLORS` (`stripeColor.js`). O Airbnb aparece sozinho quando `contact.airbnbUrl` for preenchido.
+- `Navbar.jsx`: Barra do topo. **Logo = só o pássaro em traço, sem letras** (o nome por extenso fica só no título do hero). À direita, os canais. No computador (lg+): links curtos dos cards (`short` em `sairaData.cards`), **todos em branco, sem destaque**, e o botão de tema. No celular/tablet: canais + menu; **o botão de tema fica dentro do menu**. **Com o menu do celular aberto, a barra fica sólida, na mesma cor do menu** (Noite no tema escuro, Areia no claro); ao fechar, volta a ser transparente sobre a foto.
+- `Footer.jsx`: Selo, nome do sítio e a frase "Agroecologia · Cultura · Educação · Saúde" (a mesma do selo v4) **na mesma cor do nome**; lista "Explorar" (mesmos nomes de `sairaData.cards`) e WhatsApp.
 
 ### 3.3 Componentes de Conteúdo (`src/components/content/`)
 São os componentes renderizados internamente pelos modais:
-- `SpacesContent.jsx`: Nossas Acomodações. (Sub-cards de Casa Antiga, Casa Nova, Oca e Convivência). *Nota: Casa Antiga e Casa Nova não possuem mais blocos de texto gigantes, focando 100% no visual das fotos.*
-- `GalleryContent.jsx`: Galeria de fotos mista (estilo Masonry/Grid).
+- `SpacesContent.jsx`: Card **"Espaços & Fotos"**, com duas abas. **Espaços:** sub-cards de Casa Antiga, Casa Nova, Oca e Convivência (a tela interna segue a trilha do modal; tocar em "Espaços & Fotos" na trilha volta para a lista). **Fotos:** a galeria completa (`GalleryContent`). O endereço acompanha a aba (`#espacos` / `#fotos`). *Nota: Casa Antiga e Casa Nova não possuem mais blocos de texto gigantes, focando 100% no visual das fotos.*
+- `GalleryContent.jsx`: Galeria de fotos mista com filtros por categoria e ampliação — hoje é a aba "Fotos" de Espaços & Fotos (não é mais um card).
 - `NatureContent.jsx`: O card "Natureza & Rio" focado no poço do rio na entrada do sítio.
-- `QuintalContent.jsx`: Turismo e conveniências locais. Utiliza um sistema de "Abas" para separar "Ecoturismo" de "Conveniências" (Mercados locais).
-- `LocationContent.jsx`: Integração com mapas e guia de como chegar.
-- `QuoteContent.jsx`: Formulário de cotação e botões de contato.
+- `QuintalContent.jsx`: Card **"O que fazer no Sana"** (o id interno continua `quintal`). Abas "Ecoturismo" e "Conveniências" (mercados locais). Sem título interno: o nome já está no cabeçalho do modal.
+- `LocationContent.jsx`: Card **"Localização"**: mapa e guia de como chegar.
+- `QuoteContent.jsx`: Card **"Reservar"** (o id interno continua `cotacao`): formulário de hospedagem/evento que envia pelo WhatsApp, e perguntas frequentes.
 
 ### 3.4 Data Source
 - `src/data/sairaData.js`: Centralização de copywriting, parâmetros de contato (link do WhatsApp), descrições de quartos. Facilita manutenções de conteúdo sem tocar na lógica React.
+  - `cards`: nome (`title`), nome curto da barra do computador (`short`) e subtítulo de cada card, na ordem da tela. Os `id`s são internos (links diretos, cores, conteúdo) e não mudam com o nome.
+  - `channels`: ordem e nome dos canais da barra (Airbnb, Instagram, WhatsApp).
 
 ### 3.5 Links diretos para os cards
 Cada card tem um endereço próprio, para usar em stories, posts e respostas no WhatsApp:
 
-| Card | Endereço |
-|---|---|
-| Nossos Espaços | `saira7.vercel.app/#espacos` |
-| Galeria | `saira7.vercel.app/#galeria` |
-| Natureza & Rio | `saira7.vercel.app/#natureza` |
-| Como Chegar | `saira7.vercel.app/#como-chegar` (também `#localizacao`) |
-| Quintal do Sana | `saira7.vercel.app/#quintal` |
-| Orçamento | `saira7.vercel.app/#orcamento` (também `#cotacao`) |
+| Card | Endereço | Também funcionam (links antigos) |
+|---|---|---|
+| Espaços & Fotos | `saira7.vercel.app/#espacos` | — |
+| Espaços & Fotos, direto na aba Fotos | `saira7.vercel.app/#fotos` | `#galeria` |
+| Natureza & Rio | `saira7.vercel.app/#natureza` | — |
+| Localização | `saira7.vercel.app/#localizacao` | `#como-chegar` |
+| O que fazer no Sana | `saira7.vercel.app/#o-que-fazer` | `#quintal` |
+| Reservar | `saira7.vercel.app/#reservar` | `#orcamento`, `#cotacao` |
 
 - Acento e maiúscula não importam (`#Orçamento` funciona).
 - Ao abrir um card pelo site, o endereço muda para o `#` dele; o botão "voltar" do celular fecha o modal em vez de sair do site.
-- A lista fica em `CARD_HASHES` (`NavigationContext.jsx`). Card novo (ex.: Portfólio) precisa entrar lá.
+- A lista fica em `CARD_HASHES` (`NavigationContext.jsx`). Card novo (ex.: Airbnb) precisa entrar lá, em `CARD_COLORS` e em `sairaData.cards`. Ao renomear um card, mantenha o endereço antigo na lista para não quebrar links já compartilhados.
 
 ### 3.6 Prévia do link (WhatsApp / Instagram / Facebook)
 - Imagem: `public/og.jpg` (1200×630, ~240 KB, recorte de `meio-sitio.jpg` com a faixa das 7 cores na base).
@@ -76,15 +77,16 @@ Cada card tem um endereço próprio, para usar em stories, posts e respostas no 
 - Textos: **DM Sans** (`font-sans`).
 
 ### Logo (arquivos em `public/brand/`)
-- `passaro-traco-areia.svg` / `passaro-traco-noite.svg`: pássaro em traço, usado na navbar (Areia sobre a foto e no tema escuro; Noite no tema claro).
+Versão v4 (26/11/2026): pássaro pousado no galho. Os arquivos oficiais completos (todas as versões do selo, perfil e destaques do Instagram, modelos de post) ficam em `brand-kit/` — ver `brand-kit/README.md`. Eles **não** fazem parte do site; o site usa só `public/brand/`.
+- `passaro-traco-areia.svg` / `passaro-traco-noite.svg`: pássaro em traço, **a logo da barra do topo** (Areia sobre a foto e no tema escuro; Noite na barra clara). Sem letras: o nome fica no título do hero. (Em nov/2026 testamos o selo na barra e voltamos para o pássaro, que ficou melhor.)
+- `selo-escuro.webp` / `selo-claro.webp` (256 px, ~13–15 KB): selo circular, usado no rodapé conforme o tema. São gerados a partir de `selo-escuro.png` / `selo-claro.png` (720 px, ~170–200 KB): **se o selo mudar, gere os `.webp` de novo** (Python/Pillow: redimensionar para 256×256 e salvar em WebP qualidade 88).
 - `passaro.svg` (colorido, contorno Noite) e `passaro-contorno-areia.svg` (contorno Areia, para fundos escuros). `passaro.svg` também é o favicon.
-- `selo-escuro.png` / `selo-claro.png`: selo circular "Sítio Ecológico Saíra Sete Cores", usado no rodapé conforme o tema.
 
 ### Faixa das 7 cores
 - Assinatura da marca (a mesma dos posts do Instagram): componente `SevenStripe` / classe `.stripe-7`, no topo da navbar e no fim do rodapé.
 
 ### Tema claro / escuro
-- `ThemeContext.jsx` + atributo `data-theme` no `<html>`. O tema inicial é definido por um script no `index.html` (escolha salva em `localStorage['saira-theme']` ou preferência do sistema). Botão sol/lua na navbar.
+- `ThemeContext.jsx` + atributo `data-theme` no `<html>`. O tema inicial é definido por um script no `index.html` (escolha salva em `localStorage['saira-theme']` ou preferência do sistema). Botão sol/lua na barra do topo (computador) ou dentro do menu (celular).
 - As cores de interface do Tailwind (`white`, `stone-*`, `amber-*`, `emerald-*`) apontam para variáveis CSS em `src/index.css`:
   - `white` = cor do texto do tema (Areia no escuro, Noite no claro).
   - `stone-*` = escala neutra do tema (`stone-950` é o fundo).
@@ -99,21 +101,22 @@ Qualquer alteração visual futura deve respeitar estritamente estas leis:
 1. **Glassmorphism Cristalino:** Fundo dos modais de vidro devem usar pouquíssima opacidade (ex: 7% a 15%) com blur leve. Deve parecer um "cristal finíssimo" que permite ver o fundo da natureza perfeitamente.
 2. **Hover Uniforme:** O *glow* nos cards principais ao passar o mouse deve brilhar nos 4 cantos do card igualmente (overflow não pode estar escondido prejudicando o top).
 3. **Imagens > Texto:** Sempre prefira componentes focados em foto e ícones a longos parágrafos explicativos. Se houver blocos de texto lado-a-lado com imagens sem necessidade, elimine-os.
-4. **Nada se repete:** cada atalho aparece uma vez por tela. O que já é card não vira botão extra, e os canais (Airbnb, Instagram, WhatsApp) ficam abaixo do título no celular/tablet e na barra do topo no computador, nunca nos dois.
+4. **Nada se repete:** cada coisa aparece uma vez por tela. O que já é card não vira botão extra; os canais (Airbnb, Instagram, WhatsApp) ficam só na barra do topo; o nome do sítio por extenso fica só no título do hero (a barra mostra só o pássaro); o título do card fica só no cabeçalho do modal.
 5. **Canais em destaque:** o site é um auxiliar de divulgação. Airbnb e Instagram são os canais principais de captação (mais ênfase); o WhatsApp é o contato direto.
+6. **Letras sem dourado solto:** links da barra, itens do menu e textos do rodapé usam a cor do texto do tema (Areia no escuro, Noite no claro), sem cor de destaque — nem o "Reservar". As 7 cores ficam para a faixa, os ícones dos cards e os botões dos canais.
 
 ## 🔮 5. Backlog Futuro (O Que Fazer a Seguir)
 Quando a inteligência artificial assumir, aqui estão os itens arquitetados e planejados para a próxima iteração do projeto:
 
 **Feito**
-- [x] **Hub da bio do Instagram (PR #2, nov/2026):** canais de captação (abaixo do título no celular, na barra do topo no computador), cards compactos no celular, links diretos por card e prévia do link corrigida.
+- [x] **Hub da bio do Instagram (PR #2, nov/2026):** canais de captação, cards compactos no celular, links diretos por card e prévia do link corrigida.
+- [x] **Cards com nomes diretos e barra nova (PR #3, nov/2026):** Galeria unida a Espaços (Espaços & Fotos, com abas); Localização, O que fazer no Sana e Reservar; barra com o pássaro sem o nome e os canais (celular e computador); links e rodapé em branco, sem dourado; tema dentro do menu no celular, com a barra sólida enquanto o menu está aberto; trilha do modal corrigida (nomes e voltar).
 
 **A fazer (ordem sugerida)**
 - [ ] **Fotos mais leves:** `public/images` tem ~42 MB (18 fotos acima de 1 MB). Gerar versões WebP no tamanho de exibição.
-- [ ] **Mesclagem "Localização + Quintal":** Em um esforço de otimização da grade, planeja-se integrar a aba "Como Chegar" diretamente no card de "Quintal do Sana", centralizando tudo que é externo ao sítio em um único modal.
-- [ ] **Reativar Portfólio de Eventos:** Com o espaço liberado pela fusão acima (mantendo 6 cards no total), reativaremos o card de "Portfólio de Eventos" na tela inicial. Ele será concebido focado estritamente em uma grande galeria de fotos ilustrando casamentos, encontros e retiros passados (sem textos, apenas a energia visual dos eventos). O card novo precisa entrar em `CARD_HASHES` (`NavigationContext.jsx`, link direto) e `CARD_COLORS` (`stripeColor.js`).
+- [ ] **Card do Airbnb (6ª vaga da grade):** quando existir o link, preencher `sairaData.contact.airbnbUrl` (o botão da barra aparece sozinho) e criar o card na vaga liberada pela união Espaços & Fotos. Definir o que o card mostra além do botão da barra (ex.: as suítes Sol, Estrela e Lua com o link de cada uma), para não repetir o mesmo atalho.
 - [ ] **Área dos sócios (módulo de reservas):** login com usuário e senha em variável de ambiente da Vercel (nunca no código), formulário "Nova reserva" e Google Agenda da conta central como banco de dados (uma agenda por unidade). Regras e campos no doc 01 do projeto Saira7. Pendências: nomes dos sócios e conta central do Google.
 - [ ] **Cores da faixa dentro dos modais (opcional):** abas, filtros e botões seguindo a regra de cores da faixa.
-- [ ] **Link do Airbnb:** quando existir, preencher `sairaData.contact.airbnbUrl` — o botão aparece sozinho no celular e no computador.
-- [ ] **Trilha de Navegação (Breadcrumbs):** Melhorar a estilização e a clareza da navegação aninhada (ex: Nossos Espaços > Casa Nova) no estilo *file-explorer* no cabeçalho do modal.
-- [ ] **Polimento Mobile:** Realizar validação de *QA* das novas abas no card Quintal, garantindo conforto nos toques e rolagem horizontal suave em smartphones.
+- [ ] **Portfólio de Eventos (em aberto):** a vaga que seria dele ficou para o Airbnb, e a fusão "Localização + Quintal" foi descartada (os dois continuam como cards). As fotos de eventos já aparecem na aba Fotos (filtro "Oca & Eventos"); decidir se o portfólio vira uma aba própria ou fica assim.
+- [ ] **Trilha de Navegação (Breadcrumbs):** nomes e o voltar pela trilha já funcionam; falta só melhorar a estilização no estilo *file-explorer*.
+- [ ] **Polimento Mobile:** validação de *QA* das abas (O que fazer no Sana, Espaços & Fotos), garantindo conforto nos toques e rolagem suave em smartphones.

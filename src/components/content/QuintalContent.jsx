@@ -54,10 +54,10 @@ export default function QuintalContent() {
 
   return (
     <div className="flex flex-col h-full">
-      <div className="text-center mb-8">
-        <h2 className="font-serif text-3xl font-bold text-white mb-2">No Quintal do Sana</h2>
-        <p className="text-stone-400 text-sm font-light">Explore a região ou encontre facilidades para sua estadia.</p>
-      </div>
+      {/* O nome do card ("O que fazer no Sana") já está no cabeçalho do modal */}
+      <p className="text-center text-stone-400 text-sm font-light mb-6">
+        Explore a região ou encontre facilidades para sua estadia.
+      </p>
 
       {/* Tabs */}
       <div className="flex justify-center mb-8">
