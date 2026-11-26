@@ -28,9 +28,9 @@ export default function Footer() {
                 <span className="font-serif text-2xl font-bold tracking-tight block text-white">
                   {sairaData.name}
                 </span>
-                {/* Mesma cor do nome do sítio (nada de dourado solto) */}
+                {/* Mesma cor do nome do sítio (nada de dourado solto); texto do selo v4 */}
                 <span className="text-[11px] uppercase tracking-widest font-semibold block text-white">
-                  Agroecologia · Arte · Educação · Saúde Integral
+                  Agroecologia · Cultura · Educação · Saúde
                 </span>
               </div>
             </div>
