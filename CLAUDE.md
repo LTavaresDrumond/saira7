@@ -27,7 +27,7 @@ npm run build   # rodar SEMPRE antes de commitar
 - Ao terminar, explique o que mudou em linguagem simples e atualize o `PROJECT_CONTEXT.md` se a arquitetura ou as regras mudarem.
 
 ## Backlog do site (resumo; o completo está no doc "01 Backlog" do projeto Saira7)
-1. Botões de "hub" para o site funcionar como link da bio do Instagram.
+1. ~~Botões de "hub" para o site funcionar como link da bio do Instagram.~~ Feito (nov/2026): `HubLinks.jsx` + links diretos `#orcamento` etc. Falta só o link do Airbnb em `sairaData.contact.airbnbUrl`.
 2. Opcional: regra de cores da faixa também dentro dos modais.
 3. Reativar "Portfólio de Eventos" e unir "Como Chegar" ao "Quintal do Sana".
 4. Área dos sócios (módulo de reservas) com Google Agenda como banco de dados. Ver doc 01 do projeto Saira7.

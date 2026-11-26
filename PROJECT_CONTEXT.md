@@ -12,7 +12,7 @@ O Sítio Saíra Sete Cores (localizado na Cabeceira do Sana, Macaé - RJ) possui
 - **Estilização Principal:** Tailwind CSS para grid/layout e utilitários.
 - **Estilização Customizada:** CSS puro (`index.css`) para gerenciar as animações tridimensionais, efeitos de entrada, *glows* e o aprofundamento do *glassmorphism*.
 - **Ícones:** `lucide-react` (padrão elegante e minimalista).
-- **Roteamento Interno (State):** O gerenciamento de qual modal está aberto não usa URLs clássicas. É tudo gerido pelo `NavigationContext.jsx` (Context API).
+- **Roteamento Interno (State):** O gerenciamento de qual modal está aberto é feito pelo `NavigationContext.jsx` (Context API), que também espelha o card aberto no `#` do endereço (ver 3.5).
 
 ## 📂 3. Mapeamento de Pastas e Arquitetura
 
@@ -24,7 +24,8 @@ O Sítio Saíra Sete Cores (localizado na Cabeceira do Sana, Macaé - RJ) possui
 - `HeroCanvas.jsx`: O motor visual do site. Renderiza a grade de 6 cards flutuantes.
 - `FlipCard.jsx`: O botão/card em si. Responsável pela estética tridimensional, ícones e o hover (que possui um glow branco uniforme).
 - `CardModal.jsx`: O contêiner de vidro que expande a informação do card. Ele não possui botões flutuantes de "Voltar/Avançar" nas laterais (para evitar cliques acidentais).
-- `NavigationContext.jsx`: Cérebro do estado dos cards.
+- `NavigationContext.jsx`: Cérebro do estado dos cards e dos links diretos (`#orcamento` etc.).
+- `HubLinks.jsx`: Fileira de atalhos abaixo do título (WhatsApp, Instagram, Airbnb quando houver, Como chegar, Orçamento), para o site funcionar como link da bio do Instagram. Textos e ordem em `sairaData.hub`; cores em `HUB_COLORS` (`stripeColor.js`). O Airbnb aparece sozinho quando `contact.airbnbUrl` for preenchido. "Como chegar" abre o Google Maps direto; "Orçamento" abre o card de orçamento.
 - `Navbar.jsx` / `Footer.jsx`: Controles de menu globais. Foram refatorados para *abrir os modais* programaticamente através do Context. O Footer hospeda a antiga seção "Sobre Nós", convertida em pequenos *badges*.
 
 ### 3.3 Componentes de Conteúdo (`src/components/content/`)
@@ -38,6 +39,27 @@ São os componentes renderizados internamente pelos modais:
 
 ### 3.4 Data Source
 - `src/data/sairaData.js`: Centralização de copywriting, parâmetros de contato (link do WhatsApp), descrições de quartos. Facilita manutenções de conteúdo sem tocar na lógica React.
+
+### 3.5 Links diretos para os cards
+Cada card tem um endereço próprio, para usar em stories, posts e respostas no WhatsApp:
+
+| Card | Endereço |
+|---|---|
+| Nossos Espaços | `saira7.vercel.app/#espacos` |
+| Galeria | `saira7.vercel.app/#galeria` |
+| Natureza & Rio | `saira7.vercel.app/#natureza` |
+| Como Chegar | `saira7.vercel.app/#como-chegar` (também `#localizacao`) |
+| Quintal do Sana | `saira7.vercel.app/#quintal` |
+| Orçamento | `saira7.vercel.app/#orcamento` (também `#cotacao`) |
+
+- Acento e maiúscula não importam (`#Orçamento` funciona).
+- Ao abrir um card pelo site, o endereço muda para o `#` dele; o botão "voltar" do celular fecha o modal em vez de sair do site.
+- A lista fica em `CARD_HASHES` (`NavigationContext.jsx`). Card novo (ex.: Portfólio) precisa entrar lá.
+
+### 3.6 Prévia do link (WhatsApp / Instagram / Facebook)
+- Imagem: `public/og.jpg` (1200×630, ~240 KB, recorte de `meio-sitio.jpg` com a faixa das 7 cores na base).
+- Metatags `og:*` no `index.html`, com o endereço **completo** da imagem (com caminho relativo o WhatsApp não mostra a foto).
+- O WhatsApp guarda a prévia em cache por um tempo; mudanças na imagem podem demorar a aparecer em links já compartilhados.
 
 ## 🎨 4. Identidade Visual v1 (nov/2026) — fonte da verdade: projeto "Saira7" no Claude (doc 04)
 
@@ -77,6 +99,9 @@ Qualquer alteração visual futura deve respeitar estritamente estas leis:
 
 ## 🔮 5. Backlog Futuro (O Que Fazer a Seguir)
 Quando a inteligência artificial assumir, aqui estão os itens arquitetados e planejados para a próxima iteração do projeto:
+
+- [x] **Hub da bio do Instagram:** atalhos abaixo do título, links diretos por card e prévia do link corrigida (nov/2026).
+- [ ] **Fotos mais leves:** `public/images` tem ~42 MB (18 fotos acima de 1 MB). Gerar versões WebP no tamanho de exibição.
 
 - [ ] **Mesclagem "Localização + Quintal":** Em um esforço de otimização da grade, planeja-se integrar a aba "Como Chegar" diretamente no card de "Quintal do Sana", centralizando tudo que é externo ao sítio em um único modal.
 - [ ] **Reativar Portfólio de Eventos:** Com o espaço liberado pela fusão acima (mantendo 6 cards no total), reativaremos o card de "Portfólio de Eventos" na tela inicial. Ele será concebido focado estritamente em uma grande galeria de fotos ilustrando casamentos, encontros e retiros passados (sem textos, apenas a energia visual dos eventos).
