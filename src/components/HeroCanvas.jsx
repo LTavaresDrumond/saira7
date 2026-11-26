@@ -70,7 +70,7 @@ export default function HeroCanvas() {
 
       {/* Cards Grid */}
       <div className={`relative z-10 max-w-5xl mx-auto w-full transition-all duration-500 ${activeCard ? 'opacity-0 scale-95 pointer-events-none' : 'opacity-100 scale-100'}`}>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-5">
           {CARDS.map((card) => (
             <FlipCard
               key={card.id}
