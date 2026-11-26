@@ -47,7 +47,7 @@ export default function HeroCanvas() {
   const activeCardData = CARDS.find((c) => c.id === activeCard);
 
   return (
-    <header className="force-dark relative min-h-[85vh] flex flex-col justify-center px-4 sm:px-6 lg:px-8 pt-24 pb-10 overflow-hidden">
+    <header className="force-dark relative flex flex-col px-4 sm:px-6 lg:px-8 pt-20 sm:pt-24 pb-8 sm:pb-10 overflow-hidden">
       {/* Background Image */}
       <div className={`absolute inset-0 z-0 transition-all duration-500 ${activeCard ? 'hero-blurred' : ''}`}>
         <img
@@ -58,13 +58,12 @@ export default function HeroCanvas() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-black/35 to-black/75"></div>
       </div>
 
-      {/* Hero Title */}
-      <div className={`relative z-10 text-center mb-8 sm:mb-10 transition-all duration-500 ${activeCard ? 'opacity-0 scale-95 pointer-events-none' : 'opacity-100 scale-100'}`}>
-        <h1 className="font-serif text-2xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight drop-shadow-2xl">
-          Sítio Saíra Sete Cores
-        </h1>
-        <p className="text-stone-200 text-sm sm:text-base mt-2 font-light drop-shadow-lg">
-          Cabeceira do Sana • Macaé (RJ) — Selecione para explorar
+      {/* Localização. O nome do sítio por extenso fica no rodapé (logo + nome); aqui só um
+          título invisível (sr-only) para leitores de tela e buscadores. */}
+      <div className={`relative z-10 text-center mb-4 sm:mb-6 transition-all duration-500 ${activeCard ? 'opacity-0 scale-95 pointer-events-none' : 'opacity-100 scale-100'}`}>
+        <h1 className="sr-only">Sítio Saíra Sete Cores — Cabeceira do Sana, Macaé (RJ)</h1>
+        <p className="text-stone-200 text-sm sm:text-base font-light drop-shadow-lg">
+          Cabeceira do Sana • Macaé (RJ)
         </p>
       </div>
 

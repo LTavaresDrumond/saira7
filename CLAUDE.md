@@ -21,7 +21,7 @@ npm run build   # rodar SEMPRE antes de commitar
 - **Texto sobre foto** precisa estar dentro de um elemento com `force-dark`. Modais usam `theme-auto`. Detalhes no `PROJECT_CONTEXT.md`.
 - **Cores:** use as classes do tema (`white`, `stone-*`, `amber-*`, `emerald-*`, que viram variáveis CSS) ou as fixas `saira-*`. Não use hex soltos de outras paletas. As cores dos cards ficam em `CARD_COLORS` (`src/components/stripeColor.js`).
 - **Conteúdo** (textos, contato, fotos) fica em `src/data/sairaData.js` — inclusive os nomes dos cards (`cards`) e a ordem dos canais da barra (`channels`).
-- **Nada se repete** na mesma tela (regra 4 do `PROJECT_CONTEXT.md`): o que é card não vira botão extra, os canais ficam só na barra do topo e o nome do sítio por extenso fica só no título do hero.
+- **Nada se repete** na mesma tela (regra 4 do `PROJECT_CONTEXT.md`): o que é card não vira botão extra, os canais ficam só na barra do topo e o nome do sítio por extenso fica só no rodapé (logo + nome); o hero mostra só a localização.
 - **Segredos nunca no código** (o repositório é público). Senhas e chaves vão em variáveis de ambiente da Vercel.
 - **Fluxo:** mudanças pequenas e pedidas explicitamente podem ir direto para a `main`. Mudanças maiores: ramo + pull request + prévia da Vercel para aprovação no celular.
 - Mensagens de commit em português, no padrão `tipo(escopo): descrição` (feat, fix, style, docs, refactor).

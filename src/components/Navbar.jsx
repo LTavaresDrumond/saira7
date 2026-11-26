@@ -13,7 +13,7 @@ import { sairaData } from '../data/sairaData';
  * Identidade visual v1:
  *  - Faixa das 7 cores no topo.
  *  - Logo: o pássaro em traço, sem letras (Areia sobre a foto e no tema escuro;
- *    Noite na barra clara). O nome por extenso fica só no título do hero: nada se repete.
+ *    Noite na barra clara). O nome por extenso fica no rodapé: nada se repete.
  *  - Canais (Airbnb, Instagram, WhatsApp) à direita, no celular e no computador.
  *  - Computador (lg+): links curtos dos cards, todos em branco (sem destaque) + botão de tema.
  *  - Celular/tablet: canais + menu; o botão de tema fica dentro do menu.
@@ -65,7 +65,7 @@ export default function Navbar() {
 
       <div className={`transition-all duration-300 ${barStyle} ${isScrolled ? 'py-2' : 'py-3'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-3">
-          {/* Logo: só o pássaro (o nome do sítio fica no título do hero) */}
+          {/* Logo: só o pássaro (o nome do sítio fica no rodapé) */}
           <a href="/" onClick={handleLogoClick} className="group flex-shrink-0" aria-label="Sítio Saíra Sete Cores — voltar ao início">
             <img
               src={logoSrc}
