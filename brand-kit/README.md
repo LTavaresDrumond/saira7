@@ -18,7 +18,7 @@ Estes arquivos **não** fazem parte do site publicado (o site usa `public/brand/
 | `passaro-traco-areia.svg/.png` | Pássaro em traço claro — **sobre fotos** (modelo A) |
 | `passaro-traco-noite.svg/.png` | Pássaro em traço escuro — fundos claros |
 
-Texto do selo (provisório, aguardando a frase definitiva): "SÍTIO ECOLÓGICO SAÍRA SETE CORES" / "AGROECOLOGIA · ARTE · EDUCAÇÃO · SAÚDE INTEGRAL".
+Texto do selo (26/11/2026): em cima "SAÍRA SETE CORES" (maior, centralizado); embaixo "AGROECOLOGIA · EDUCAÇÃO · SAÚDE INTEGRAL".
 
 ## `instagram/`
 - `perfil-passaro-areia.png` — foto de perfil (pássaro sobre Areia; mais legível no círculo pequeno)
