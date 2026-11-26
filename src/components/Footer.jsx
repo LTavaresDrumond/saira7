@@ -20,17 +20,17 @@ export default function Footer() {
           <div className="lg:col-span-6">
             <div className="flex items-center gap-3.5">
               <img
-                src={theme === 'light' ? '/brand/selo-claro.webp' : '/brand/selo-escuro.webp'}
-                alt="Selo Sítio Ecológico Saíra Sete Cores"
+                src={theme === 'light' ? '/brand/logo-claro.webp' : '/brand/logo-escuro.webp'}
+                alt="Logo Saíra Sete Cores"
                 className="w-20 h-20 sm:w-24 sm:h-24 flex-shrink-0"
               />
               <div>
                 <span className="font-serif text-2xl font-bold tracking-tight block text-white">
                   {sairaData.name}
                 </span>
-                {/* Mesma cor do nome do sítio (nada de dourado solto); texto do selo v4 */}
+                {/* Mesma cor do nome do sítio (nada de dourado solto); texto da logo final */}
                 <span className="text-[11px] uppercase tracking-widest font-semibold block text-white">
-                  Agroecologia · Cultura · Educação · Saúde
+                  Agroecologia · Educação · Cultura · Saúde
                 </span>
               </div>
             </div>

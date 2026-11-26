@@ -70,8 +70,8 @@ export default function Navbar() {
             <img
               src={logoSrc}
               alt="Logo Sítio Saíra Sete Cores"
-              width="900"
-              height="729"
+              width="1200"
+              height="733"
               className="h-9 sm:h-10 w-auto transition-transform duration-300 group-hover:-translate-y-0.5"
             />
           </a>

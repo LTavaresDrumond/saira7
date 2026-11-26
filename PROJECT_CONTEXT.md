@@ -28,7 +28,7 @@ O Sítio Saíra Sete Cores (localizado na Cabeceira do Sana, Macaé - RJ) possui
 - `NavigationContext.jsx`: Cérebro do estado dos cards, da trilha (`breadcrumbs`: `[idDoCard, { id, label }, …]`) e dos links diretos (`#reservar` etc.).
 - `Channels.jsx`: Canais de captação (o site como link da bio do Instagram), **na barra do topo, no celular e no computador**. O site é um auxiliar de divulgação: **Airbnb e Instagram são os canais principais** (Airbnb em Laranja fogo, Instagram em Roxo ipê) e o **WhatsApp é o contato direto** (Verde mata). Botões redondos e cheios com os ícones das marcas (Simple Icons, CC0): 40 px no celular, 44 px no computador, onde o Airbnb ganha o nome escrito para ter mais destaque. Ordem e nomes em `sairaData.channels`; cores em `CHANNEL_COLORS` (`stripeColor.js`). O Airbnb aparece sozinho quando `contact.airbnbUrl` for preenchido.
 - `Navbar.jsx`: Barra do topo. **Logo = só o pássaro em traço, sem letras** (o nome por extenso fica só no título do hero). À direita, os canais. No computador (lg+): links curtos dos cards (`short` em `sairaData.cards`), **todos em branco, sem destaque**, e o botão de tema. No celular/tablet: canais + menu; **o botão de tema fica dentro do menu**. **Com o menu do celular aberto, a barra fica sólida, na mesma cor do menu** (Noite no tema escuro, Areia no claro); ao fechar, volta a ser transparente sobre a foto.
-- `Footer.jsx`: Selo, nome do sítio e a frase "Agroecologia · Cultura · Educação · Saúde" (a mesma do selo v4) **na mesma cor do nome**; lista "Explorar" (mesmos nomes de `sairaData.cards`) e WhatsApp.
+- `Footer.jsx`: Logo, nome do sítio e a frase "Agroecologia · Educação · Cultura · Saúde" (a mesma da logo final) **na mesma cor do nome**; lista "Explorar" (mesmos nomes de `sairaData.cards`) e WhatsApp.
 
 ### 3.3 Componentes de Conteúdo (`src/components/content/`)
 São os componentes renderizados internamente pelos modais:
@@ -77,9 +77,9 @@ Cada card tem um endereço próprio, para usar em stories, posts e respostas no 
 - Textos: **DM Sans** (`font-sans`).
 
 ### Logo (arquivos em `public/brand/`)
-Versão v4 (26/11/2026): pássaro pousado no galho. Os arquivos oficiais completos (todas as versões do selo, perfil e destaques do Instagram, modelos de post) ficam em `brand-kit/` — ver `brand-kit/README.md`. Eles **não** fazem parte do site; o site usa só `public/brand/`.
+Versão final (26/11/2026): a **logo feita pelo sócio no Canva** ("Saíra Sete Cores" / "Agroecologia • Educação • Cultura • Saúde", pássaro pousado com círculo por trás). A **versão minimalista é só o pássaro** (o desenho inicial, sem galho nem círculo). Os arquivos oficiais completos (versões branco, areia, noite e sem fundo da logo, perfil e destaques do Instagram, modelos de post) ficam em `brand-kit/` — ver `brand-kit/README.md`. Eles **não** fazem parte do site; o site usa só `public/brand/`.
 - `passaro-traco-areia.svg` / `passaro-traco-noite.svg`: pássaro em traço, **a logo da barra do topo** (Areia sobre a foto e no tema escuro; Noite na barra clara). Sem letras: o nome fica no título do hero. (Em nov/2026 testamos o selo na barra e voltamos para o pássaro, que ficou melhor.)
-- `selo-escuro.webp` / `selo-claro.webp` (256 px, ~13–15 KB): selo circular, usado no rodapé conforme o tema. São gerados a partir de `selo-escuro.png` / `selo-claro.png` (720 px, ~170–200 KB): **se o selo mudar, gere os `.webp` de novo** (Python/Pillow: redimensionar para 256×256 e salvar em WebP qualidade 88).
+- `logo-claro.webp` / `logo-escuro.webp` (256 px): logo final sem fundo, usada no rodapé conforme o tema (claro: linhas escuras; escuro: linhas Areia e filete Areia no pássaro). São geradas a partir de `brand-kit/logo/logo-transparente.png` / `logo-transparente-areia.png`: **se a logo mudar, gere os `.webp` de novo** (Python/Pillow: redimensionar para 256×256 e salvar em WebP qualidade 88).
 - `passaro.svg` (colorido, contorno Noite) e `passaro-contorno-areia.svg` (contorno Areia, para fundos escuros). `passaro.svg` também é o favicon.
 
 ### Faixa das 7 cores
