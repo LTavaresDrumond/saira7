@@ -27,7 +27,14 @@ npm run build   # rodar SEMPRE antes de commitar
 - Ao terminar, explique o que mudou em linguagem simples e atualize o `PROJECT_CONTEXT.md` se a arquitetura ou as regras mudarem.
 
 ## Backlog do site (resumo; o completo está no doc "01 Backlog" do projeto Saira7)
-1. Botões de "hub" para o site funcionar como link da bio do Instagram.
-2. Opcional: regra de cores da faixa também dentro dos modais.
-3. Reativar "Portfólio de Eventos" e unir "Como Chegar" ao "Quintal do Sana".
-4. Área dos sócios (módulo de reservas) com Google Agenda como banco de dados. Ver doc 01 do projeto Saira7.
+
+**Feito**
+- ✅ Hub da bio do Instagram (PR #2, nov/2026): canais de captação em `HubLinks.jsx` (Airbnb e Instagram em destaque, WhatsApp para contato; abaixo do título no celular, na barra do topo no computador; nada se repete), cards compactos no celular, links diretos `#orcamento` etc. e prévia do link no WhatsApp (`public/og.jpg`).
+
+**A fazer (ordem sugerida)**
+1. Fotos mais leves: `public/images` tem ~42 MB (18 fotos acima de 1 MB). Gerar WebP no tamanho de exibição — o site abre mais rápido no 4G.
+2. Reativar "Portfólio de Eventos" e unir "Como Chegar" ao "Quintal do Sana" (planejado no `PROJECT_CONTEXT.md`). Card novo precisa entrar em `CARD_HASHES` (link direto) e `CARD_COLORS`.
+3. Área dos sócios (módulo de reservas) com Google Agenda como banco de dados. Ver doc 01 do projeto Saira7. **Pendências para começar:** nomes dos sócios e conta central do Google.
+4. Opcional: regra de cores da faixa também dentro dos modais.
+
+**Quando houver:** link do Airbnb em `sairaData.contact.airbnbUrl` — o botão aparece sozinho no celular e no computador.

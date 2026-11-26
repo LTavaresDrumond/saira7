@@ -26,6 +26,15 @@ export const sairaData = {
     instagramUrl: "https://www.instagram.com/sitio_saira_sete_cores",
     airbnbUrl: "", // Deixado preparado para quando for publicado
   },
+  // Canais de captação abaixo do título (o site como link da bio do Instagram).
+  // Só canais externos: o que já é card não se repete aqui.
+  // A ordem aqui é a ordem na tela; `primary` = destaque (círculo cheio).
+  // O do Airbnb só aparece quando contact.airbnbUrl estiver preenchido.
+  hub: [
+    { id: "airbnb", label: "Airbnb", primary: true },
+    { id: "instagram", label: "Instagram", primary: true },
+    { id: "whatsapp", label: "WhatsApp" },
+  ],
   highlights: [
     {
       value: "Até 100",

@@ -32,6 +32,15 @@ export const CARD_COLORS = {
   cotacao: '#563C7E',     // Roxo ipê
 };
 
+/**
+ * Cores dos canais (hub) abaixo do título.
+ */
+export const HUB_COLORS = {
+  airbnb: '#E35E0C',    // Laranja fogo (próximo do coral do Airbnb)
+  instagram: '#563C7E', // Roxo ipê
+  whatsapp: '#6EAA40',  // Verde mata
+};
+
 const AREIA = [247, 243, 234];
 const NOITE = [2, 32, 44];
 

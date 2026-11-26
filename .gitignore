@@ -29,3 +29,6 @@ pnpm-debug.log*
 # Antigravity / Agents (centralized globally in parent directory)
 .agents/
 
+
+# Log local do servidor de desenvolvimento
+dev.log

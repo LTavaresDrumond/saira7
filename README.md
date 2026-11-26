@@ -45,7 +45,8 @@ Website e landing page oficial para divulgação e locação do **Sítio Saíra 
 ## 📱 Conversão & Contato
 - Formulário de cotação interativo (estadia ou evento, número de participantes e datas)
 - Integração direta com **WhatsApp**
-- Canais rápidos no rodapé: **WhatsApp**, **Instagram** e **Airbnb** (preparado)
+- Canais (link da bio do Instagram): **Airbnb** e **Instagram** em destaque (o Airbnb aparece quando o link for cadastrado) e **WhatsApp** para contato direto. No celular ficam abaixo do título; no computador, na barra do topo
+- Links diretos para cada card, ex.: `saira7.vercel.app/#orcamento`
 
 ---
 
@@ -53,6 +54,12 @@ Website e landing page oficial para divulgação e locação do **Sítio Saíra 
 - [x] Brainstorming inicial e definição de escopo e capacidades
 - [x] Centralização global das skills de IA (`ui-ux-pro-max`, `brainstorming`, etc.)
 - [x] Definição do Design System: identidade visual v1 (7 cores da saíra + Areia/Noite, Fraunces + DM Sans, logo nova, tema claro/escuro). Ver `PROJECT_CONTEXT.md`
-- [ ] Seleção e integração das imagens em alta resolução do Google Drive
-- [ ] Implementação da landing page responsiva (mobile & desktop)
+- [x] Seleção e integração das imagens do sítio
+- [x] Implementação da landing page responsiva (mobile & desktop)
+- [x] Hub da bio do Instagram: canais de captação (Airbnb, Instagram, WhatsApp), cards compactos no celular, links diretos por card e prévia do link no WhatsApp
+- [ ] Fotos mais leves (WebP no tamanho de exibição)
+- [ ] Portfólio de Eventos + fusão "Como Chegar" com "Quintal do Sana"
+- [ ] Área dos sócios (reservas com Google Agenda)
+- [ ] Cores da faixa dentro dos modais (opcional)
+- [ ] Link do Airbnb (o botão aparece sozinho quando for cadastrado)
 - [ ] Auditoria de SEO, acessibilidade WCAG e performance
