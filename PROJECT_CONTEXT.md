@@ -4,8 +4,8 @@ Este documento tem como objetivo fornecer todo o contexto arquitetural, regras d
 
 ## 🎯 1. A Ideia e Conceito do Projeto
 O Sítio Saíra Sete Cores (localizado na Cabeceira do Sana, Macaé - RJ) possui uma plataforma web focada em conversão para hospedagem e eventos. 
-- **Experiência de Usuário (Single Screen / Flipper):** Abandonamos o layout tradicional de rolagem longa (landing page clássica). A interface principal (`HeroCanvas.jsx`) é uma tela fixa focada no "visual first", onde o usuário interage através de 5 **cards tridimensionais (FlipCards)** — Espaços & Fotos, Natureza & Rio, Localização, O que fazer no Sana e Reservar; a 6ª vaga fica para o card do Airbnb, quando houver. Ao clicar, o card abre um modal imersivo (`CardModal.jsx`) sobreposto à imagem de fundo.
-- **Nomes diretos (nov/2026, a partir de uma consulta com um usuário final):** "Nossos Espaços" + "Galeria Fotográfica" viraram **Espaços & Fotos**; "Como Chegar" virou **Localização**; "No Quintal do Sana" virou **O que fazer no Sana**; "Solicitar Orçamento" virou **Reservar**.
+- **Experiência de Usuário (Single Screen / Flipper):** Abandonamos o layout tradicional de rolagem longa (landing page clássica). A interface principal (`HeroCanvas.jsx`) é uma tela fixa focada no "visual first", onde o usuário interage através de 5 **cards tridimensionais (FlipCards)** — Espaços & Fotos, Natureza, Localização, O que fazer no Sana e Reservar; a 6ª vaga fica para o card do Airbnb, quando houver. Ao clicar, o card abre um modal imersivo (`CardModal.jsx`) sobreposto à imagem de fundo.
+- **Nomes diretos (nov/2026, a partir de uma consulta com um usuário final):** "Nossos Espaços" + "Galeria Fotográfica" viraram **Espaços & Fotos**; "Como Chegar" virou **Localização**; "No Quintal do Sana" virou **O que fazer no Sana**; "Solicitar Orçamento" virou **Reservar**; depois, "Natureza & Rio" virou só **Natureza**.
 - **Filosofia "Menos é Mais":** O design prioriza imagens imersivas e grandiosas. Textos são usados estritamente quando necessários. Eliminar redundâncias e parágrafos massantes em favor de galerias de fotos limpas e diretas.
 
 ## 🛠 2. Tecnologias e Frameworks
@@ -34,7 +34,7 @@ O Sítio Saíra Sete Cores (localizado na Cabeceira do Sana, Macaé - RJ) possui
 São os componentes renderizados internamente pelos modais:
 - `SpacesContent.jsx`: Card **"Espaços & Fotos"**, com duas abas. **Espaços:** sub-cards de Casa Antiga, Casa Nova, Oca e Convivência (a tela interna segue a trilha do modal; tocar em "Espaços & Fotos" na trilha volta para a lista). **Fotos:** a galeria completa (`GalleryContent`). O endereço acompanha a aba (`#espacos` / `#fotos`). *Nota: Casa Antiga e Casa Nova não possuem mais blocos de texto gigantes, focando 100% no visual das fotos.*
 - `GalleryContent.jsx`: Galeria de fotos mista com filtros por categoria e ampliação — hoje é a aba "Fotos" de Espaços & Fotos (não é mais um card).
-- `NatureContent.jsx`: O card "Natureza & Rio" focado no poço do rio na entrada do sítio.
+- `NatureContent.jsx`: O card "Natureza" focado no poço do rio na entrada do sítio.
 - `QuintalContent.jsx`: Card **"O que fazer no Sana"** (o id interno continua `quintal`). Abas "Ecoturismo" e "Conveniências" (mercados locais). Sem título interno: o nome já está no cabeçalho do modal.
 - `LocationContent.jsx`: Card **"Localização"**: mapa e guia de como chegar.
 - `QuoteContent.jsx`: Card **"Reservar"** (o id interno continua `cotacao`): formulário de hospedagem/evento que envia pelo WhatsApp, e perguntas frequentes.
@@ -51,7 +51,7 @@ Cada card tem um endereço próprio, para usar em stories, posts e respostas no 
 |---|---|---|
 | Espaços & Fotos | `saira7.vercel.app/#espacos` | — |
 | Espaços & Fotos, direto na aba Fotos | `saira7.vercel.app/#fotos` | `#galeria` |
-| Natureza & Rio | `saira7.vercel.app/#natureza` | — |
+| Natureza | `saira7.vercel.app/#natureza` | — |
 | Localização | `saira7.vercel.app/#localizacao` | `#como-chegar` |
 | O que fazer no Sana | `saira7.vercel.app/#o-que-fazer` | `#quintal` |
 | Reservar | `saira7.vercel.app/#reservar` | `#orcamento`, `#cotacao` |

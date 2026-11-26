@@ -33,7 +33,7 @@ export const sairaData = {
   // A vaga do 6º card fica para o card do Airbnb, quando houver.
   cards: [
     { id: "espacos", title: "Espaços & Fotos", short: "Espaços & Fotos", subtitle: "Casas, Oca e galeria de fotos" },
-    { id: "natureza", title: "Natureza & Rio", short: "Natureza", subtitle: "Rio Macaé a 10m do sítio" },
+    { id: "natureza", title: "Natureza", short: "Natureza", subtitle: "Rio Macaé a 10m do sítio" },
     { id: "localizacao", title: "Localização", short: "Localização", subtitle: "Cabeceira do Sana, Macaé" },
     { id: "quintal", title: "O que fazer no Sana", short: "O que fazer", subtitle: "Passeios e conveniências" },
     { id: "cotacao", title: "Reservar", short: "Reservar", subtitle: "Hospedagem e eventos" },
