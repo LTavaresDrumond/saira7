@@ -214,6 +214,16 @@ html[data-theme="light"] .force-dark .theme-auto .force-dark {
 .group:active .hub-icon {
   transform: scale(0.94);
 }
+/* Canal em destaque (Airbnb, Instagram): círculo cheio com aro Areia e sombra */
+.hub-icon-primary {
+  border-color: rgb(247 243 234 / 0.35);
+  box-shadow: 0 6px 18px -6px rgb(0 0 0 / 0.55);
+}
+.group:hover .hub-icon-primary,
+.group:focus-visible .hub-icon-primary {
+  border-color: rgb(247 243 234 / 0.7);
+  box-shadow: 0 0 16px 3px rgb(var(--glow-rgb) / 0.35), 0 6px 18px -6px rgb(0 0 0 / 0.55);
+}
 
 /* Card hover glow — uniform on all 4 sides */
 .card-glow {

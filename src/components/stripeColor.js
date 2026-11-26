@@ -33,15 +33,12 @@ export const CARD_COLORS = {
 };
 
 /**
- * Cores dos botões de atalho (hub) abaixo do título. "Como chegar" e
- * "Orçamento" repetem a cor do card correspondente.
+ * Cores dos canais (hub) abaixo do título.
  */
 export const HUB_COLORS = {
-  whatsapp: '#6EAA40',            // Verde mata
-  instagram: '#E35E0C',           // Laranja fogo
-  airbnb: '#0261B3',              // Azul saíra
-  'como-chegar': CARD_COLORS.localizacao,
-  orcamento: CARD_COLORS.cotacao,
+  airbnb: '#E35E0C',    // Laranja fogo (próximo do coral do Airbnb)
+  instagram: '#563C7E', // Roxo ipê
+  whatsapp: '#6EAA40',  // Verde mata
 };
 
 const AREIA = [247, 243, 234];
