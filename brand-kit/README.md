@@ -9,9 +9,9 @@ Estes arquivos **não** fazem parte do site publicado (o site usa `public/brand/
 - **Fontes:** Fraunces (títulos) · DM Sans (textos, chapéus em caixa alta espaçada)
 
 ## `logo/` (versão v4, 26/11/2026: pássaro pousado no galho)
-Selo: pássaro pousado no centro, dentro de um círculo fino que envolve o pássaro inteiro (sem cruzar asa, bico nem rabo); o galho nasce do círculo, como um ramo dele. Texto em volta em **Fraunces itálico**.
+Selo: pássaro pousado no centro, com um círculo fino **por trás** dele (asa, bico e rabo passam por cima, e a linha para antes de tocar o pássaro). O **galho nasce da própria linha do círculo**: no lado direito a linha vira o contorno do galho (borda de cima e de baixo), que passa sob os pés e afina na ponta, perto do rabo. Texto em volta em **Fraunces itálico**.
+Em cima: **"Saíra Sete Cores"** (por extenso) · embaixo: **"Agroecologia – Cultura – Educação – Saúde"**.
 `emblema-circulo-galho.svg` = círculo + galho + pássaro em vetor (sem o texto).
-Em cima: **"Saíra 7 Cores"** · embaixo: **"Agroecologia – Cultura – Educação – Saúde"**.
 
 | Arquivo | Uso |
 |---|---|
