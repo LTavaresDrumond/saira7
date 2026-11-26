@@ -105,10 +105,15 @@ Qualquer alteração visual futura deve respeitar estritamente estas leis:
 ## 🔮 5. Backlog Futuro (O Que Fazer a Seguir)
 Quando a inteligência artificial assumir, aqui estão os itens arquitetados e planejados para a próxima iteração do projeto:
 
-- [x] **Hub da bio do Instagram:** canais (Airbnb, Instagram, WhatsApp) abaixo do título, links diretos por card e prévia do link corrigida (nov/2026).
-- [ ] **Fotos mais leves:** `public/images` tem ~42 MB (18 fotos acima de 1 MB). Gerar versões WebP no tamanho de exibição.
+**Feito**
+- [x] **Hub da bio do Instagram (PR #2, nov/2026):** canais de captação (abaixo do título no celular, na barra do topo no computador), cards compactos no celular, links diretos por card e prévia do link corrigida.
 
+**A fazer (ordem sugerida)**
+- [ ] **Fotos mais leves:** `public/images` tem ~42 MB (18 fotos acima de 1 MB). Gerar versões WebP no tamanho de exibição.
 - [ ] **Mesclagem "Localização + Quintal":** Em um esforço de otimização da grade, planeja-se integrar a aba "Como Chegar" diretamente no card de "Quintal do Sana", centralizando tudo que é externo ao sítio em um único modal.
-- [ ] **Reativar Portfólio de Eventos:** Com o espaço liberado pela fusão acima (mantendo 6 cards no total), reativaremos o card de "Portfólio de Eventos" na tela inicial. Ele será concebido focado estritamente em uma grande galeria de fotos ilustrando casamentos, encontros e retiros passados (sem textos, apenas a energia visual dos eventos).
+- [ ] **Reativar Portfólio de Eventos:** Com o espaço liberado pela fusão acima (mantendo 6 cards no total), reativaremos o card de "Portfólio de Eventos" na tela inicial. Ele será concebido focado estritamente em uma grande galeria de fotos ilustrando casamentos, encontros e retiros passados (sem textos, apenas a energia visual dos eventos). O card novo precisa entrar em `CARD_HASHES` (`NavigationContext.jsx`, link direto) e `CARD_COLORS` (`stripeColor.js`).
+- [ ] **Área dos sócios (módulo de reservas):** login com usuário e senha em variável de ambiente da Vercel (nunca no código), formulário "Nova reserva" e Google Agenda da conta central como banco de dados (uma agenda por unidade). Regras e campos no doc 01 do projeto Saira7. Pendências: nomes dos sócios e conta central do Google.
+- [ ] **Cores da faixa dentro dos modais (opcional):** abas, filtros e botões seguindo a regra de cores da faixa.
+- [ ] **Link do Airbnb:** quando existir, preencher `sairaData.contact.airbnbUrl` — o botão aparece sozinho no celular e no computador.
 - [ ] **Trilha de Navegação (Breadcrumbs):** Melhorar a estilização e a clareza da navegação aninhada (ex: Nossos Espaços > Casa Nova) no estilo *file-explorer* no cabeçalho do modal.
 - [ ] **Polimento Mobile:** Realizar validação de *QA* das novas abas no card Quintal, garantindo conforto nos toques e rolagem horizontal suave em smartphones.

@@ -56,8 +56,10 @@ Website e landing page oficial para divulgação e locação do **Sítio Saíra 
 - [x] Definição do Design System: identidade visual v1 (7 cores da saíra + Areia/Noite, Fraunces + DM Sans, logo nova, tema claro/escuro). Ver `PROJECT_CONTEXT.md`
 - [x] Seleção e integração das imagens do sítio
 - [x] Implementação da landing page responsiva (mobile & desktop)
-- [x] Hub para a bio do Instagram, links diretos por card e prévia do link no WhatsApp
+- [x] Hub da bio do Instagram: canais de captação (Airbnb, Instagram, WhatsApp), cards compactos no celular, links diretos por card e prévia do link no WhatsApp
 - [ ] Fotos mais leves (WebP no tamanho de exibição)
 - [ ] Portfólio de Eventos + fusão "Como Chegar" com "Quintal do Sana"
 - [ ] Área dos sócios (reservas com Google Agenda)
+- [ ] Cores da faixa dentro dos modais (opcional)
+- [ ] Link do Airbnb (o botão aparece sozinho quando for cadastrado)
 - [ ] Auditoria de SEO, acessibilidade WCAG e performance
