@@ -38,7 +38,7 @@ export default function Footer() {
                   {sairaData.name}
                 </span>
                 <StripeTint onDark={theme !== 'light'} className="text-[11px] uppercase tracking-widest font-semibold block">
-                  Agroecologia · Educação · Saúde Integral
+                  Agroecologia · Cultura · Educação · Saúde
                 </StripeTint>
               </div>
             </div>

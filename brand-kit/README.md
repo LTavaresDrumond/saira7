@@ -8,17 +8,23 @@ Estes arquivos **não** fazem parte do site publicado (o site usa `public/brand/
 - **Base (~90%):** Areia `#F7F3EA` · Noite `#02202C`
 - **Fontes:** Fraunces (títulos) · DM Sans (textos, chapéus em caixa alta espaçada)
 
-## `logo/`
+## `logo/` (versão v4, 26/11/2026: pássaro pousado no galho)
+Selo: pássaro pousado no centro, círculo fino atrás, texto em volta em **Fraunces itálico**.
+Em cima: **"Saíra 7 Cores"** · embaixo: **"Agroecologia – Cultura – Educação – Saúde"**.
+
 | Arquivo | Uso |
 |---|---|
-| `selo-fundo-escuro.png` | Selo circular, fundo Noite, letras Areia |
-| `selo-fundo-branco.png` | Selo circular, fundo branco, letras Noite |
-| `passaro-colorido.svg/.png` | Pássaro colorido, contorno Noite (fundos claros) |
+| `selo-claro.png` | Fundo branco, texto Noite, pássaro colorido |
+| `selo-areia.png` | Fundo Areia, texto Noite, pássaro colorido |
+| `selo-escuro.png` | Fundo Noite, texto Areia, pássaro colorido com contorno Areia |
+| `selo-colorido-sem-fundo.png` | Sem fundo, texto Noite, pássaro colorido (para fundos claros quaisquer) |
+| `selo-noite.png` | Sem fundo, tudo em Noite (uma cor só) |
+| `selo-areia-traco.png` | Sem fundo, tudo em Areia (uma cor só) — **sobre fotos** |
+| `passaro-colorido.svg/.png` | Pássaro pousado colorido, contorno Noite (fundos claros) |
 | `passaro-colorido-contorno-areia.svg/.png` | Pássaro colorido, contorno Areia (fundos escuros) |
-| `passaro-traco-areia.svg/.png` | Pássaro em traço claro — **sobre fotos** (modelo A) |
+| `passaro-traco-areia.svg/.png` | Pássaro em traço claro — **sobre fotos** (modelo A, navbar do site) |
 | `passaro-traco-noite.svg/.png` | Pássaro em traço escuro — fundos claros |
-
-Texto do selo (26/11/2026): em cima "SAÍRA SETE CORES" (maior, centralizado); embaixo "AGROECOLOGIA · EDUCAÇÃO · SAÚDE INTEGRAL".
+| `previa-versoes.png` | Folha com todas as versões do selo |
 
 ## `instagram/`
 - `perfil-passaro-areia.png` — foto de perfil (pássaro sobre Areia; mais legível no círculo pequeno)
