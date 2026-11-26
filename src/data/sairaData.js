@@ -22,8 +22,8 @@ export const sairaData = {
     whatsappNumber: "5561992823308",
     whatsappDisplay: "(61) 99282-3308",
     whatsappLink: "https://api.whatsapp.com/send?phone=5561992823308&text=Ol%C3%A1!%20Vim%20pelo%20site%20do%20S%C3%ADtio%20Sa%C3%ADra%207%20e%20gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20reservas.",
-    instagramHandle: "@sitio_saira_sete_cores",
-    instagramUrl: "https://www.instagram.com/sitio_saira_sete_cores",
+    instagramHandle: "@saira7coress",
+    instagramUrl: "https://www.instagram.com/saira7coress",
     airbnbUrl: "", // Deixado preparado para quando for publicado
   },
   // Cards da tela inicial — a ordem aqui é a ordem na tela.
