@@ -214,6 +214,20 @@ html[data-theme="light"] .force-dark .theme-auto .force-dark {
 .group:active .hub-icon {
   transform: scale(0.94);
 }
+/* Canais na barra do topo (computador): botão cheio; brilho igual nos 4 lados */
+.nav-channel {
+  box-shadow: 0 4px 12px -4px rgb(0 0 0 / 0.45);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.nav-channel:hover,
+.nav-channel:focus-visible {
+  transform: translateY(-1px) scale(1.05);
+  box-shadow: 0 0 14px 2px rgb(var(--glow-rgb) / 0.35), 0 4px 12px -4px rgb(0 0 0 / 0.45);
+}
+.nav-channel:active {
+  transform: scale(0.95);
+}
+
 /* Canal em destaque (Airbnb, Instagram): círculo cheio com aro Areia e sombra */
 .hub-icon-primary {
   border-color: rgb(247 243 234 / 0.35);

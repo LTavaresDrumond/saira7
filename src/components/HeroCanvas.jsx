@@ -65,7 +65,7 @@ export default function HeroCanvas() {
         <p className="text-stone-200 text-sm sm:text-base mt-2 font-light drop-shadow-lg">
           Cabeceira do Sana • Macaé (RJ) — Selecione para explorar
         </p>
-        <HubLinks className="mt-5 sm:mt-6" />
+        <HubLinks className="mt-5 sm:mt-6 xl:hidden" />
       </div>
 
       {/* Cards Grid */}

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Menu, X, MessageCircle, Sun, Moon } from 'lucide-react';
-import { sairaData } from '../data/sairaData';
+import { Menu, X, Sun, Moon } from 'lucide-react';
 import { useNavigation } from './NavigationContext';
+import { NavChannels } from './HubLinks';
 import { useTheme } from './ThemeContext';
 import SevenStripe from './SevenStripe';
 import { useStripeColor } from './stripeColor';
@@ -25,6 +25,9 @@ function StripeLink({ onDark, className, children, ...props }) {
  *  - Faixa das 7 cores no topo.
  *  - Logo: pássaro em traço (Areia sobre a foto/tema escuro, Noite no tema claro).
  *  - Botão de tema claro/escuro.
+ *  - Links curtos (lg+) e, no computador (xl+, 1280 px), os canais (Instagram, WhatsApp, Airbnb quando
+ *    houver) em botões maiores à direita. No celular os canais ficam abaixo do
+ *    título (HubLinks), então a barra não os repete.
  *  - Sobre a foto (sem rolar) a barra fica sempre escura (`force-dark`);
  *    ao rolar ela vira vidro e segue o tema (`theme-auto`).
  */
@@ -41,13 +44,14 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // `short`: nome curto na barra do computador (sobra espaço para os canais)
   const navLinks = [
-    { name: 'Nossos Espaços', href: '#espacos' },
-    { name: 'Galeria', href: '#galeria' },
-    { name: 'Natureza & Rio', href: '#natureza' },
-    { name: 'Quintal do Sana', href: '#quintal' },
-    { name: 'Como Chegar', href: '#localizacao' },
-    { name: 'Orçamento', href: '#cotacao', highlight: true },
+    { name: 'Nossos Espaços', short: 'Espaços', href: '#espacos' },
+    { name: 'Galeria', short: 'Galeria', href: '#galeria' },
+    { name: 'Natureza & Rio', short: 'Natureza', href: '#natureza' },
+    { name: 'Quintal do Sana', short: 'Quintal do Sana', href: '#quintal' },
+    { name: 'Como Chegar', short: 'Como chegar', href: '#como-chegar' },
+    { name: 'Orçamento', short: 'Orçamento', href: '#orcamento', highlight: true },
   ];
 
   const handleNavClick = (e, href) => {
@@ -64,11 +68,6 @@ export default function Navbar() {
     closeCard();
     setMobileMenuOpen(false);
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const handleWhatsAppDirect = () => {
-    const text = encodeURIComponent("Olá! Vim pelo site do Sítio Saíra 7 e gostaria de saber mais informações sobre disponibilidade.");
-    window.open(`https://api.whatsapp.com/send?phone=${sairaData.contact.whatsappNumber}&text=${text}`, '_blank');
   };
 
   // Sobre a foto: sempre escuro. Rolando: segue o tema.
@@ -107,24 +106,24 @@ export default function Navbar() {
           </a>
 
           {/* Desktop Links */}
-          <div className="hidden lg:flex items-center gap-5 xl:gap-7">
+          <div className="hidden lg:flex items-center gap-4 xl:gap-6">
             {navLinks.map((link) =>
               link.highlight ? (
                 <StripeLink
                   key={link.name}
                   onDark={!onLight}
                   onClick={(e) => handleNavClick(e, link.href)}
-                  className="text-sm font-semibold underline underline-offset-4 transition-opacity hover:opacity-80"
+                  className="whitespace-nowrap text-sm font-semibold underline underline-offset-4 transition-opacity hover:opacity-80"
                 >
-                  {link.name}
+                  {link.short}
                 </StripeLink>
               ) : (
                 <button
                   key={link.name}
                   onClick={(e) => handleNavClick(e, link.href)}
-                  className="text-sm font-medium text-white/85 hover:text-white transition-colors"
+                  className="whitespace-nowrap text-sm font-medium text-white/85 hover:text-white transition-colors"
                 >
-                  {link.name}
+                  {link.short}
                 </button>
               )
             )}
@@ -141,14 +140,9 @@ export default function Navbar() {
               {theme === 'light' ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
             </button>
 
-            <button
-              onClick={handleWhatsAppDirect}
-              className="p-2 sm:p-2.5 rounded-full bg-emerald-600 hover:bg-emerald-700 text-saira-areia transition-all transform hover:scale-105 shadow-md flex items-center justify-center"
-              title="Falar no WhatsApp"
-              aria-label="Falar no WhatsApp"
-            >
-              <MessageCircle className="w-4 h-4" />
-            </button>
+            {/* Canais (só no computador, xl+; abaixo disso ficam abaixo do título) */}
+            <span className="hidden xl:block w-px h-6 bg-white/15 mx-0.5" aria-hidden="true" />
+            <NavChannels className="hidden xl:flex" />
 
             {/* Hamburger */}
             <button
