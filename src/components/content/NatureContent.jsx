@@ -1,6 +1,7 @@
 import React from 'react';
 import { Waves, Trees, Sprout, Tent } from 'lucide-react';
 import { sairaData } from '../../data/sairaData';
+import Photo, { SIZES } from '../Photo';
 
 export default function NatureContent() {
   const { nature } = sairaData;
@@ -25,8 +26,9 @@ export default function NatureContent() {
           return (
             <div key={idx} className="rounded-2xl overflow-hidden border border-white/10 group">
               <div className="force-dark relative h-64 overflow-hidden">
-                <img 
-                  src={item.image} 
+                <Photo
+                  sizes={SIZES.grade2}
+                  src={item.image}
                   alt={item.title} 
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
                 />

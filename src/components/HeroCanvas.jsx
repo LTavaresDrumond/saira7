@@ -5,6 +5,7 @@ import CardModal from './CardModal';
 import { useNavigation } from './NavigationContext';
 import { CARD_COLORS } from './stripeColor';
 import { sairaData } from '../data/sairaData';
+import Photo from './Photo';
 
 // ─── Card Content Imports ───────────────────────────────────────────
 import SpacesContent from './content/SpacesContent';
@@ -50,7 +51,8 @@ export default function HeroCanvas() {
     <header className="force-dark relative min-h-[85vh] flex flex-col justify-center px-4 sm:px-6 lg:px-8 pt-24 pb-10 overflow-hidden">
       {/* Background Image */}
       <div className={`absolute inset-0 z-0 transition-all duration-500 ${activeCard ? 'hero-blurred' : ''}`}>
-        <img
+        <Photo
+          fetchpriority="high"
           src="/images/meio-sitio.jpg"
           alt="Vista panorâmica do Sítio Saíra Sete Cores no Sana"
           className="w-full h-full object-cover object-center filter brightness-[0.82] contrast-[1.02]"

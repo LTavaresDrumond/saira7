@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { X, ChevronLeft, ChevronRight, Maximize2, ChevronDown } from 'lucide-react';
 import { sairaData } from '../../data/sairaData';
+import Photo, { SIZES } from '../Photo';
 
 const INITIAL_COUNT = 6;
 
@@ -40,7 +41,7 @@ export default function GalleryContent() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
         {visibleImages.map((img, idx) => (
           <div key={`${selectedCategory}-${idx}`} onClick={() => setLightboxIndex(idx)} className="force-dark group relative h-48 sm:h-56 rounded-xl overflow-hidden cursor-pointer border border-white/10">
-            <img src={img.src} alt={img.title} loading="lazy" className="w-full h-full object-cover img-zoom" />
+            <Photo src={img.src} sizes={SIZES.grade3} alt={img.title} loading="lazy" className="w-full h-full object-cover img-zoom" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4 text-white">
               <span className="text-[10px] uppercase tracking-wider text-amber-300 font-bold">{img.category}</span>
               <h4 className="font-serif text-base font-bold">{img.title}</h4>
@@ -66,7 +67,7 @@ export default function GalleryContent() {
           <button onClick={() => setLightboxIndex(null)} className="absolute top-6 right-6 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white z-50"><X className="w-6 h-6" /></button>
           <button onClick={() => setLightboxIndex((p) => (p - 1 + filteredImages.length) % filteredImages.length)} className="absolute left-4 sm:left-8 p-3 rounded-full bg-white/10 hover:bg-white/25 text-white z-50"><ChevronLeft className="w-7 h-7" /></button>
           <div className="max-w-5xl max-h-[85vh] flex flex-col items-center">
-            <img src={filteredImages[lightboxIndex].src} alt={filteredImages[lightboxIndex].title} className="max-h-[75vh] w-auto max-w-full rounded-xl object-contain shadow-2xl" />
+            <Photo src={filteredImages[lightboxIndex].src} alt={filteredImages[lightboxIndex].title} className="max-h-[75vh] w-auto max-w-full rounded-xl object-contain shadow-2xl" />
             <div className="text-center text-white mt-3">
               <span className="text-xs uppercase tracking-widest text-amber-300 font-bold">{filteredImages[lightboxIndex].category} ({lightboxIndex + 1}/{filteredImages.length})</span>
               <h3 className="font-serif text-xl font-bold mt-1">{filteredImages[lightboxIndex].title}</h3>
