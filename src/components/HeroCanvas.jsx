@@ -2,6 +2,7 @@ import React, { useCallback } from 'react';
 import { Home, Camera, MapPin, Compass, CalendarCheck, Waves } from 'lucide-react';
 import FlipCard from './FlipCard';
 import CardModal from './CardModal';
+import HubLinks from './HubLinks';
 import { useNavigation } from './NavigationContext';
 import { CARD_COLORS } from './stripeColor';
 
@@ -57,13 +58,14 @@ export default function HeroCanvas() {
       </div>
 
       {/* Hero Title */}
-      <div className={`relative z-10 text-center mb-8 sm:mb-10 transition-all duration-500 ${activeCard ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}>
+      <div className={`relative z-10 text-center mb-8 sm:mb-10 transition-all duration-500 ${activeCard ? 'opacity-0 scale-95 pointer-events-none' : 'opacity-100 scale-100'}`}>
         <h1 className="font-serif text-2xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight drop-shadow-2xl">
           Sítio Saíra Sete Cores
         </h1>
         <p className="text-stone-200 text-sm sm:text-base mt-2 font-light drop-shadow-lg">
           Cabeceira do Sana • Macaé (RJ) — Selecione para explorar
         </p>
+        <HubLinks className="mt-5 sm:mt-6" />
       </div>
 
       {/* Cards Grid */}

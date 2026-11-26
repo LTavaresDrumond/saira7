@@ -198,6 +198,23 @@ html[data-theme="light"] .force-dark .theme-auto .force-dark {
   border-radius: 1rem;
 }
 
+/* Botões de atalho (hub) — círculo de vidro com a cor do botão; brilho igual nos 4 lados */
+.hub-icon {
+  border: 1px solid rgb(var(--glow-rgb) / 0.28);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.group:hover .hub-icon,
+.group:focus-visible .hub-icon {
+  transform: translateY(-2px);
+  border-color: rgb(var(--glow-rgb) / 0.6);
+  box-shadow: 0 0 14px 2px rgb(var(--glow-rgb) / 0.22);
+}
+.group:active .hub-icon {
+  transform: scale(0.94);
+}
+
 /* Card hover glow — uniform on all 4 sides */
 .card-glow {
   border-color: rgb(var(--glow-rgb, 251 172 2) / 0.45) !important;
