@@ -1,4 +1,4 @@
-# Kit de marca — Sítio Saíra Sete Cores (identidade visual v1)
+# Kit de marca — Sítio Saíra Sete Cores (identidade visual v1 · logo final de 26/11/2026)
 
 Arquivos oficiais da identidade visual, definidos no projeto **"Saira7" no Claude** (doc 04 Identidade visual).
 Estes arquivos **não** fazem parte do site publicado (o site usa `public/brand/`); servem para posts, Instagram, Airbnb e materiais.
@@ -9,34 +9,48 @@ Estes arquivos **não** fazem parte do site publicado (o site usa `public/brand/
 - **Fontes:** Fraunces (títulos) · DM Sans (textos, chapéus em caixa alta espaçada)
 
 ## `logo/` (versão final, 26/11/2026)
-**Logo oficial:** a versão feita pelo sócio no Canva (`logo-original-canva.png`).
+**Logo principal:** a versão feita pelo sócio no Canva (`logo-original-canva.png`).
 - Pássaro pousado no galho, com um círculo fino por trás.
 - Em cima: **"Saíra Sete Cores"**.
 - Embaixo: **"Agroecologia • Educação • Cultura • Saúde"**.
 
-As versões abaixo foram geradas a partir desse arquivo (609×410 px), ampliadas para 1540×1540. **Para gráfica ou peças grandes, exportar do Canva em alta resolução.**
+As versões foram geradas a partir desse arquivo (609×410 px) e ampliadas para 1540×1540. **Para gráfica ou peças grandes, exportar do Canva em alta resolução.**
 
-| Arquivo | Uso |
+| Arquivo | Versão |
 |---|---|
+| `logo-principal.png` | **Logo principal (versão normal)**, sem fundo, linhas escuras |
+| `logo-instagram.png` | **Versão Instagram:** 1080×1080, fundo branco, cabe no círculo da foto de perfil |
+| `logo-noite.png` | **Versão Noite:** fundo `#02202C`; texto, círculo e galho em Areia; pássaro intacto com filete Areia |
+| `logo-areia.png` | **Versão Areia:** fundo `#F7F3EA` |
+| `logo-branco.png` | Versão normal sobre fundo branco |
+| `logo-noite-sem-fundo.png` | Versão Noite sem fundo (fundos escuros e fotos) |
 | `logo-original-canva.png` | Arquivo enviado pelo sócio (referência) |
-| `logo-branco.png` | Fundo branco |
-| `logo-areia.png` | **Versão Areia:** fundo Areia `#F7F3EA` |
-| `logo-noite.png` | **Versão Noite:** fundo Noite `#02202C`; texto, círculo e galho em Areia; pássaro intacto com um filete Areia em volta |
-| `logo-transparente.png` | Sem fundo, linhas escuras (fundos claros) |
-| `logo-transparente-areia.png` | Sem fundo, linhas Areia + filete no pássaro (fundos escuros e fotos) |
 
-**Versão minimalista = só o pássaro** (o desenho inicial, sem galho nem círculo):
+### Versão minimalista (posts): só o pássaro, sem texto nem círculo
+**Em uso:** o pássaro inicial, voando, sem galho.
 | Arquivo | Uso |
 |---|---|
-| `passaro-colorido.svg/.png` | Pássaro colorido, contorno Noite (fundos claros) |
-| `passaro-colorido-contorno-areia.svg/.png` | Pássaro colorido, contorno Areia (fundos escuros) |
-| `passaro-traco-areia.svg/.png` | Pássaro em traço claro: **sobre fotos** (modelos de post, navbar do site) |
-| `passaro-traco-noite.svg/.png` | Pássaro em traço escuro: fundos claros |
+| `passaro-colorido.svg/.png` | Colorido, contorno Noite (fundos claros) |
+| `passaro-colorido-contorno-areia.svg/.png` | Colorido, contorno Areia (fundos escuros) |
+| `passaro-traco-areia.svg/.png` | Traço claro: **sobre fotos** (modelos de post, barra do topo do site) |
+| `passaro-traco-noite.svg/.png` | Traço escuro: fundos claros |
+
+**Em avaliação (`propostas-minimalista/`):** feitas a partir do pássaro da logo final, preservado como está, com os pés e o galho. Ver `comparacao.png`.
+- **Proposta 1:** pássaro, pés e só a linha do galho.
+- **Proposta 2:** pássaro, pés e o galho completo da logo (linhas e folhas), sem o círculo e sem texto.
+
+Cada proposta tem quatro arquivos:
+- `-cor.png`: fundos claros.
+- `-foto.png`: sobre fotos, com filete Areia.
+- `-traco-areia.svg/.png`: traço de uma cor só, sobre fotos.
+- `-traco-noite.svg/.png`: traço de uma cor só, fundos claros.
+
+### `antigas/`: versões desatualizadas
+Selos testados entre 25 e 26/11 (v2, v3, v4 e variações) e o pássaro pousado v4. Todos estão carimbados com **DESATUALIZADA** e não devem ser usados; ficam só como histórico.
 
 ## `instagram/`
-- `perfil-passaro-areia.png` — foto de perfil (pássaro sobre Areia; mais legível no círculo pequeno)
-- `perfil-logo.png`: foto de perfil alternativa (logo oficial sobre branco)
-- `destaque-*.png` — capas dos destaques (1080×1920): Hospedagem (azul), Cursos (verde), Retiros (petróleo), Eventos (laranja), Como chegar (roxo)
+- `perfil-passaro-areia.png`: foto de perfil só com o pássaro sobre Areia (mais legível no círculo pequeno). A outra opção é `logo/logo-instagram.png`.
+- `destaque-*.png`: capas dos destaques (1080×1920): Hospedagem (azul), Cursos (verde), Retiros (petróleo), Eventos (laranja), Como chegar (roxo).
 
 ## `templates/` (posts 1080×1350)
 | Modelo | Quando usar |
