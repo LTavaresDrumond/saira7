@@ -1,42 +1,43 @@
-import React, { useCallback } from 'react';
-import { Home, Camera, MapPin, Compass, CalendarCheck, Waves } from 'lucide-react';
+import React from 'react';
+import { Home, MapPin, Compass, CalendarCheck, Waves } from 'lucide-react';
 import FlipCard from './FlipCard';
 import CardModal from './CardModal';
-import HubLinks from './HubLinks';
 import { useNavigation } from './NavigationContext';
 import { CARD_COLORS } from './stripeColor';
+import { sairaData } from '../data/sairaData';
 
 // ─── Card Content Imports ───────────────────────────────────────────
 import SpacesContent from './content/SpacesContent';
-import GalleryContent from './content/GalleryContent';
 import LocationContent from './content/LocationContent';
 import QuoteContent from './content/QuoteContent';
 import NatureContent from './content/NatureContent';
 import QuintalContent from './content/QuintalContent';
 
-// ─── Card Definitions ───────────────────────────────────────────────
-const CARDS = [
-  { id: 'espacos',     icon: Home,          title: 'Nossos Espaços',        subtitle: 'Acomodações e Eventos' },
-  { id: 'galeria',     icon: Camera,        title: 'Galeria Fotográfica',   subtitle: 'Imagens reais do sítio' },
-  { id: 'natureza',    icon: Waves,         title: 'Natureza & Rio',        subtitle: 'Rio Macaé a 10m do sítio' },
-  { id: 'localizacao', icon: MapPin,        title: 'Como Chegar',           subtitle: 'Cabeceira do Sana, Macaé' },
-  { id: 'quintal',     icon: Compass,       title: 'No Quintal do Sana',    subtitle: 'Turismo & Conveniências' },
-  { id: 'cotacao',     icon: CalendarCheck, title: 'Solicitar Orçamento',   subtitle: 'Hospedagem e Eventos' },
-];
+// ─── Cards ──────────────────────────────────────────────────────────
+// Nomes, ordem e subtítulos em sairaData.cards; aqui só o ícone e o conteúdo de cada um.
+const CARD_PARTS = {
+  espacos:     { icon: Home,          Content: SpacesContent },   // Espaços & Fotos (com a galeria)
+  natureza:    { icon: Waves,         Content: NatureContent },
+  localizacao: { icon: MapPin,        Content: LocationContent },
+  quintal:     { icon: Compass,       Content: QuintalContent },  // O que fazer no Sana
+  cotacao:     { icon: CalendarCheck, Content: QuoteContent },    // Reservar
+};
 
-const CARD_IDS = CARDS.map(c => c.id);
+const CARDS = sairaData.cards
+  .filter((card) => CARD_PARTS[card.id])
+  .map((card) => ({ ...card, ...CARD_PARTS[card.id] }));
 
-// ─── Content Renderer ───────────────────────────────────────────────
-function CardContent({ cardId }) {
-  switch (cardId) {
-    case 'espacos':     return <SpacesContent />;
-    case 'galeria':     return <GalleryContent />;
-    case 'natureza':    return <NatureContent />;
-    case 'localizacao': return <LocationContent />;
-    case 'quintal':     return <QuintalContent />;
-    case 'cotacao':     return <QuoteContent />;
-    default: return null;
-  }
+const CARD_IDS = CARDS.map((c) => c.id);
+
+// Quando sobra um card sozinho na última linha, ele ocupa a linha inteira
+// (hoje: 5 cards → o "Reservar" fica largo). Com 6 cards, nada muda.
+function lastCardSpan(index) {
+  if (index !== CARDS.length - 1) return '';
+  const n = CARDS.length;
+  return [
+    n % 2 === 1 ? 'col-span-2' : '',
+    n % 3 === 2 ? 'lg:col-span-2' : n % 3 === 1 ? 'lg:col-span-3' : n % 2 === 1 ? 'lg:col-span-1' : '',
+  ].join(' ').trim();
 }
 
 // ─── Main Component ─────────────────────────────────────────────────
@@ -65,15 +66,15 @@ export default function HeroCanvas() {
         <p className="text-stone-200 text-sm sm:text-base mt-2 font-light drop-shadow-lg">
           Cabeceira do Sana • Macaé (RJ) — Selecione para explorar
         </p>
-        <HubLinks className="mt-5 sm:mt-6 xl:hidden" />
       </div>
 
       {/* Cards Grid */}
       <div className={`relative z-10 max-w-5xl mx-auto w-full transition-all duration-500 ${activeCard ? 'opacity-0 scale-95 pointer-events-none' : 'opacity-100 scale-100'}`}>
         <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-5">
-          {CARDS.map((card) => (
+          {CARDS.map((card, index) => (
             <FlipCard
               key={card.id}
+              className={lastCardSpan(index)}
               color={CARD_COLORS[card.id]}
               icon={card.icon}
               title={card.title}
@@ -86,8 +87,6 @@ export default function HeroCanvas() {
         </div>
       </div>
 
-
-
       {/* Card Modal */}
       {activeCardData && (
         <CardModal
@@ -99,7 +98,7 @@ export default function HeroCanvas() {
           accent={CARD_COLORS[activeCard]}
           activeCardId={activeCard}
         >
-          <CardContent cardId={activeCard} />
+          <activeCardData.Content />
         </CardModal>
       )}
     </header>

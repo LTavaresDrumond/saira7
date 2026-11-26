@@ -6,7 +6,7 @@ import { readableColor } from './stripeColor';
  * A animação de flip acontece via CSS class toggle.
  * O estado "receded" é aplicado quando outro card está ativo.
  */
-export default function FlipCard({ icon: Icon, title, subtitle, isActive, isReceded, onClick, color = '#6EAA40' }) {
+export default function FlipCard({ icon: Icon, title, subtitle, isActive, isReceded, onClick, color = '#6EAA40', className = '' }) {
   // Cada card tem uma das 7 cores da faixa (cards ficam sempre sobre a foto → fundo escuro)
   const accent = readableColor(color, true);
 
@@ -17,7 +17,7 @@ export default function FlipCard({ icon: Icon, title, subtitle, isActive, isRece
       disabled={isActive}
       className={`
         group relative w-full h-full text-left
-        rounded-2xl cursor-pointer
+        rounded-2xl cursor-pointer ${className}
         transition-all duration-500 ease-out
         ${isReceded
           ? 'scale-90 opacity-30 pointer-events-none blur-[1px]'

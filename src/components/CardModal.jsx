@@ -51,19 +51,10 @@ export default function CardModal({ title, icon: Icon, isOpen, onClose, cardIds,
 
   if (!isOpen) return null;
 
-  // Build breadcrumb labels
-  const CARD_LABELS = {
-    espacos: 'Nossos Espaços',
-    galeria: 'Galeria Fotográfica',
-    natureza: 'Natureza & Rio',
-    quintal: 'No Quintal do Sana',
-    localizacao: 'Como Chegar',
-    sobre: 'Sobre Nós',
-    cotacao: 'Solicitar Orçamento',
-    portfolio: 'Portfólio de Eventos',
-  };
-
-  const breadcrumbs = nav?.breadcrumbs || [activeCardId];
+  // Trilha: o 1º item é o próprio card (usa o título); os seguintes são telas
+  // internas com nome próprio ({ id, label }, ex.: "Casa Antiga").
+  const breadcrumbs = nav?.breadcrumbs?.length ? nav.breadcrumbs : [activeCardId];
+  const crumbLabel = (crumb, idx) => (idx === 0 ? title : crumb?.label ?? String(crumb));
 
   return (
     <div className={`theme-auto fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 ${closing ? 'pointer-events-none' : ''}`}>
@@ -100,11 +91,11 @@ export default function CardModal({ title, icon: Icon, isOpen, onClose, cardIds,
                   onClick={() => nav?.goToBreadcrumb(idx)}
                   className="text-stone-400 hover:text-amber-300 transition-colors"
                 >
-                  {CARD_LABELS[crumb] || crumb}
+                  {crumbLabel(crumb, idx)}
                 </button>
               ) : (
                 <span className="text-amber-300/80 font-semibold">
-                  {CARD_LABELS[crumb] || crumb}
+                  {crumbLabel(crumb, idx)}
                 </span>
               )}
             </React.Fragment>

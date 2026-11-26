@@ -26,13 +26,25 @@ export const sairaData = {
     instagramUrl: "https://www.instagram.com/sitio_saira_sete_cores",
     airbnbUrl: "", // Deixado preparado para quando for publicado
   },
-  // Canais de captação abaixo do título (o site como link da bio do Instagram).
-  // Só canais externos: o que já é card não se repete aqui.
-  // A ordem aqui é a ordem na tela; `primary` = destaque (círculo cheio).
-  // O do Airbnb só aparece quando contact.airbnbUrl estiver preenchido.
-  hub: [
-    { id: "airbnb", label: "Airbnb", primary: true },
-    { id: "instagram", label: "Instagram", primary: true },
+  // Cards da tela inicial — a ordem aqui é a ordem na tela.
+  // title: nome no card, no modal e no menu do celular; short: nome curto na barra
+  // do computador; subtitle: linha de apoio (aparece do tablet para cima).
+  // Os ids são internos (links diretos, cores e conteúdo de cada card); não mude.
+  // A vaga do 6º card fica para o card do Airbnb, quando houver.
+  cards: [
+    { id: "espacos", title: "Espaços & Fotos", short: "Espaços & Fotos", subtitle: "Casas, Oca e galeria de fotos" },
+    { id: "natureza", title: "Natureza & Rio", short: "Natureza", subtitle: "Rio Macaé a 10m do sítio" },
+    { id: "localizacao", title: "Localização", short: "Localização", subtitle: "Cabeceira do Sana, Macaé" },
+    { id: "quintal", title: "O que fazer no Sana", short: "O que fazer", subtitle: "Passeios e conveniências" },
+    { id: "cotacao", title: "Reservar", short: "Reservar", subtitle: "Hospedagem e eventos" },
+  ],
+  // Canais de captação, na barra do topo (celular e computador) — o site como link
+  // da bio do Instagram. Airbnb e Instagram são os canais principais; o WhatsApp é o
+  // contato direto. A ordem aqui é a ordem na barra. O do Airbnb só aparece quando
+  // contact.airbnbUrl estiver preenchido.
+  channels: [
+    { id: "airbnb", label: "Airbnb" },
+    { id: "instagram", label: "Instagram" },
     { id: "whatsapp", label: "WhatsApp" },
   ],
   highlights: [
