@@ -18,7 +18,10 @@ O Sítio Saíra Sete Cores (localizado na Cabeceira do Sana, Macaé - RJ) possui
 ## 📂 3. Mapeamento de Pastas e Arquitetura
 
 ### 3.1 Pasta de Mídias
-- `/public/images/`: Contém as fotos originais em subpastas organizadas: `casaantiga`, `casanova`, `eventos`, `convivencia`, e raiz para imagens diversas como logotipo e fotos do rio.
+- `/public/images/`: fotos do site em subpastas (`casaantiga`, `casanova`, `eventos`, `convivencia`, `natureza`) e na raiz. Os originais do celular (HEIC) ficam em `/assets/`.
+- **Fotos leves (nov/2026):** cada foto usada tem duas versões WebP ao lado do JPG (`foto-800.webp` e `foto-1600.webp`), geradas por `scripts/otimizar-fotos.py`. O componente `Photo.jsx` entrega a versão certa para cada tela (atributo `sizes`) e deixa o JPG de reserva. Resultado: abrir o site e ver as fotos no iPhone caiu de ~12,7 MB para ~3,8 MB; no computador, para ~1,5 MB.
+- **Foto nova:** coloque o JPG em `public/images/`, cite o caminho no `sairaData.js` (ou no componente), rode `python3 scripts/otimizar-fotos.py` e use `<Photo>` (nunca `<img>`) para fotos. Sem rodar o script, o navegador cai no JPG pesado.
+- Há 15 fotos em `public/images` que o site não usa (ex.: `piscina.jpg`, `lago-1.jpg` na raiz, `eventos/oca4.jpg`); não pesam para o visitante, mas podem ser apagadas ou aproveitadas na galeria.
 
 ### 3.2 Componentes Core (`src/components/`)
 - `App.jsx` e `main.jsx`: Ponto de entrada que envolve a aplicação com o provedor de navegação.
@@ -112,8 +115,9 @@ Quando a inteligência artificial assumir, aqui estão os itens arquitetados e p
 - [x] **Hub da bio do Instagram (PR #2, nov/2026):** canais de captação, cards compactos no celular, links diretos por card e prévia do link corrigida.
 - [x] **Cards com nomes diretos e barra nova (PR #3, nov/2026):** Galeria unida a Espaços (Espaços & Fotos, com abas); Localização, O que fazer no Sana e Reservar; barra com o pássaro sem o nome e os canais (celular e computador); links e rodapé em branco, sem dourado; tema dentro do menu no celular, com a barra sólida enquanto o menu está aberto; trilha do modal corrigida (nomes e voltar).
 
+- [x] **Fotos mais leves (PR #4, nov/2026):** versões WebP de 800 e 1600 px + componente `Photo`; ~70% menos dados no celular e ~88% no computador.
+
 **A fazer (ordem sugerida)**
-- [ ] **Fotos mais leves:** `public/images` tem ~42 MB (18 fotos acima de 1 MB). Gerar versões WebP no tamanho de exibição.
 - [ ] **Card do Airbnb (6ª vaga da grade):** quando existir o link, preencher `sairaData.contact.airbnbUrl` (o botão da barra aparece sozinho) e criar o card na vaga liberada pela união Espaços & Fotos. Definir o que o card mostra além do botão da barra (ex.: as suítes Sol, Estrela e Lua com o link de cada uma), para não repetir o mesmo atalho.
 - [ ] **Área dos sócios (módulo de reservas):** login com usuário e senha em variável de ambiente da Vercel (nunca no código), formulário "Nova reserva" e Google Agenda da conta central como banco de dados (uma agenda por unidade). Regras e campos no doc 01 do projeto Saira7. Pendências: nomes dos sócios e conta central do Google.
 - [ ] **Cores da faixa dentro dos modais (opcional):** abas, filtros e botões seguindo a regra de cores da faixa.

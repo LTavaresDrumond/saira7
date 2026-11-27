@@ -58,7 +58,7 @@ Website e landing page oficial para divulgação e locação do **Sítio Saíra 
 - [x] Implementação da landing page responsiva (mobile & desktop)
 - [x] Hub da bio do Instagram: canais de captação (Airbnb, Instagram, WhatsApp), cards compactos no celular, links diretos por card e prévia do link no WhatsApp
 - [x] Cards com nomes diretos (Espaços & Fotos, Natureza & Rio, Localização, O que fazer no Sana, Reservar) e barra do topo com o pássaro e os canais
-- [ ] Fotos mais leves (WebP no tamanho de exibição)
+- [x] Fotos mais leves (WebP no tamanho de exibição, `scripts/otimizar-fotos.py`)
 - [ ] Área dos sócios (reservas com Google Agenda)
 - [ ] Cores da faixa dentro dos modais (opcional)
 - [ ] Card do Airbnb na 6ª vaga + link do Airbnb (o botão da barra aparece sozinho quando for cadastrado)
