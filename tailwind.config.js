@@ -10,6 +10,9 @@ export default {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
+    // Ferramentas da equipe têm CSS próprio (tailwind.ferramentas.config.js), que só baixa
+    // junto com a ferramenta: a vitrine não carrega estilos que não usa.
+    "!./src/tools/**",
   ],
   theme: {
     extend: {

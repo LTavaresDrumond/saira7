@@ -8,7 +8,8 @@ Instruções para o Claude Code neste repositório. Leia também o `PROJECT_CONT
 - A base de conhecimento do sítio (acomodações, preços, regras, identidade visual, backlog) fica no projeto **"Saira7" no Claude**. Decisões de negócio vêm de lá; este repositório cuida só do site.
 
 ## Stack
-React 18 + Vite 6 + Tailwind CSS 3 + lucide-react. Sem backend por enquanto.
+React 18 + Vite 6 + Tailwind CSS 3 + lucide-react + react-router-dom. Sem backend por enquanto.
+Rotas: `/` = vitrine (cards com links `#`); `/gerador` = gerador de posts da equipe (carregado sob demanda). Ferramentas da equipe ficam em `src/tools/` e não podem pesar a vitrine (ver seção 3.7 do `PROJECT_CONTEXT.md`).
 
 ```bash
 npm ci          # instalar
@@ -36,8 +37,10 @@ npm run build   # rodar SEMPRE antes de commitar
 
 - ✅ Fotos mais leves (PR #4, nov/2026): WebP de 800 e 1600 px (`scripts/otimizar-fotos.py`) entregues pelo componente `Photo`.
 
+- ✅ Gerador de posts (PR #5, nov/2026): `/gerador`, para os sócios fazerem as artes do Instagram (`src/tools/post-generator/`).
+
 **A fazer (ordem sugerida)**
 1. Card do Airbnb na 6ª vaga da grade, quando houver o link (preencher `sairaData.contact.airbnbUrl`; o botão da barra aparece sozinho). Card novo precisa entrar em `sairaData.cards`, `CARD_HASHES` (link direto) e `CARD_COLORS`.
-2. Área dos sócios (módulo de reservas) com Google Agenda como banco de dados. Ver doc 01 do projeto Saira7. **Pendências para começar:** nomes dos sócios e conta central do Google.
+2. Área dos sócios (fase 3 do portal, `/equipe`, com login): módulo de reservas com Google Agenda como banco de dados; o gerador de posts entra lá como mais um item. Ver doc 01 do projeto Saira7. **Pendências para começar:** nomes dos sócios e conta central do Google.
 3. Opcional: regra de cores da faixa também dentro dos modais.
 4. Em aberto: Portfólio de Eventos (a vaga ficou para o Airbnb; as fotos de eventos estão na aba Fotos).

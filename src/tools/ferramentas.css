@@ -1,0 +1,3 @@
+/* CSS das ferramentas da equipe — só as classes usadas em src/tools (ver tailwind.ferramentas.config.js) */
+@config "../../tailwind.ferramentas.config.js";
+@tailwind utilities;

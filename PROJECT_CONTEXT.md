@@ -68,6 +68,18 @@ Cada card tem um endereço próprio, para usar em stories, posts e respostas no 
 - Metatags `og:*` no `index.html`, com o endereço **completo** da imagem (com caminho relativo o WhatsApp não mostra a foto).
 - O WhatsApp guarda a prévia em cache por um tempo; mudanças na imagem podem demorar a aparecer em links já compartilhados.
 
+### 3.7 Ferramentas da equipe (portal em camadas)
+O site tem três camadas: **1. Vitrine** (`/`, para clientes — não mexer sem pedido), **2. Ferramentas da equipe sem login** (`/gerador`, link divulgado só aos sócios) e **3. Área dos sócios com login** (`/equipe`, futura: reservas, orçamento, financeiro; as ferramentas mudam de rota para lá sem ser reescritas).
+
+**Gerador de posts — `/gerador`** (nov/2026). Especificação e referência em `docs/gerador-de-posts/` (`ESPECIFICACAO.md` e `REFERENCIA-gerador.html`; **se divergirem, vale o HTML**).
+- Roda 100% no navegador: a foto escolhida nunca sai do aparelho; não há servidor nem senha.
+- Modelos: com foto (texto em cima = A-topo, texto embaixo = A), **sem foto claro** (Areia, texto Noite, chapéu Petróleo, pássaro colorido) e **sem foto escuro** (Noite, texto Areia, chapéu Turquesa, pássaro colorido com contorno Areia — acréscimo à referência). Feed 1080×1350 ou Stories 1080×1920 (área segura), 3 estilos de texto, tamanho 40–140 %, ajuste da foto (posição, zoom, escurecer), chapéu/título/subtexto/rodapé, download em PNG (no celular, folha de compartilhar do sistema).
+- Estrutura (`src/tools/post-generator/`): `drawPost.js` (função pura que espelha linha a linha o `desenhar()` da referência), `constants.js` (cores, medidas, valores iniciais), `useResources.js` (fontes e pássaros), `useImageFile.js` (lê a foto respeitando o EXIF e reduz fotos grandes para 3840 px), `exportPng.js`, `PostGeneratorPage.jsx` (interface).
+- **Fontes próprias** (`public/fonts/gerador/`, os mesmos arquivos da referência), registradas como "Fraunces Gerador" e "DM Sans Gerador" para não se misturar com as fontes do site. **Pássaros:** os mesmos SVGs da barra (`public/brand/`); se a logo mudar, troque o arquivo e o gerador acompanha.
+- **A vitrine não carrega nada do gerador:** a rota é `React.lazy` (arquivo JS separado) e o CSS das ferramentas sai de `tailwind.ferramentas.config.js` + `src/tools/ferramentas.css`, embutido no próprio arquivo do gerador (o `tailwind.config.js` do site exclui `src/tools`). `vite.config.js` usa `modulePreload: false` para a vitrine não levar o pré-carregador. Custo na vitrine: ~0,7 kB comprimido (rota sob demanda + endereço desconhecido volta para `/`); CSS idêntico.
+- Entrada: link discreto "Equipe · Gerar post" ao lado do © no rodapé (não é card nem vai na barra). `/gerador` tem `noindex` (tag na página e cabeçalho `X-Robots-Tag` no `vercel.json`). O site é público, então a ferramenta não é secreta, só não é divulgada; ela não expõe dado nenhum.
+- Testes feitos: saída comparada pixel a pixel com a referência nas 24 combinações (≤ 0,03 % de pixels diferentes, só suavização do pássaro; posições idênticas), foto em pé (EXIF), foto de 12 MP, título longo, campos vazios, download 1080×1350 e 1080×1920.
+
 ## 🎨 4. Identidade Visual v1 (nov/2026) — fonte da verdade: projeto "Saira7" no Claude (doc 04)
 
 ### Paleta
@@ -116,6 +128,8 @@ Quando a inteligência artificial assumir, aqui estão os itens arquitetados e p
 - [x] **Cards com nomes diretos e barra nova (PR #3, nov/2026):** Galeria unida a Espaços (Espaços & Fotos, com abas); Localização, O que fazer no Sana e Reservar; barra com o pássaro sem o nome e os canais (celular e computador); links e rodapé em branco, sem dourado; tema dentro do menu no celular, com a barra sólida enquanto o menu está aberto; trilha do modal corrigida (nomes e voltar).
 
 - [x] **Fotos mais leves (PR #4, nov/2026):** versões WebP de 800 e 1600 px + componente `Photo`; ~70% menos dados no celular e ~88% no computador.
+
+- [x] **Gerador de posts (PR #5, nov/2026):** `/gerador`, ferramenta da equipe sem login (ver 3.7).
 
 **A fazer (ordem sugerida)**
 - [ ] **Card do Airbnb (6ª vaga da grade):** quando existir o link, preencher `sairaData.contact.airbnbUrl` (o botão da barra aparece sozinho) e criar o card na vaga liberada pela união Espaços & Fotos. Definir o que o card mostra além do botão da barra (ex.: as suítes Sol, Estrela e Lua com o link de cada uma), para não repetir o mesmo atalho.
