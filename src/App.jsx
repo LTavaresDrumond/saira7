@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 import Navbar from './components/Navbar';
 import HeroCanvas from './components/HeroCanvas';
@@ -30,6 +30,8 @@ export default function App() {
               <PostGeneratorPage />
             </Suspense>
           } />
+          {/* Endereço desconhecido: volta para a vitrine em vez de mostrar tela vazia */}
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </BrowserRouter>
     </NavigationProvider>
