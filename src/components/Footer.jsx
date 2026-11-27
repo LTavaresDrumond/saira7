@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { MessageCircle } from 'lucide-react';
 import { sairaData } from '../data/sairaData';
 import { useNavigation } from './NavigationContext';
@@ -45,9 +46,15 @@ export default function Footer() {
           </nav>
         </div>
 
-        <p className="pt-4 text-stone-500 text-xs text-center lg:text-left">
-          &copy; {currentYear} {sairaData.name}. Todos os direitos reservados.
-        </p>
+        <div className="pt-4 flex flex-col lg:flex-row items-center lg:justify-between gap-1.5 text-xs">
+          <p className="text-stone-500 text-center lg:text-left">
+            &copy; {currentYear} {sairaData.name}. Todos os direitos reservados.
+          </p>
+          {/* Entrada discreta das ferramentas da equipe (não é card nem vai na barra) */}
+          <Link to="/gerador" className="text-stone-500 hover:text-white transition-colors">
+            Equipe · Gerar post
+          </Link>
+        </div>
       </div>
     </footer>
   );
